@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32825.248
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PRNFootballWebsite.API", "PRNFootballWebsite\PRNFootballWebsite.API.csproj", "{C7B2E35C-7295-4A69-A1AB-E2AD7F301B9F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PRNFootballWebsite.API", "PRNFootballWebsite\PRNFootballWebsite.API.csproj", "{C7B2E35C-7295-4A69-A1AB-E2AD7F301B9F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PRNFootballWebsite.Client", "PRNFootballWebsite.Client\PRNFootballWebsite.Client.csproj", "{713162D3-F0F8-45EA-8F05-46AD0F672786}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PRNFootballWebsite.Client", "PRNFootballWebsite.Client\PRNFootballWebsite.Client.csproj", "{713162D3-F0F8-45EA-8F05-46AD0F672786}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessObject", "BusinessObject\BusinessObject.csproj", "{C219137F-AF10-4B0C-AEA9-D010CAC68F1D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{713162D3-F0F8-45EA-8F05-46AD0F672786}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{713162D3-F0F8-45EA-8F05-46AD0F672786}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{713162D3-F0F8-45EA-8F05-46AD0F672786}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C219137F-AF10-4B0C-AEA9-D010CAC68F1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C219137F-AF10-4B0C-AEA9-D010CAC68F1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C219137F-AF10-4B0C-AEA9-D010CAC68F1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C219137F-AF10-4B0C-AEA9-D010CAC68F1D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

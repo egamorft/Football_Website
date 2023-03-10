@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Egamorft\\Desktop\\PRNFootballWebsite\\PRNFootballWebsite.Client\\PRNFootballWebsite.Client.csproj",
+      "projectUniqueName": "C:\\Users\\Egamorft\\Desktop\\Football_Website\\PRNFootballWebsite.Client\\PRNFootballWebsite.Client.csproj",
       "projectName": "PRNFootballWebsite.Client",
-      "projectPath": "C:\\Users\\Egamorft\\Desktop\\PRNFootballWebsite\\PRNFootballWebsite.Client\\PRNFootballWebsite.Client.csproj",
+      "projectPath": "C:\\Users\\Egamorft\\Desktop\\Football_Website\\PRNFootballWebsite.Client\\PRNFootballWebsite.Client.csproj",
       "packagesPath": "C:\\Users\\Egamorft\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Egamorft\\Desktop\\PRNFootballWebsite\\PRNFootballWebsite.Client\\obj\\",
+      "outputPath": "C:\\Users\\Egamorft\\Desktop\\Football_Website\\PRNFootballWebsite.Client\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Egamorft\\AppData\\Roaming\\NuGet\\NuGet.Config",
