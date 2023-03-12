@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PRNFootballWebsite.API", "P
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PRNFootballWebsite.Client", "PRNFootballWebsite.Client\PRNFootballWebsite.Client.csproj", "{713162D3-F0F8-45EA-8F05-46AD0F672786}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessObject", "BusinessObject\BusinessObject.csproj", "{C219137F-AF10-4B0C-AEA9-D010CAC68F1D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessObject", "BusinessObject\BusinessObject.csproj", "{C219137F-AF10-4B0C-AEA9-D010CAC68F1D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{C5DB1B9C-44B7-4F9B-BA37-28E97A80467E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccess\DataAccess.csproj", "{C5DB1B9C-44B7-4F9B-BA37-28E97A80467E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

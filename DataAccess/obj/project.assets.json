@@ -2297,19 +2297,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Egamorft\\.nuget\\packages\\": {}
+    "C:\\Users\\pc\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Egamorft\\Desktop\\Football_Website\\DataAccess\\DataAccess.csproj",
+      "projectUniqueName": "F:\\Football_Website\\DataAccess\\DataAccess.csproj",
       "projectName": "DataAccess",
-      "projectPath": "C:\\Users\\Egamorft\\Desktop\\Football_Website\\DataAccess\\DataAccess.csproj",
-      "packagesPath": "C:\\Users\\Egamorft\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Egamorft\\Desktop\\Football_Website\\DataAccess\\obj\\",
+      "projectPath": "F:\\Football_Website\\DataAccess\\DataAccess.csproj",
+      "packagesPath": "C:\\Users\\pc\\.nuget\\packages\\",
+      "outputPath": "F:\\Football_Website\\DataAccess\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Egamorft\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\pc\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2323,8 +2323,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\Egamorft\\Desktop\\Football_Website\\BusinessObject\\BusinessObject.csproj": {
-              "projectPath": "C:\\Users\\Egamorft\\Desktop\\Football_Website\\BusinessObject\\BusinessObject.csproj"
+            "F:\\Football_Website\\BusinessObject\\BusinessObject.csproj": {
+              "projectPath": "F:\\Football_Website\\BusinessObject\\BusinessObject.csproj"
             }
           }
         }

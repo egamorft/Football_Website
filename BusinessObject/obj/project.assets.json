@@ -2344,19 +2344,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Egamorft\\.nuget\\packages\\": {}
+    "C:\\Users\\pc\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Egamorft\\Desktop\\Football_Website\\BusinessObject\\BusinessObject.csproj",
+      "projectUniqueName": "F:\\Football_Website\\BusinessObject\\BusinessObject.csproj",
       "projectName": "BusinessObject",
-      "projectPath": "C:\\Users\\Egamorft\\Desktop\\Football_Website\\BusinessObject\\BusinessObject.csproj",
-      "packagesPath": "C:\\Users\\Egamorft\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Egamorft\\Desktop\\Football_Website\\BusinessObject\\obj\\",
+      "projectPath": "F:\\Football_Website\\BusinessObject\\BusinessObject.csproj",
+      "packagesPath": "C:\\Users\\pc\\.nuget\\packages\\",
+      "outputPath": "F:\\Football_Website\\BusinessObject\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Egamorft\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\pc\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

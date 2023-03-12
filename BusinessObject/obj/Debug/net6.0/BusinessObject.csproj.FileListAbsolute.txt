@@ -12,3 +12,17 @@ C:\Users\Egamorft\Desktop\Football_Website\BusinessObject\obj\Debug\net6.0\refin
 C:\Users\Egamorft\Desktop\Football_Website\BusinessObject\obj\Debug\net6.0\BusinessObject.pdb
 C:\Users\Egamorft\Desktop\Football_Website\BusinessObject\obj\Debug\net6.0\BusinessObject.genruntimeconfig.cache
 C:\Users\Egamorft\Desktop\Football_Website\BusinessObject\obj\Debug\net6.0\ref\BusinessObject.dll
+F:\Football_Website\BusinessObject\bin\Debug\net6.0\BusinessObject.deps.json
+F:\Football_Website\BusinessObject\bin\Debug\net6.0\BusinessObject.runtimeconfig.json
+F:\Football_Website\BusinessObject\bin\Debug\net6.0\BusinessObject.dll
+F:\Football_Website\BusinessObject\bin\Debug\net6.0\BusinessObject.pdb
+F:\Football_Website\BusinessObject\obj\Debug\net6.0\BusinessObject.csproj.AssemblyReference.cache
+F:\Football_Website\BusinessObject\obj\Debug\net6.0\BusinessObject.GeneratedMSBuildEditorConfig.editorconfig
+F:\Football_Website\BusinessObject\obj\Debug\net6.0\BusinessObject.AssemblyInfoInputs.cache
+F:\Football_Website\BusinessObject\obj\Debug\net6.0\BusinessObject.AssemblyInfo.cs
+F:\Football_Website\BusinessObject\obj\Debug\net6.0\BusinessObject.csproj.CoreCompileInputs.cache
+F:\Football_Website\BusinessObject\obj\Debug\net6.0\BusinessObject.dll
+F:\Football_Website\BusinessObject\obj\Debug\net6.0\refint\BusinessObject.dll
+F:\Football_Website\BusinessObject\obj\Debug\net6.0\BusinessObject.pdb
+F:\Football_Website\BusinessObject\obj\Debug\net6.0\BusinessObject.genruntimeconfig.cache
+F:\Football_Website\BusinessObject\obj\Debug\net6.0\ref\BusinessObject.dll
