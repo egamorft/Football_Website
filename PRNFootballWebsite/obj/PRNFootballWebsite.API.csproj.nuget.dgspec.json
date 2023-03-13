@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "F:\\Football_Website\\PRNFootballWebsite\\PRNFootballWebsite.API.csproj": {}
+    "C:\\Users\\Egamorft\\Desktop\\Football_Website\\PRNFootballWebsite\\PRNFootballWebsite.API.csproj": {}
   },
   "projects": {
-    "F:\\Football_Website\\BusinessObject\\BusinessObject.csproj": {
+    "C:\\Users\\Egamorft\\Desktop\\Football_Website\\BusinessObject\\BusinessObject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Football_Website\\BusinessObject\\BusinessObject.csproj",
+        "projectUniqueName": "C:\\Users\\Egamorft\\Desktop\\Football_Website\\BusinessObject\\BusinessObject.csproj",
         "projectName": "BusinessObject",
-        "projectPath": "F:\\Football_Website\\BusinessObject\\BusinessObject.csproj",
-        "packagesPath": "C:\\Users\\pc\\.nuget\\packages\\",
-        "outputPath": "F:\\Football_Website\\BusinessObject\\obj\\",
+        "projectPath": "C:\\Users\\Egamorft\\Desktop\\Football_Website\\BusinessObject\\BusinessObject.csproj",
+        "packagesPath": "C:\\Users\\Egamorft\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Egamorft\\Desktop\\Football_Website\\BusinessObject\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\pc\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Egamorft\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -79,17 +79,17 @@
         }
       }
     },
-    "F:\\Football_Website\\DataAccess\\DataAccess.csproj": {
+    "C:\\Users\\Egamorft\\Desktop\\Football_Website\\DataAccess\\DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Football_Website\\DataAccess\\DataAccess.csproj",
+        "projectUniqueName": "C:\\Users\\Egamorft\\Desktop\\Football_Website\\DataAccess\\DataAccess.csproj",
         "projectName": "DataAccess",
-        "projectPath": "F:\\Football_Website\\DataAccess\\DataAccess.csproj",
-        "packagesPath": "C:\\Users\\pc\\.nuget\\packages\\",
-        "outputPath": "F:\\Football_Website\\DataAccess\\obj\\",
+        "projectPath": "C:\\Users\\Egamorft\\Desktop\\Football_Website\\DataAccess\\DataAccess.csproj",
+        "packagesPath": "C:\\Users\\Egamorft\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Egamorft\\Desktop\\Football_Website\\DataAccess\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\pc\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Egamorft\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -103,8 +103,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "F:\\Football_Website\\BusinessObject\\BusinessObject.csproj": {
-                "projectPath": "F:\\Football_Website\\BusinessObject\\BusinessObject.csproj"
+              "C:\\Users\\Egamorft\\Desktop\\Football_Website\\BusinessObject\\BusinessObject.csproj": {
+                "projectPath": "C:\\Users\\Egamorft\\Desktop\\Football_Website\\BusinessObject\\BusinessObject.csproj"
               }
             }
           }
@@ -138,17 +138,17 @@
         }
       }
     },
-    "F:\\Football_Website\\PRNFootballWebsite\\PRNFootballWebsite.API.csproj": {
+    "C:\\Users\\Egamorft\\Desktop\\Football_Website\\PRNFootballWebsite\\PRNFootballWebsite.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Football_Website\\PRNFootballWebsite\\PRNFootballWebsite.API.csproj",
+        "projectUniqueName": "C:\\Users\\Egamorft\\Desktop\\Football_Website\\PRNFootballWebsite\\PRNFootballWebsite.API.csproj",
         "projectName": "PRNFootballWebsite.API",
-        "projectPath": "F:\\Football_Website\\PRNFootballWebsite\\PRNFootballWebsite.API.csproj",
-        "packagesPath": "C:\\Users\\pc\\.nuget\\packages\\",
-        "outputPath": "F:\\Football_Website\\PRNFootballWebsite\\obj\\",
+        "projectPath": "C:\\Users\\Egamorft\\Desktop\\Football_Website\\PRNFootballWebsite\\PRNFootballWebsite.API.csproj",
+        "packagesPath": "C:\\Users\\Egamorft\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Egamorft\\Desktop\\Football_Website\\PRNFootballWebsite\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\pc\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Egamorft\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -162,11 +162,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "F:\\Football_Website\\BusinessObject\\BusinessObject.csproj": {
-                "projectPath": "F:\\Football_Website\\BusinessObject\\BusinessObject.csproj"
+              "C:\\Users\\Egamorft\\Desktop\\Football_Website\\BusinessObject\\BusinessObject.csproj": {
+                "projectPath": "C:\\Users\\Egamorft\\Desktop\\Football_Website\\BusinessObject\\BusinessObject.csproj"
               },
-              "F:\\Football_Website\\DataAccess\\DataAccess.csproj": {
-                "projectPath": "F:\\Football_Website\\DataAccess\\DataAccess.csproj"
+              "C:\\Users\\Egamorft\\Desktop\\Football_Website\\DataAccess\\DataAccess.csproj": {
+                "projectPath": "C:\\Users\\Egamorft\\Desktop\\Football_Website\\DataAccess\\DataAccess.csproj"
               }
             }
           }

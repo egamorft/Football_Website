@@ -8,19 +8,19 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\pc\\.nuget\\packages\\": {}
+    "C:\\Users\\Egamorft\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Football_Website\\PRNFootballWebsite.Client\\PRNFootballWebsite.Client.csproj",
+      "projectUniqueName": "C:\\Users\\Egamorft\\Desktop\\Football_Website\\PRNFootballWebsite.Client\\PRNFootballWebsite.Client.csproj",
       "projectName": "PRNFootballWebsite.Client",
-      "projectPath": "F:\\Football_Website\\PRNFootballWebsite.Client\\PRNFootballWebsite.Client.csproj",
-      "packagesPath": "C:\\Users\\pc\\.nuget\\packages\\",
-      "outputPath": "F:\\Football_Website\\PRNFootballWebsite.Client\\obj\\",
+      "projectPath": "C:\\Users\\Egamorft\\Desktop\\Football_Website\\PRNFootballWebsite.Client\\PRNFootballWebsite.Client.csproj",
+      "packagesPath": "C:\\Users\\Egamorft\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Egamorft\\Desktop\\Football_Website\\PRNFootballWebsite.Client\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\pc\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Egamorft\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
