@@ -7,7 +7,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12 no-margin">
-                <h1>FIFA WORLD CUP 2018</h1>
+                <h1>@Model.UpcomingMatch.Tournament_Name</h1>
             </div>
             <div class="col-lg-12">
                 <div class="box-start">
@@ -18,13 +18,12 @@
                                     <div class="col">
                                         <h4>
                                             <span>Starting Date</span>
-                                            30 JAN 2018
+                                            <p id="timeShowUp">@Model.UpcomingMatch.DateTime.ToString("h:mm:ss dd/MM/yyyy")</p>
                                         </h4>
                                     </div>
                                     <div class="col">
                                         <h4>
-                                            <span>Luzhniki Stadium</span>
-                                            Moscow
+                                            <span>@Model.UpcomingMatch.Stadium</span>
                                         </h4>
                                     </div>
                                 </div>
@@ -36,7 +35,7 @@
                                     <div class="col">
                                         <a href="../Team/single-team">
                                             <img src="~/img/clubs-logos/colombia.png" alt="">
-                                            <span>Colombia</span>
+                                            <span>@Model.UpcomingMatch.Team1_Name</span>
                                         </a>
                                     </div>
                                     <div class="col">
@@ -45,7 +44,7 @@
                                     <div class="col">
                                         <a href="../Team/single-team">
                                             <img src="~/img/clubs-logos/rusia.png" alt="">
-                                            <span>Rusia</span>
+                                            <span>@Model.UpcomingMatch.Team2_Name</span>
                                         </a>
                                     </div>
                                 </div>
@@ -53,7 +52,7 @@
                         </div>
                         <div class="col-lg-4">
                             <div class="horizontal-next-counter">
-                                <div id="event-one" class="counter"></div>
+                                <div id="countdown" class="counter"></div>
                             </div>
                         </div>
                     </div>
@@ -71,7 +70,7 @@
 
                 <div class="col-lg-4">
                     <div class="club-ranking">
-                        <h5><a href="group-list">Club Ranking</a></h5>
+                        <h5><a href="group-list">Premier League Ranking</a></h5>
                         <div class="info-ranking">
                             <ul>
                                 <li>

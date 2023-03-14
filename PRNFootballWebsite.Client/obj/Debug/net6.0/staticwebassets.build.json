@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "f6fI/4qOfMjTjIsGvQKIrHjwcvjsyP/E2XHqgBDDseA=",
+  "Hash": "rd0019d9FfJloOIKajC7fwxaddZfRLiPC15qY9HsgY4=",
   "Source": "PRNFootballWebsite.Client",
   "BasePath": "_content/PRNFootballWebsite.Client",
   "Mode": "Default",
@@ -185,6 +185,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\js\\jquery.js"
+    },
+    {
+      "Identity": "C:\\Users\\Egamorft\\Desktop\\Football_Website\\PRNFootballWebsite.Client\\wwwroot\\assets\\js\\myJS.js",
+      "SourceId": "PRNFootballWebsite.Client",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Egamorft\\Desktop\\Football_Website\\PRNFootballWebsite.Client\\wwwroot\\",
+      "BasePath": "_content/PRNFootballWebsite.Client",
+      "RelativePath": "assets/js/myJS.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\js\\myJS.js"
     },
     {
       "Identity": "C:\\Users\\Egamorft\\Desktop\\Football_Website\\PRNFootballWebsite.Client\\wwwroot\\assets\\js\\popper.min.js",
