@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace PRNFootballWebsite.Client.Pages.Views.Home
+namespace PRNFootballWebsite.Client.Pages
 {
-    public class index5Model : PageModel
+    public class IndexModel : PageModel
     {
         public void OnGet()
         {

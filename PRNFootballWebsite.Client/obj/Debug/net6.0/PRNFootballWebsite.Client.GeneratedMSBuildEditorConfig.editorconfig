@@ -19,6 +19,10 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Egamorft/Desktop/Football_Website/PRNFootballWebsite.Client/Pages/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Egamorft/Desktop/Football_Website/PRNFootballWebsite.Client/Pages/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -29,38 +33,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Egamorft/Desktop/Football_Website/PRNFootballWebsite.Client/Pages/Views/Account/single-player.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVmlld3NcQWNjb3VudFxzaW5nbGUtcGxheWVyLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Egamorft/Desktop/Football_Website/PRNFootballWebsite.Client/Pages/Views/Features/news-left-sidebar.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVmlld3NcRmVhdHVyZXNcbmV3cy1sZWZ0LXNpZGViYXIuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Egamorft/Desktop/Football_Website/PRNFootballWebsite.Client/Pages/Views/Features/news-right-sidebar.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVmlld3NcRmVhdHVyZXNcbmV3cy1yaWdodC1zaWRlYmFyLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Egamorft/Desktop/Football_Website/PRNFootballWebsite.Client/Pages/Views/Home/index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVmlld3NcSG9tZVxpbmRleC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Egamorft/Desktop/Football_Website/PRNFootballWebsite.Client/Pages/Views/Home/index2.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVmlld3NcSG9tZVxpbmRleDIuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Egamorft/Desktop/Football_Website/PRNFootballWebsite.Client/Pages/Views/Home/index3.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVmlld3NcSG9tZVxpbmRleDMuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Egamorft/Desktop/Football_Website/PRNFootballWebsite.Client/Pages/Views/Home/index4.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVmlld3NcSG9tZVxpbmRleDQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Egamorft/Desktop/Football_Website/PRNFootballWebsite.Client/Pages/Views/Home/index5.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVmlld3NcSG9tZVxpbmRleDUuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Egamorft/Desktop/Football_Website/PRNFootballWebsite.Client/Pages/Views/Home/index6.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVmlld3NcSG9tZVxpbmRleDYuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Egamorft/Desktop/Football_Website/PRNFootballWebsite.Client/Pages/Views/Matches/fixtures.cshtml]

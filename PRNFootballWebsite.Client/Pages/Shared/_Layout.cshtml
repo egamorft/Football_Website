@@ -21,27 +21,112 @@
 <body>
     <div id="layout">
 
-        <header>
+        <header class="header-2">
 
             <div class="headerbox">
                 <div class="container">
                     <div class="row justify-content-between align-items-center">
 
-                        <div class="col">
+                        <div class="col col-xl-2">
                             <div class="logo">
-                                <a href="index" title="Return Home">
-                                    <img src="~/img/logo.png" alt="Logo" class="logo_img">
+                                <a href="/index" title="Return Home">
+                                    <img src="/img/logo.png" alt="Logo" class="logo_img">
                                 </a>
                             </div>
                         </div>
 
 
-                        <div class="col">
-                            <div class="adds">
-                                <a href="http://themeforest.net/user/iwthemes/portfolio?ref=iwthemes" target="_blank">
-                                    <img src="~/img/adds/banner.jpg" alt="" class="img-responsive">
-                                </a>
-                            </div>
+                        <div class="col col-xl-10">
+
+                            <nav class="mainmenu">
+                                <div class="container">
+
+                                    <ul class="sf-menu" id="menu">
+                                        <li class="current">
+                                            <a href="/index">Home</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">World Cup 2022</a>
+                                            <div class="sf-mega">
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <h5><i class="fa fa-trophy" aria-hidden="true"></i>World Cup</h5>
+                                                        <ul>
+                                                            <li><a href="/WC2022/Schedule">Schedule</a></li>
+                                                            <li><a href="/WC2022/Groups">Groups</a></li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <h5><i class="fa fa-users" aria-hidden="true"></i> Teams List</h5>
+                                                        <div class="img-hover">
+                                                            <img src="img\blog\1.jpg" alt="" class="img-responsive">
+                                                            <div class="overlay"><a href="/WC2022/Teams">+</a></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <h5><i class="fa fa-futbol-o" aria-hidden="true"></i> Players List</h5>
+                                                        <div class="img-hover">
+                                                            <img src="img\blog\2.jpg" alt="" class="img-responsive">
+                                                            <div class="overlay"><a href="/WC2022/Players">+</a></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <h5><i class="fa fa-gamepad" aria-hidden="true"></i> Results Info</h5>
+                                                        <div class="img-hover">
+                                                            <img src="img\blog\3.jpg" alt="" class="img-responsive">
+                                                            <div class="overlay"><a href="/WC2022/Results">+</a></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="current">
+                                            <a href="/tournament/tournament_id">Tournament Name</a>
+                                            <ul class="sub-current">
+                                                <li>
+                                                    <a href="#">Teams List</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">Fixtures</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">Result</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">Table</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="current">
+                                            <a href="/tournament/tournament_id">Tournament Name</a>
+                                            <ul class="sub-current">
+                                                <li>
+                                                    <a href="#">Teams List</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">Fixtures</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">Result</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">Table</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+
+                                        <li>
+                                            <a href="/Fixture/Today">Today fixtures</a>
+                                        </li>
+                                        <li class="current">
+                                            <a href="/Live">On live</a>
+                                        </li>
+                                        <i class="fa fa-fire" style="color:red"></i>
+                                    </ul>
+
+                                </div>
+                            </nav>
+
 
                             <a class="mobile-nav" href="#mobile-nav"><i class="fa fa-bars"></i></a>
 
@@ -54,206 +139,29 @@
         </header>
 
 
-        <nav class="mainmenu">
-            <div class="container">
-
-                <ul class="sf-menu" id="menu">
-                    <li class="current">
-                        <a href="index">Home</a>
-                        <ul class="sub-current">
-                            <li>
-                                <a href="index">Home 1</a>
-                            </li>
-                            <li>
-                                <a href="index2">Home 2</a>
-                            </li>
-                            <li>
-                                <a href="index3">Home 3</a>
-                            </li>
-                            <li>
-                                <a href="index4">Home 4</a>
-                            </li>
-                            <li>
-                                <a href="index5">Home 5</a>
-                            </li>
-                            <li>
-                                <a href="index6">Home 6</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#">World Cup</a>
-                        <div class="sf-mega">
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <h5><i class="fa fa-trophy" aria-hidden="true"></i>World Cup</h5>
-                                    <ul>
-                                        <li><a href="table-point">Point Table</a></li>
-                                        <li><a href="../Matches/fixtures">Fixtures</a></li>
-                                        <li><a href="../Tournament/groups">Groups</a></li>
-                                        <li><a href="news-left-sidebar">News</a></li>
-                                        <li><a href="contact">Contact Us</a></li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-3">
-                                    <h5><i class="fa fa-users" aria-hidden="true"></i> Teams List</h5>
-                                    <div class="img-hover">
-                                        <img src="~/img/blog/1.jpg" alt="" class="img-responsive">
-                                        <div class="overlay"><a href="../Team/teams">+</a></div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <h5><i class="fa fa-futbol-o" aria-hidden="true"></i> Players List</h5>
-                                    <div class="img-hover">
-                                        <img src="~/img/blog/2.jpg" alt="" class="img-responsive">
-                                        <div class="overlay"><a href="../Account/players">+</a></div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <h5><i class="fa fa-gamepad" aria-hidden="true"></i> Results Info</h5>
-                                    <div class="img-hover">
-                                        <img src="~/img/blog/3.jpg" alt="" class="img-responsive">
-                                        <div class="overlay"><a href="../Statistics/results">+</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="current">
-                        <a href="../Team/teams">Teams</a>
-                        <ul class="sub-current">
-                            <li>
-                                <a href="../Team/teams">Teams List</a>
-                            </li>
-                            <li>
-                                <a href="../Team/single-team">Single Team</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="current">
-                        <a href="../Account/players">Players</a>
-                        <ul class="sub-current">
-                            <li>
-                                <a href="../Account/players">Players List</a>
-                            </li>
-                            <li>
-                                <a href="../Account/single-player">Single Player</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="../Matches/fixtures">Fixtures</a>
-                    </li>
-                    <li class="current">
-                        <a href="../Statistics/results">Results</a>
-                        <ul class="sub-current">
-                            <li>
-                                <a href="../Statistics/results">Results List</a>
-                            </li>
-                            <li>
-                                <a href="../Statistics/single-result">Single Result</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="table-point">Point Table</a>
-                    </li>
-                    <li>
-                        <a href="../Tournament/groups">Groups</a>
-                    </li>
-                    <li>
-                        <a href="#">Features</a>
-                        <div class="sf-mega">
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <h5>Features</h5>
-                                    <ul>
-                                        <li><a href="page-full-width">Full Width</a></li>
-                                        <li><a href="page-left-sidebar">Left Sidebar</a></li>
-                                        <li><a href="page-right-sidebar">Right Sidebar</a></li>
-                                        <li><a href="page-404">404 Page</a></li>
-                                        <li><a href="page-faq">FAQ</a></li>
-                                        <li><a href="sitemap">Sitemap</a></li>
-                                        <li><a href="page-pricing">Pricing</a></li>
-                                        <li><a href="page-register">Register Form</a></li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-3">
-                                    <h5>Headers & Footers</h5>
-                                    <ul>
-                                        <li><a href="feature-header-footer-1">Header Version 1</a></li>
-                                        <li><a href="feature-header-footer-2">Header Version 2</a></li>
-                                        <li><a href="feature-header-footer-3">Header Version 3</a></li>
-                                        <li><a href="index-5">Header Version 4</a></li>
-                                        <li><a href="feature-header-footer-1#footer">Footer Version 1</a></li>
-                                        <li><a href="feature-header-footer-2#footer">Footer Version 2</a></li>
-                                        <li><a href="feature-header-footer-3#footer">Footer Version 3</a></li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-3">
-                                    <h5>Pages</h5>
-                                    <ul>
-                                        <li><a href="page-about">About Us</a></li>
-                                        <li><a href="../Account/single-player">About Me</a></li>
-                                        <li><a href="services">Services</a></li>
-                                        <li><a href="../Team/single-team">Club Info</a></li>
-                                        <li><a href="../Statistics/single-result">Match Result</a></li>
-                                        <li><a href="table-point">Positions</a></li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-3">
-                                    <h5>News</h5>
-                                    <ul>
-                                        <li>
-                                            <a href="news-left-sidebar">News Lef Sidebar</a>
-                                        </li>
-                                        <li>
-                                            <a href="news-right-sidebar">News Right Sidebar</a>
-                                        </li>
-                                        <li>
-                                            <a href="news-no-sidebar">News No Sidebar</a>
-                                        </li>
-                                        <li>
-                                            <a href="single-news">Single News</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <i class="fa fa-trophy big-icon" aria-hidden="true"></i>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="contact">Contact</a>
-                    </li>
-                </ul>
-
-            </div>
-        </nav>
-
-
         <div id="mobile-nav">
 
             <ul>
                 <li>
-                    <a href="index">Home</a>
+                    <a href="index.html">Home</a>
                     <ul>
                         <li>
-                            <a href="index-1">Home 1</a>
+                            <a href="index-1.html">Home 1</a>
                         </li>
                         <li>
-                            <a href="index-2">Home 2</a>
+                            <a href="index-2.html">Home 2</a>
                         </li>
                         <li>
-                            <a href="index-3">Home 3</a>
+                            <a href="index-3.html">Home 3</a>
                         </li>
                         <li>
-                            <a href="index-4">Home 4</a>
+                            <a href="index-4.html">Home 4</a>
                         </li>
                         <li>
-                            <a href="index-5">Home 5</a>
+                            <a href="index-5.html">Home 5</a>
                         </li>
                         <li>
-                            <a href="index-6">Home 6</a>
+                            <a href="index-6.html">Home 6</a>
                         </li>
                     </ul>
                 </li>
@@ -263,59 +171,59 @@
                         <li>
                             <a href="#">World Cup</a>
                             <ul>
-                                <li><a href="table-point">Point Table</a></li>
-                                <li><a href="../Matches/fixtures">Fixtures</a></li>
-                                <li><a href="../Tournament/groups">Groups</a></li>
-                                <li><a href="news-left-sidebar">News</a></li>
-                                <li><a href="contact">Contact Us</a></li>
+                                <li><a href="table-point.html">Point Table</a></li>
+                                <li><a href="fixtures.html">Fixtures</a></li>
+                                <li><a href="groups.html">Groups</a></li>
+                                <li><a href="news-left-sidebar.html">News</a></li>
+                                <li><a href="contact.html">Contact Us</a></li>
                             </ul>
                         </li>
-                        <li><a href="../Team/teams">Teams List</a></li>
-                        <li><a href="../Account/players">Players List</a></li>
-                        <li><a href="../Statistics/results">Results List</a></li>
+                        <li><a href="teams.html">Teams List</a></li>
+                        <li><a href="players.html">Players List</a></li>
+                        <li><a href="results.html">Results List</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="../Team/teams">Teams</a>
+                    <a href="teams.html">Teams</a>
                     <ul>
                         <li>
-                            <a href="../Team/teams">Teams List</a>
+                            <a href="teams.html">Teams List</a>
                         </li>
                         <li>
-                            <a href="../Team/single-team">Single Team</a>
+                            <a href="single-team.html">Single Team</a>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="../Account/players">Players</a>
+                    <a href="players.html">Players</a>
                     <ul>
                         <li>
-                            <a href="../Account/players">Players List</a>
+                            <a href="players.html">Players List</a>
                         </li>
                         <li>
-                            <a href="../Account/single-player">Single Player</a>
+                            <a href="single-player.html">Single Player</a>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="../Matches/fixtures">Fixtures</a>
+                    <a href="fixtures.html">Fixtures</a>
                 </li>
                 <li>
-                    <a href="../Statistics/results">Results</a>
+                    <a href="results.html">Results</a>
                     <ul>
                         <li>
-                            <a href="../Statistics/results">Results List</a>
+                            <a href="results.html">Results List</a>
                         </li>
                         <li>
-                            <a href="../Statistics/single-result">Single Result</a>
+                            <a href="single-result.html">Single Result</a>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="table-point">Point Table</a>
+                    <a href="table-point.html">Point Table</a>
                 </li>
                 <li>
-                    <a href="../Tournament/groups">Groups</a>
+                    <a href="groups.html">Groups</a>
                 </li>
                 <li>
                     <a href="#">Features</a>
@@ -323,60 +231,60 @@
                         <li>
                             <a href="#">Features</a>
                             <ul>
-                                <li><a href="page-full-width">Full Width</a></li>
-                                <li><a href="page-left-sidebar">Left Sidebar</a></li>
-                                <li><a href="page-right-sidebar">Right Sidebar</a></li>
-                                <li><a href="page-404">404 Page</a></li>
-                                <li><a href="page-faq">FAQ</a></li>
-                                <li><a href="sitemap">Sitemap</a></li>
-                                <li><a href="page-pricing">Pricing</a></li>
-                                <li><a href="page-register">Register Form</a></li>
+                                <li><a href="page-full-width.html">Full Width</a></li>
+                                <li><a href="page-left-sidebar.html">Left Sidebar</a></li>
+                                <li><a href="page-right-sidebar.html">Right Sidebar</a></li>
+                                <li><a href="page-404.html">404 Page</a></li>
+                                <li><a href="page-faq.html">FAQ</a></li>
+                                <li><a href="sitemap.html">Sitemap</a></li>
+                                <li><a href="page-pricing.html">Pricing</a></li>
+                                <li><a href="page-register.html">Register Form</a></li>
                             </ul>
                         </li>
                         <li>
                             <a href="#">Headers & Footers</a>
                             <ul>
-                                <li><a href="feature-header-footer-1">Header Version 1</a></li>
-                                <li><a href="feature-header-footer-2">Header Version 2</a></li>
-                                <li><a href="feature-header-footer-3">Header Version 3</a></li>
-                                <li><a href="index-5">Header Version 4</a></li>
-                                <li><a href="feature-header-footer-1#footer">Footer Version 1</a></li>
-                                <li><a href="feature-header-footer-2#footer">Footer Version 2</a></li>
-                                <li><a href="feature-header-footer-3#footer">Footer Version 3</a></li>
+                                <li><a href="feature-header-footer-1.html">Header Version 1</a></li>
+                                <li><a href="feature-header-footer-2.html">Header Version 2</a></li>
+                                <li><a href="feature-header-footer-3.html">Header Version 3</a></li>
+                                <li><a href="index-5.html">Header Version 4</a></li>
+                                <li><a href="feature-header-footer-1.html#footer">Footer Version 1</a></li>
+                                <li><a href="feature-header-footer-2.html#footer">Footer Version 2</a></li>
+                                <li><a href="feature-header-footer-3.html#footer">Footer Version 3</a></li>
                             </ul>
                         </li>
                         <li>
                             <a href="#">Pages</a>
                             <ul>
-                                <li><a href="page-about">About Us</a></li>
-                                <li><a href="../Account/single-player">About Me</a></li>
-                                <li><a href="feature-header-footer-2#footer">Services</a></li>
-                                <li><a href="../Team/single-team">Club Info</a></li>
-                                <li><a href="../Statistics/single-result">Match Result</a></li>
-                                <li><a href="table-point">Positions</a></li>
+                                <li><a href="page-about.html">About Us</a></li>
+                                <li><a href="single-player.html">About Me</a></li>
+                                <li><a href="feature-header-footer-2.html#footer">Services</a></li>
+                                <li><a href="single-team.html">Club Info</a></li>
+                                <li><a href="single-result.html">Match Result</a></li>
+                                <li><a href="table-point.html">Positions</a></li>
                             </ul>
                         </li>
                         <li>
                             <a href="#">News</a>
                             <ul>
                                 <li>
-                                    <a href="news-left-sidebar">News Lef Sidebar</a>
+                                    <a href="news-left-sidebar.html">News Lef Sidebar</a>
                                 </li>
                                 <li>
-                                    <a href="news-right-sidebar">News Right Sidebar</a>
+                                    <a href="news-right-sidebar.html">News Right Sidebar</a>
                                 </li>
                                 <li>
-                                    <a href="news-no-sidebar">News No Sidebar</a>
+                                    <a href="news-no-sidebar.html">News No Sidebar</a>
                                 </li>
                                 <li>
-                                    <a href="single-news">Single News</a>
+                                    <a href="single-news.html">Single News</a>
                                 </li>
                             </ul>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="contact">Contact</a>
+                    <a href="contact.html">Contact</a>
                 </li>
             </ul>
 
