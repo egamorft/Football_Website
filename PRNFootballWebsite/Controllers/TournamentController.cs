@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using PRNFootballWebsite.API.DTO;
 using PRNFootballWebsite.API.Models;
 
 namespace PRNFootballWebsite.API.Controllers
@@ -17,12 +18,23 @@ namespace PRNFootballWebsite.API.Controllers
             _context = context;
         }
 
-        // GET: api/Tournaments
-        [HttpGet("Tournaments")]
-        public async Task<ActionResult> GetTournaments()
+        // GET: Tournament list
+        // https://localhost:5000/api/Tournament
+        [HttpGet]
+        public async Task<IActionResult> GetTournaments()
         {
-            List<Tournament> tournaments = await _context.Tournaments.ToListAsync();
-            return Ok(tournaments);
+            List<TournamentDTO> listDTO = new List<TournamentDTO>();
+            List<Tournament> list = await _context.Tournaments.ToListAsync();
+            foreach (Tournament a in list)
+            {
+                listDTO.Add(new TournamentDTO
+                {
+                    TournamentId = a.TournamentId,
+                    Name = a.Name,
+                    Description = a.Description
+                });
+            }
+            return Ok(listDTO);
         }
     }
 }

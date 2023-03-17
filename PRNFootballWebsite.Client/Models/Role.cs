@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace PRNFootballWebsite.Client.Models
+namespace PRNFootballWebsite.API.Models
 {
     public partial class Role
     {
@@ -11,7 +11,7 @@ namespace PRNFootballWebsite.Client.Models
         }
 
         public int RoleId { get; set; }
-        public string RoleDescription { get; set; } = null!;
+        public string? RoleDescription { get; set; }
 
         public virtual ICollection<Account> Accounts { get; set; }
     }

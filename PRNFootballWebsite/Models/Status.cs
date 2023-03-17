@@ -11,7 +11,7 @@ namespace PRNFootballWebsite.API.Models
         }
 
         public int StatusId { get; set; }
-        public string StatusDescription { get; set; } = null!;
+        public string? StatusDescription { get; set; }
 
         public virtual ICollection<Account> Accounts { get; set; }
     }

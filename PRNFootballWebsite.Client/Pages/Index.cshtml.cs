@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using PRNFootballWebsite.Client.Models;
+using PRNFootballWebsite.API.DTO;
+//using PRNFootballWebsite.Client.Models;
 using System.Net.Http.Headers;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -11,14 +12,18 @@ namespace PRNFootballWebsite.Client.Pages
     {
         private readonly HttpClient client = null;
         private string MatchesApiUrl = "";
+        private string TournamentsApiUrl = "";
         [BindProperty]
-        public MatchInfo UpcomingMatch { get; set; }
+        public MatchesDTO UpcomingMatch { get; set; }
+        [BindProperty]
+        public List<TournamentDTO> Tournaments { get; set; }
         public IndexModel()
         {
             client = new HttpClient();
             var contentType = new MediaTypeWithQualityHeaderValue("application/json");
             client.DefaultRequestHeaders.Accept.Add(contentType);
             MatchesApiUrl = "https://localhost:5000/api/Match/UpcomingMatch";
+            TournamentsApiUrl = "https://localhost:5000/api/Tournament";
         }
         public async Task<IActionResult> OnGet()
         {
@@ -30,18 +35,13 @@ namespace PRNFootballWebsite.Client.Pages
                 PropertyNameCaseInsensitive = true,
                 ReferenceHandler = ReferenceHandler.Preserve
             };
-            UpcomingMatch = JsonSerializer.Deserialize<MatchInfo>(content, options);
+            UpcomingMatch = JsonSerializer.Deserialize<MatchesDTO>(content, options);
+
+            var response_tour = await httpClient.GetAsync(TournamentsApiUrl);
+            var content_tour = await response_tour.Content.ReadAsStringAsync();
+            Tournaments = JsonSerializer.Deserialize<List<TournamentDTO>>(content_tour, options);
             return Page();
 
-        }
-        public class MatchInfo
-        {
-            public int Matches_ID { get; set; }
-            public DateTime DateTime { get; set; }
-            public string Stadium { get; set; }
-            public string Tournament_Name { get; set; }
-            public string Team1_Name { get; set; }
-            public string Team2_Name { get; set; }
         }
     }
 }

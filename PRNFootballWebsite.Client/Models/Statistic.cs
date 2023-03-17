@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace PRNFootballWebsite.Client.Models
+namespace PRNFootballWebsite.API.Models
 {
     public partial class Statistic
     {
@@ -9,8 +9,8 @@ namespace PRNFootballWebsite.Client.Models
         public int Team2Goal { get; set; }
         public int Team1Shoot { get; set; }
         public int Team2Shoot { get; set; }
-        public double Team1Ontarget { get; set; }
-        public double Team2Ontarget { get; set; }
+        public int Team1Ontarget { get; set; }
+        public int Team2Ontarget { get; set; }
         public double Team1Possession { get; set; }
         public double Team2Possession { get; set; }
         public int Team1Corner { get; set; }

@@ -7,7 +7,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12 no-margin">
-                <h1>@Model.UpcomingMatch.Tournament_Name</h1>
+                <h1>@Model.UpcomingMatch.TournamentName</h1>
             </div>
             <div class="col-lg-12">
                 <div class="box-start">
@@ -18,7 +18,7 @@
                                     <div class="col">
                                         <h4>
                                             <span>Starting Date</span>
-                                            <p id="timeShowUp">@Model.UpcomingMatch.DateTime.ToString("h:mm:ss dd/MM/yyyy")</p>
+                                            <p id="timeShowUp">@Model.UpcomingMatch.Datetime.ToString("h:mm:ss dd/MM/yyyy")</p>
                                         </h4>
                                     </div>
                                     <div class="col">
@@ -35,7 +35,7 @@
                                     <div class="col">
                                         <a href="../Team/single-team">
                                             <img src="~/img/clubs-logos/colombia.png" alt="">
-                                            <span>@Model.UpcomingMatch.Team1_Name</span>
+                                            <span>@Model.UpcomingMatch.Team1Name</span>
                                         </a>
                                     </div>
                                     <div class="col">
@@ -44,7 +44,7 @@
                                     <div class="col">
                                         <a href="../Team/single-team">
                                             <img src="~/img/clubs-logos/rusia.png" alt="">
-                                            <span>@Model.UpcomingMatch.Team2_Name</span>
+                                            <span>@Model.UpcomingMatch.Team2Name</span>
                                         </a>
                                     </div>
                                 </div>
@@ -354,7 +354,7 @@
 
             <aside class="col-sm-6 col-lg-2 col-xl-2 p-3">
 
-                <div class="panel-box"> 
+                <div class="panel-box">
                     <div class="titles no-margin">
                         <h4>Famous stadium</h4>
                     </div>
@@ -391,18 +391,23 @@
                         <h4>Tournament</h4>
                     </div>
 
-                    <div class="row">
-                        <iframe src="https://www.youtube.com/embed/AfOlAUd7u4o" class="video"></iframe>
-                        <div class="info-panel">
-                            <h4>Rio de Janeiro</h4>
-                            <p>Lorem ipsum dolor sit amet, sit amet, consectetur adipisicing elit, elit, incididunt ut labore et dolore magna aliqua sit amet, consectetur adipisicing elit,</p>
-                        </div>
-                    </div>
+                    <ul class="single-carousel">
+                        @foreach (var item in Model.Tournaments)
+                        {
+                            <li>
+                                <img src="~/img/tournamentIMG/@(item.TournamentId).jpg" alt="" class="img-responsive">
+                                <div class="info-single-carousel">
+                                    <h4>@item.Name</h4>
+                                    <p>@item.Description</p>
+                                </div>
+                            </li>
+                        }
+                    </ul>
 
                 </div>
 
-            </aside>  
-            
+            </aside>
+
             <div class="col-lg-8 col-xl-8">
 
                 <div class="container">

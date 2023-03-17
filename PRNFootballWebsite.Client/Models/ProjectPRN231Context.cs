@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace PRNFootballWebsite.Client.Models
+namespace PRNFootballWebsite.API.Models
 {
     public partial class ProjectPRN231Context : DbContext
     {
@@ -18,6 +18,7 @@ namespace PRNFootballWebsite.Client.Models
 
         public virtual DbSet<Account> Accounts { get; set; } = null!;
         public virtual DbSet<Match> Matches { get; set; } = null!;
+        public virtual DbSet<Player> Players { get; set; } = null!;
         public virtual DbSet<Role> Roles { get; set; } = null!;
         public virtual DbSet<Statistic> Statistics { get; set; } = null!;
         public virtual DbSet<Status> Statuses { get; set; } = null!;
@@ -42,31 +43,27 @@ namespace PRNFootballWebsite.Client.Models
                 entity.Property(e => e.AccountId).HasColumnName("account_id");
 
                 entity.Property(e => e.CreatedDate)
-                    .HasColumnType("date")
-                    .HasColumnName("created_date");
+                    .HasColumnType("datetime")
+                    .HasColumnName("created_date")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.FullName)
                     .HasMaxLength(30)
                     .IsUnicode(false)
                     .HasColumnName("full_name");
 
-                entity.Property(e => e.GoalNumber).HasColumnName("goal_number");
-
                 entity.Property(e => e.Password)
                     .HasMaxLength(18)
                     .IsUnicode(false)
                     .HasColumnName("password");
 
-                entity.Property(e => e.Position)
-                    .HasMaxLength(40)
-                    .IsUnicode(false)
-                    .HasColumnName("position");
+                entity.Property(e => e.RoleId)
+                    .HasColumnName("role_id")
+                    .HasDefaultValueSql("((1))");
 
-                entity.Property(e => e.RoleId).HasColumnName("role_id");
-
-                entity.Property(e => e.StatusId).HasColumnName("status_id");
-
-                entity.Property(e => e.TeamId).HasColumnName("team_id");
+                entity.Property(e => e.StatusId)
+                    .HasColumnName("status_id")
+                    .HasDefaultValueSql("((1))");
 
                 entity.Property(e => e.UserName)
                     .HasMaxLength(30)
@@ -76,17 +73,14 @@ namespace PRNFootballWebsite.Client.Models
                 entity.HasOne(d => d.Role)
                     .WithMany(p => p.Accounts)
                     .HasForeignKey(d => d.RoleId)
-                    .HasConstraintName("FK__Account___role_i__2F10007B");
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Account___role_i__2C3393D0");
 
                 entity.HasOne(d => d.Status)
                     .WithMany(p => p.Accounts)
                     .HasForeignKey(d => d.StatusId)
-                    .HasConstraintName("FK__Account___status__300424B4");
-
-                entity.HasOne(d => d.Team)
-                    .WithMany(p => p.Accounts)
-                    .HasForeignKey(d => d.TeamId)
-                    .HasConstraintName("FK__Account___team_i__30F848ED");
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Account___status__2D27B809");
             });
 
             modelBuilder.Entity<Match>(entity =>
@@ -97,7 +91,7 @@ namespace PRNFootballWebsite.Client.Models
                 entity.Property(e => e.MatchesId).HasColumnName("matches_id");
 
                 entity.Property(e => e.Datetime)
-                    .HasColumnType("date")
+                    .HasColumnType("datetime")
                     .HasColumnName("datetime");
 
                 entity.Property(e => e.Team1Id).HasColumnName("team1_id");
@@ -109,17 +103,64 @@ namespace PRNFootballWebsite.Client.Models
                 entity.HasOne(d => d.Team1)
                     .WithMany(p => p.MatchTeam1s)
                     .HasForeignKey(d => d.Team1Id)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__Matches__team_id__31EC6D26");
 
                 entity.HasOne(d => d.Team2)
                     .WithMany(p => p.MatchTeam2s)
                     .HasForeignKey(d => d.Team2Id)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__Matches__team2_i__32E0915F");
 
                 entity.HasOne(d => d.Tournament)
                     .WithMany(p => p.Matches)
                     .HasForeignKey(d => d.TournamentId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__Matches__tournam__30F848ED");
+            });
+
+            modelBuilder.Entity<Player>(entity =>
+            {
+                entity.Property(e => e.PlayerId).HasColumnName("player_id");
+
+                entity.Property(e => e.Assist).HasColumnName("assist");
+
+                entity.Property(e => e.Dob)
+                    .HasColumnType("date")
+                    .HasColumnName("DOB");
+
+                entity.Property(e => e.Goal).HasColumnName("goal");
+
+                entity.Property(e => e.Height).HasColumnName("height");
+
+                entity.Property(e => e.Img)
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasColumnName("img")
+                    .HasDefaultValueSql("('unknownPlayer.png')");
+
+                entity.Property(e => e.Nationality)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("nationality");
+
+                entity.Property(e => e.PlayerName)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("player_name");
+
+                entity.Property(e => e.Position)
+                    .HasMaxLength(5)
+                    .IsUnicode(false)
+                    .HasColumnName("position");
+
+                entity.Property(e => e.TeamId).HasColumnName("team_id");
+
+                entity.HasOne(d => d.Team)
+                    .WithMany(p => p.Players)
+                    .HasForeignKey(d => d.TeamId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Players_Team");
             });
 
             modelBuilder.Entity<Role>(entity =>
@@ -191,7 +232,8 @@ namespace PRNFootballWebsite.Client.Models
 
                 entity.Property(e => e.Logo)
                     .HasMaxLength(100)
-                    .HasColumnName("logo");
+                    .HasColumnName("logo")
+                    .HasDefaultValueSql("(N'unknownClub.png')");
 
                 entity.Property(e => e.Name)
                     .HasMaxLength(30)

@@ -22,5 +22,9 @@
 
         // Update the countdown display
         $("#countdown").text(countdownStr);
+        if (secondsRemaining < 0) {
+            clearInterval(x);
+            $("#countdown").html("The match is on live now");
+        }
     }, 1000);
 });
