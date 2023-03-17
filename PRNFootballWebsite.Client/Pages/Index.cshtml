@@ -7,7 +7,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12 no-margin">
-                <h1>@Model.UpcomingMatch.TournamentName</h1>
+                <h1>@Model.FirstUpcomingMatch.TournamentName</h1>
             </div>
             <div class="col-lg-12">
                 <div class="box-start">
@@ -18,12 +18,12 @@
                                     <div class="col">
                                         <h4>
                                             <span>Starting Date</span>
-                                            <p id="timeShowUp">@Model.UpcomingMatch.Datetime.ToString("h:mm:ss dd/MM/yyyy")</p>
+                                            <p id="timeShowUp">@Model.FirstUpcomingMatch.Datetime.ToString("h:mm:ss dd/MM/yyyy")</p>
                                         </h4>
                                     </div>
                                     <div class="col">
                                         <h4>
-                                            <span>@Model.UpcomingMatch.Stadium</span>
+                                            <span>@Model.FirstUpcomingMatch.Stadium</span>
                                         </h4>
                                     </div>
                                 </div>
@@ -33,18 +33,18 @@
                             <div class="horizontal-next-teams">
                                 <div class="row align-items-center">
                                     <div class="col">
-                                        <a href="../Team/single-team">
-                                            <img src="~/img/clubs-logos/@Model.UpcomingMatch.Team1Logo" alt="">
-                                            <span>@Model.UpcomingMatch.Team1Name</span>
+                                        <a href="../Team/@Model.FirstUpcomingMatch.Team1ID">
+                                            <img src="~/img/clubs-logos/@Model.FirstUpcomingMatch.Team1Logo" alt="@Model.FirstUpcomingMatch.Team1Name">
+                                            <span>@Model.FirstUpcomingMatch.Team1Name</span>
                                         </a>
                                     </div>
                                     <div class="col">
                                         <strong>Vs</strong>
                                     </div>
                                     <div class="col">
-                                        <a href="../Team/single-team">
-                                            <img src="~/img/clubs-logos/@Model.UpcomingMatch.Team2Logo" alt="">
-                                            <span>@Model.UpcomingMatch.Team2Name</span>
+                                        <a href="../Team/@Model.FirstUpcomingMatch.Team2ID">
+                                            <img src="~/img/clubs-logos/@Model.FirstUpcomingMatch.Team2Logo" alt="@Model.FirstUpcomingMatch.Team2Name">
+                                            <span>@Model.FirstUpcomingMatch.Team2Name</span>
                                         </a>
                                     </div>
                                 </div>
@@ -493,65 +493,22 @@
                     </div>
 
                     <ul class="list-diary">
-
-                        <li>
-                            <h6>GROUP A <span>14 JUN 2018 - 18:00</span></h6>
-                            <ul class="club-logo">
-                                <li>
-                                    <img src="~/img/clubs-logos/rusia.png" alt="">
-                                    <span>RUSSIA</span>
-                                </li>
-                                <li>
-                                    <img src="~/img/clubs-logos/arabia.png" alt="">
-                                    <span>SAUDI ARABIA</span>
-                                </li>
-                            </ul>
-                        </li>
-
-
-                        <li>
-                            <h6>GROUP E <span>22 JUN 2018 - 15:00</span></h6>
-                            <ul class="club-logo">
-                                <li>
-                                    <img src="~/img/clubs-logos/bra.png" alt="">
-                                    <span>BRAZIL</span>
-                                </li>
-                                <li>
-                                    <img src="~/img/clubs-logos/costa-rica.png" alt="">
-                                    <span>COSTA RICA</span>
-                                </li>
-                            </ul>
-                        </li>
-
-
-                        <li>
-                            <h6>GROUP H <span>19 JUN 2018 - 15:00</span></h6>
-                            <ul class="club-logo">
-                                <li>
-                                    <img src="~/img/clubs-logos/colombia.png" alt="">
-                                    <span>COLOMBIA</span>
-                                </li>
-                                <li>
-                                    <img src="~/img/clubs-logos/japan.png" alt="">
-                                    <span>JAPAN</span>
-                                </li>
-                            </ul>
-                        </li>
-
-
-                        <li>
-                            <h6>GROUP C <span>16 JUN 2018 - 15:00</span></h6>
-                            <ul class="club-logo">
-                                <li>
-                                    <img src="~/img/clubs-logos/fra.png" alt="">
-                                    <span>FRANCE</span>
-                                </li>
-                                <li>
-                                    <img src="~/img/clubs-logos/aus.png" alt="">
-                                    <span>AUSTRALIA</span>
-                                </li>
-                            </ul>
-                        </li>
+                        @foreach (var item in Model.NextUpcomingMatch)
+                        {
+                            <li>
+                                <h6>@(item.TournamentName.Equals("Premier League") ? "EPL" : item.TournamentName) <span>@item.Datetime.ToString("dd MMM yyyy - HH:mm")</span></h6>
+                                <ul class="club-logo">
+                                    <li>
+                                        <img src="~/img/clubs-logos/@item.Team1Logo" alt="@item.Team1Name">
+                                        <span>@item.Team1Name</span>
+                                    </li>
+                                    <li>
+                                        <img src="~/img/clubs-logos/@item.Team2Logo" alt="@item.Team2Name">
+                                        <span>@item.Team2Name</span>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
 
                     </ul>
 

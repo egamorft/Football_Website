@@ -1,23 +1,11 @@
 {
   "Version": 1,
-  "Hash": "JFgx+UQZSBz0611j2CQEKjEdV+oInMH3uWPVIcwl+gU=",
+  "Hash": "jYzOvYoxPMI49W3zDwBSCuC/efJcbGK+dmtWFVp/8X8=",
   "Source": "PRNFootballWebsite.Client",
   "BasePath": "_content/PRNFootballWebsite.Client",
   "Mode": "Default",
   "ManifestType": "Build",
-  "ReferencedProjectsConfiguration": [
-    {
-      "Identity": "C:\\Users\\Egamorft\\Desktop\\Football_Website\\PRNFootballWebsite\\PRNFootballWebsite.API.csproj",
-      "Version": 2,
-      "Source": "PRNFootballWebsite.API",
-      "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",
-      "AdditionalPublishProperties": "Configuration=Debug;Platform=AnyCPU",
-      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier",
-      "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
-      "AdditionalBuildProperties": "Configuration=Debug;Platform=AnyCPU",
-      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier"
-    }
-  ],
+  "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [
     {
       "Name": "PRNFootballWebsite.Client\\wwwroot",

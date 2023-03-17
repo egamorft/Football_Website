@@ -4,14 +4,14 @@
     "C:\\Users\\Egamorft\\Desktop\\Football_Website\\PRNFootballWebsite\\PRNFootballWebsite.API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Egamorft\\Desktop\\Football_Website\\PRNFootballWebsite\\PRNFootballWebsite.API.csproj": {
+    "C:\\Users\\Egamorft\\Desktop\\Football_Website\\DataAccess\\DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Egamorft\\Desktop\\Football_Website\\PRNFootballWebsite\\PRNFootballWebsite.API.csproj",
-        "projectName": "PRNFootballWebsite.API",
-        "projectPath": "C:\\Users\\Egamorft\\Desktop\\Football_Website\\PRNFootballWebsite\\PRNFootballWebsite.API.csproj",
+        "projectUniqueName": "C:\\Users\\Egamorft\\Desktop\\Football_Website\\DataAccess\\DataAccess.csproj",
+        "projectName": "DataAccess",
+        "projectPath": "C:\\Users\\Egamorft\\Desktop\\Football_Website\\DataAccess\\DataAccess.csproj",
         "packagesPath": "C:\\Users\\Egamorft\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Egamorft\\Desktop\\Football_Website\\PRNFootballWebsite\\obj\\",
+        "outputPath": "C:\\Users\\Egamorft\\Desktop\\Football_Website\\DataAccess\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Egamorft\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -42,23 +42,104 @@
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[6.0.14, )"
+              "version": "[6.0.15, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[6.0.14, )"
+              "version": "[6.0.15, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[6.0.14, )"
+              "version": "[6.0.15, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[6.0.14, )"
+              "version": "[6.0.15, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\Egamorft\\Desktop\\Football_Website\\PRNFootballWebsite\\PRNFootballWebsite.API.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Egamorft\\Desktop\\Football_Website\\PRNFootballWebsite\\PRNFootballWebsite.API.csproj",
+        "projectName": "PRNFootballWebsite.API",
+        "projectPath": "C:\\Users\\Egamorft\\Desktop\\Football_Website\\PRNFootballWebsite\\PRNFootballWebsite.API.csproj",
+        "packagesPath": "C:\\Users\\Egamorft\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Egamorft\\Desktop\\Football_Website\\PRNFootballWebsite\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Egamorft\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Users\\Egamorft\\Desktop\\Football_Website\\DataAccess\\DataAccess.csproj": {
+                "projectPath": "C:\\Users\\Egamorft\\Desktop\\Football_Website\\DataAccess\\DataAccess.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.15, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.15, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[6.0.15, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.15, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",

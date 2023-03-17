@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PRNFootballWebsite.API", "P
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PRNFootballWebsite.Client", "PRNFootballWebsite.Client\PRNFootballWebsite.Client.csproj", "{713162D3-F0F8-45EA-8F05-46AD0F672786}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{C65095A7-9275-4CBC-9456-6373941E944F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{713162D3-F0F8-45EA-8F05-46AD0F672786}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{713162D3-F0F8-45EA-8F05-46AD0F672786}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{713162D3-F0F8-45EA-8F05-46AD0F672786}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C65095A7-9275-4CBC-9456-6373941E944F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C65095A7-9275-4CBC-9456-6373941E944F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C65095A7-9275-4CBC-9456-6373941E944F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C65095A7-9275-4CBC-9456-6373941E944F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

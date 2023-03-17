@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using PRNFootballWebsite.API.Models;
+using DataAccess.Models;
 using System.Text.Json.Serialization;
 using System.Text.Json;
-using PRNFootballWebsite.API.DTO;
+using DataAccess.DTO;
 using System.Security.Principal;
 
 namespace PRNFootballWebsite.API.Controllers
@@ -22,7 +22,7 @@ namespace PRNFootballWebsite.API.Controllers
         }
 
         // GET: List all matches
-        // https://localhost:5000/api/Matches
+        // https://localhost:5000/api/Match
         [HttpGet]
         public async Task<IActionResult> GetMatches()
         {
@@ -43,22 +43,26 @@ namespace PRNFootballWebsite.API.Controllers
                     Team1Name = acc.Team1.Name,
                     Team2Name = acc.Team2.Name,
                     Team1Logo = acc.Team1.Logo,
-                    Team2Logo = acc.Team2.Logo
+                    Team2Logo = acc.Team2.Logo,
+                    Team1ID = acc.Team1Id,
+                    Team2ID = acc.Team2Id,
                 });
             }
             return Ok(listDTO);
         }
 
-        // GET: List upcoming matches
-        // https://localhost:5000/api/Match/UpcomingMatch
-        [HttpGet("UpcomingMatch")]
-        public async Task<ActionResult> GetUpcomingMatch()
+        // GET: List first upcoming matches
+        // https://localhost:5000/api/Match/FirstUpcomingMatch
+        [HttpGet("FirstUpcomingMatch")]
+        public async Task<ActionResult> GetFirstUpcomingMatch()
         {
+            var now = DateTime.Now;
             var lastestMatch = await _context.Matches
                 .Include(m => m.Team1)
                 .Include(m => m.Team2)
                 .Include(m => m.Tournament)
-                .OrderByDescending(m => m.Datetime)
+                .Where(m => m.Datetime > now)
+                .OrderBy(m => m.Datetime)
                 .FirstOrDefaultAsync();
 
             if (lastestMatch == null)
@@ -74,9 +78,44 @@ namespace PRNFootballWebsite.API.Controllers
                 Team1Name = lastestMatch.Team1.Name,
                 Team2Name = lastestMatch.Team2.Name,
                 Team1Logo = lastestMatch.Team1.Logo,
-                Team2Logo = lastestMatch.Team2.Logo
+                Team2Logo = lastestMatch.Team2.Logo,
+                Team1ID = lastestMatch.Team1Id,
+                Team2ID = lastestMatch.Team2Id,
             };
             return Ok(dto);
+        }
+
+        // GET: List next 4 upcoming matches
+        // https://localhost:5000/api/Match/NextUpcomingMatches
+        [HttpGet("NextUpcomingMatches")]
+        public async Task<IActionResult> GetUpcomingMatches()
+        {
+            List<MatchesDTO> listDTO = new List<MatchesDTO>();
+            var now = DateTime.Now;
+            List<Match> list = await _context.Matches.Include(x => x.Tournament)
+                                    .Include(y => y.Team1)
+                                        .Include(z => z.Team2)
+                                            .Where(m => m.Datetime > now)
+                                                .OrderBy(m => m.Datetime)
+                                                    .Skip(1).Take(4)
+                                                        .ToListAsync();
+            foreach (Match acc in list)
+            {
+                listDTO.Add(new MatchesDTO
+                {
+                    MatchesId = acc.MatchesId,
+                    Datetime = acc.Datetime,
+                    TournamentName = acc.Tournament.Name,
+                    Stadium = acc.Team1.Stadium,
+                    Team1Name = acc.Team1.Name,
+                    Team2Name = acc.Team2.Name,
+                    Team1Logo = acc.Team1.Logo,
+                    Team2Logo = acc.Team2.Logo,
+                    Team1ID = acc.Team1Id,
+                    Team2ID = acc.Team2Id,
+                });
+            }
+            return Ok(listDTO);
         }
 
         // GET: Get specific match
@@ -103,7 +142,9 @@ namespace PRNFootballWebsite.API.Controllers
                 Team1Name = lastestMatch.Team1.Name,
                 Team2Name = lastestMatch.Team2.Name,
                 Team1Logo = lastestMatch.Team1.Logo,
-                Team2Logo = lastestMatch.Team2.Logo
+                Team2Logo = lastestMatch.Team2.Logo,
+                Team1ID = lastestMatch.Team1Id,
+                Team2ID = lastestMatch.Team2Id,
             };
             return Ok(dto);
         }

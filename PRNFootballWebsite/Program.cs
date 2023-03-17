@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using PRNFootballWebsite.API.Models;
+using DataAccess.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 

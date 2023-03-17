@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using PRNFootballWebsite.API.DTO;
-using PRNFootballWebsite.API.Models;
+using DataAccess.Models;
+using DataAccess.DTO;
 
 namespace PRNFootballWebsite.API.Controllers
 {

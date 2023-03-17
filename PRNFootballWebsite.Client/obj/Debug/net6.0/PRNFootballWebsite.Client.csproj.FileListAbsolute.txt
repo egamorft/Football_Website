@@ -122,13 +122,6 @@ F:\Football_Website\PRNFootballWebsite.Client\bin\Debug\net6.0\runtimes\win\lib\
 F:\Football_Website\PRNFootballWebsite.Client\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 F:\Football_Website\PRNFootballWebsite.Client\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
 F:\Football_Website\PRNFootballWebsite.Client\obj\Debug\net6.0\PRNFootballWebsite.Client.csproj.CopyComplete
-C:\Users\Egamorft\Desktop\Football_Website\PRNFootballWebsite.Client\bin\Debug\net6.0\PRNFootballWebsite.API.deps.json
-C:\Users\Egamorft\Desktop\Football_Website\PRNFootballWebsite.Client\bin\Debug\net6.0\PRNFootballWebsite.API.runtimeconfig.json
-C:\Users\Egamorft\Desktop\Football_Website\PRNFootballWebsite.Client\bin\Debug\net6.0\PRNFootballWebsite.API.exe
-C:\Users\Egamorft\Desktop\Football_Website\PRNFootballWebsite.Client\bin\Debug\net6.0\Microsoft.OpenApi.dll
-C:\Users\Egamorft\Desktop\Football_Website\PRNFootballWebsite.Client\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
-C:\Users\Egamorft\Desktop\Football_Website\PRNFootballWebsite.Client\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
-C:\Users\Egamorft\Desktop\Football_Website\PRNFootballWebsite.Client\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
-C:\Users\Egamorft\Desktop\Football_Website\PRNFootballWebsite.Client\bin\Debug\net6.0\PRNFootballWebsite.API.dll
-C:\Users\Egamorft\Desktop\Football_Website\PRNFootballWebsite.Client\bin\Debug\net6.0\PRNFootballWebsite.API.pdb
-C:\Users\Egamorft\Desktop\Football_Website\PRNFootballWebsite.Client\obj\Debug\net6.0\PRNFootballWebsite.Client.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Egamorft\Desktop\Football_Website\PRNFootballWebsite.Client\bin\Debug\net6.0\System.Diagnostics.DiagnosticSource.dll
+C:\Users\Egamorft\Desktop\Football_Website\PRNFootballWebsite.Client\bin\Debug\net6.0\DataAccess.dll
+C:\Users\Egamorft\Desktop\Football_Website\PRNFootballWebsite.Client\bin\Debug\net6.0\DataAccess.pdb

@@ -1,0 +1,14 @@
+C:\Users\Egamorft\Desktop\Football_Website\DataAccess\bin\Debug\net6.0\DataAccess.deps.json
+C:\Users\Egamorft\Desktop\Football_Website\DataAccess\bin\Debug\net6.0\DataAccess.dll
+C:\Users\Egamorft\Desktop\Football_Website\DataAccess\bin\Debug\net6.0\DataAccess.pdb
+C:\Users\Egamorft\Desktop\Football_Website\DataAccess\obj\Debug\net6.0\DataAccess.csproj.AssemblyReference.cache
+C:\Users\Egamorft\Desktop\Football_Website\DataAccess\obj\Debug\net6.0\DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Egamorft\Desktop\Football_Website\DataAccess\obj\Debug\net6.0\DataAccess.AssemblyInfoInputs.cache
+C:\Users\Egamorft\Desktop\Football_Website\DataAccess\obj\Debug\net6.0\DataAccess.AssemblyInfo.cs
+C:\Users\Egamorft\Desktop\Football_Website\DataAccess\obj\Debug\net6.0\DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\Egamorft\Desktop\Football_Website\DataAccess\obj\Debug\net6.0\DataAccess.dll
+C:\Users\Egamorft\Desktop\Football_Website\DataAccess\obj\Debug\net6.0\refint\DataAccess.dll
+C:\Users\Egamorft\Desktop\Football_Website\DataAccess\obj\Debug\net6.0\DataAccess.pdb
+C:\Users\Egamorft\Desktop\Football_Website\DataAccess\obj\Debug\net6.0\ref\DataAccess.dll
+C:\Users\Egamorft\Desktop\Football_Website\DataAccess\bin\Debug\net6.0\DataAccess.runtimeconfig.json
+C:\Users\Egamorft\Desktop\Football_Website\DataAccess\obj\Debug\net6.0\DataAccess.genruntimeconfig.cache
