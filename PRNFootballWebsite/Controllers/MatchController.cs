@@ -41,14 +41,16 @@ namespace PRNFootballWebsite.API.Controllers
                     TournamentName = acc.Tournament.Name,
                     Stadium = acc.Team1.Stadium,
                     Team1Name = acc.Team1.Name,
-                    Team2Name = acc.Team2.Name
+                    Team2Name = acc.Team2.Name,
+                    Team1Logo = acc.Team1.Logo,
+                    Team2Logo = acc.Team2.Logo
                 });
             }
             return Ok(listDTO);
         }
 
         // GET: List upcoming matches
-        // https://localhost:5000/api/UpcomingMatch
+        // https://localhost:5000/api/Match/UpcomingMatch
         [HttpGet("UpcomingMatch")]
         public async Task<ActionResult> GetUpcomingMatch()
         {
@@ -70,7 +72,9 @@ namespace PRNFootballWebsite.API.Controllers
                 TournamentName = lastestMatch.Tournament.Name,
                 Stadium = lastestMatch.Team1.Stadium,
                 Team1Name = lastestMatch.Team1.Name,
-                Team2Name = lastestMatch.Team2.Name
+                Team2Name = lastestMatch.Team2.Name,
+                Team1Logo = lastestMatch.Team1.Logo,
+                Team2Logo = lastestMatch.Team2.Logo
             };
             return Ok(dto);
         }
@@ -97,7 +101,9 @@ namespace PRNFootballWebsite.API.Controllers
                 TournamentName = lastestMatch.Tournament.Name,
                 Stadium = lastestMatch.Team1.Stadium,
                 Team1Name = lastestMatch.Team1.Name,
-                Team2Name = lastestMatch.Team2.Name
+                Team2Name = lastestMatch.Team2.Name,
+                Team1Logo = lastestMatch.Team1.Logo,
+                Team2Logo = lastestMatch.Team2.Logo
             };
             return Ok(dto);
         }

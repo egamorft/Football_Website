@@ -8,5 +8,7 @@
         public String Stadium { get; set; }
         public String Team1Name { get; set; }
         public String Team2Name { get; set; }
+        public String Team1Logo { get; set; }
+        public String Team2Logo { get; set; }
     }
 }
