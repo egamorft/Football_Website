@@ -43,7 +43,7 @@ namespace PRNFootballWebsite.Client.Pages.Fixture
             var response_tt = await httpClient.GetAsync(TodayTournament);
             var content_tt = await response_tt.Content.ReadAsStringAsync();
             ListTodayTournaments = JsonSerializer.Deserialize<List<TournamentDTO>>(content_tt, options);
-            //List today matches
+            //List today tournament
 
             return Page();
 

@@ -230,8 +230,14 @@ namespace DataAccess.Models
 
                 entity.Property(e => e.TeamId).HasColumnName("team_id");
 
+                entity.Property(e => e.Location)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("location");
+
                 entity.Property(e => e.Logo)
                     .HasMaxLength(100)
+                    .IsUnicode(false)
                     .HasColumnName("logo")
                     .HasDefaultValueSql("(N'unknownClub.png')");
 
@@ -240,10 +246,23 @@ namespace DataAccess.Models
                     .IsUnicode(false)
                     .HasColumnName("name");
 
+                entity.Property(e => e.Site)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("site");
+
                 entity.Property(e => e.Stadium)
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasColumnName("stadium");
+
+                entity.Property(e => e.TournamentId).HasColumnName("tournament_id");
+
+                entity.HasOne(d => d.Tournament)
+                    .WithMany(p => p.Teams)
+                    .HasForeignKey(d => d.TournamentId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Team_Tournament");
             });
 
             modelBuilder.Entity<Tournament>(entity =>

@@ -15,5 +15,6 @@ namespace DataAccess.Models
         public string? Description { get; set; }
 
         public virtual ICollection<Match> Matches { get; set; }
+        public virtual ICollection<Team> Teams { get; set; }
     }
 }

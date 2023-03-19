@@ -1,0 +1,81 @@
+﻿@page
+@model PRNFootballWebsite.Client.Pages.Epl.teamsModel
+@{
+    ViewData["Title"] = "EPL teams";
+}
+
+<div class="section-title" style="background:url(/img/slide/1.jpg)">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h1>Teams List</h1>
+            </div>
+            <div class="col-md-4">
+                <div class="breadcrumbs">
+                    <ul>
+                        <li><a href="/index">Home</a></li>
+                        <li>Inner Page</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="content-info">
+
+    <div class="portfolioFilter">
+        <div class="container">
+            @{
+                var distinctLocations = Model.ListTeams.GroupBy(t => new { t.Location, t.TournamentName }).Select(g => g.First());
+            }
+            <h5><i class="fa fa-filter" aria-hidden="true"></i>Filter By:</h5>
+            <a href="#" data-filter="*" class="current">Show All</a>
+            @foreach (var location in distinctLocations)
+            {
+                @if (location.TournamentName.Equals("Premier League"))
+                {
+                    <a href="#" data-filter=".@location.Location">@location.Location</a>
+                }
+            }
+        </div>
+    </div>
+
+    <div class="container padding-top">
+        <div class="row portfolioContainer">
+
+            @foreach (var item in Model.ListTeams)
+            {
+                @if (item.TournamentName.Equals("Premier League"))
+                {
+                    <div class="col-md-6 col-lg-4 col-xl-3 @item.Location">
+                        <div class="item-team">
+                            <div class="head-team">
+                                <img src="~/img/clubs-teams/@item.Logo" alt="location-team">
+                                <div class="overlay"><a href="/Team/@item.TeamId">+</a></div>
+                            </div>
+                            <div class="info-team">
+                                <span class="logo-team">
+                                    <img src="~/img/clubs-logos/@item.Logo" alt="logo-team">
+                                </span>
+                                <h4>@item.Name</h4>
+                                <span class="location-team">
+                                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                    @item.Stadium
+                                </span>
+                                <span class="group-team">
+                                    <i class="fa fa-trophy" aria-hidden="true"></i>
+                                    @item.Location
+                                </span>
+                            </div>
+                            <a href="/Team/@item.TeamId" class="btn">Team Profile <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                }
+            }
+
+        </div>
+    </div>
+
+</section>
+

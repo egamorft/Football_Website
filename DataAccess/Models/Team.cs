@@ -16,7 +16,11 @@ namespace DataAccess.Models
         public string Name { get; set; } = null!;
         public string Stadium { get; set; } = null!;
         public string Logo { get; set; } = null!;
+        public string? Location { get; set; }
+        public string? Site { get; set; }
+        public int TournamentId { get; set; }
 
+        public virtual Tournament Tournament { get; set; } = null!;
         public virtual ICollection<Match> MatchTeam1s { get; set; }
         public virtual ICollection<Match> MatchTeam2s { get; set; }
         public virtual ICollection<Player> Players { get; set; }
