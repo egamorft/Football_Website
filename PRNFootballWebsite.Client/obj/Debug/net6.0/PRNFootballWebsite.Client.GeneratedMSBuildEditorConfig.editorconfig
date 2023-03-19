@@ -19,6 +19,10 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Egamorft/Desktop/Football_Website/PRNFootballWebsite.Client/Pages/Fixture/today.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRml4dHVyZVx0b2RheS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Egamorft/Desktop/Football_Website/PRNFootballWebsite.Client/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -41,10 +45,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Egamorft/Desktop/Football_Website/PRNFootballWebsite.Client/Pages/Views/Account/single-player.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVmlld3NcQWNjb3VudFxzaW5nbGUtcGxheWVyLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Egamorft/Desktop/Football_Website/PRNFootballWebsite.Client/Pages/Views/Matches/fixtures.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVmlld3NcTWF0Y2hlc1xmaXh0dXJlcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Egamorft/Desktop/Football_Website/PRNFootballWebsite.Client/Pages/Views/Statistics/results.cshtml]

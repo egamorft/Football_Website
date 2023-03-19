@@ -51,7 +51,7 @@ namespace PRNFootballWebsite.API.Controllers
             return Ok(listDTO);
         }
 
-        // GET: List first upcoming matches
+        // GET: First upcoming matches
         // https://localhost:5000/api/Match/FirstUpcomingMatch
         [HttpGet("FirstUpcomingMatch")]
         public async Task<ActionResult> GetFirstUpcomingMatch()
@@ -149,5 +149,61 @@ namespace PRNFootballWebsite.API.Controllers
             return Ok(dto);
         }
 
+        // GET: Today matchup
+        // https://localhost:5000/api/Match/TodayMatchUp
+        [HttpGet("TodayMatchUp")]
+        public async Task<IActionResult> GetTodayMatchUp()
+        {
+            List<MatchesDTO> listDTO = new List<MatchesDTO>();
+            var today = DateTime.Today;
+            List<Match> list = await _context.Matches.Include(x => x.Tournament)
+                                    .Include(y => y.Team1)
+                                        .Include(z => z.Team2)
+                                            .Where(m => m.Datetime.Date == today)
+                                                .OrderBy(m => m.Datetime)
+                                                    .ToListAsync();
+            foreach (Match acc in list)
+            {
+                listDTO.Add(new MatchesDTO
+                {
+                    MatchesId = acc.MatchesId,
+                    Datetime = acc.Datetime,
+                    TournamentName = acc.Tournament.Name,
+                    Stadium = acc.Team1.Stadium,
+                    Team1Name = acc.Team1.Name,
+                    Team2Name = acc.Team2.Name,
+                    Team1Logo = acc.Team1.Logo,
+                    Team2Logo = acc.Team2.Logo,
+                    Team1ID = acc.Team1Id,
+                    Team2ID = acc.Team2Id,
+                });
+            }
+            return Ok(listDTO);
+        }
+
+        // GET: Today matchup
+        // https://localhost:5000/api/Match/TodayTournament
+        [HttpGet("TodayTournament")]
+        public async Task<IActionResult> GetTodayTournament()
+        {
+            List<TournamentDTO> listDTO = new List<TournamentDTO>();
+            var today = DateTime.Today;
+            List<Match> list = await _context.Matches.Include(x => x.Tournament)
+                                    .Include(y => y.Team1)
+                                        .Include(z => z.Team2)
+                                            .Where(m => m.Datetime.Date == today)
+                                                .OrderBy(m => m.Datetime)
+                                                    .ToListAsync();
+            foreach (Match acc in list)
+            {
+                listDTO.Add(new TournamentDTO
+                {
+                    TournamentId = acc.Tournament.TournamentId,
+                    Name = acc.Tournament.Name,
+                    Description = acc.Tournament.Description,
+                });
+            }
+            return Ok(listDTO);
+        }
     }
 }

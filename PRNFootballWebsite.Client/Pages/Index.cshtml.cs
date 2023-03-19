@@ -38,20 +38,24 @@ namespace PRNFootballWebsite.Client.Pages
                 ReferenceHandler = ReferenceHandler.Preserve
             };
 
+            //Get first upcoming match
             var response_fum = await httpClient.GetAsync(MatchesApiUrl);
             var content_fum = await response_fum.Content.ReadAsStringAsync();
-            //Get first upcoming match
             FirstUpcomingMatch = JsonSerializer.Deserialize<MatchesDTO>(content_fum, options);
+            //Get first upcoming match
 
+            //Get list tournaments
             var response_tour = await httpClient.GetAsync(TournamentsApiUrl);
             var content_tour = await response_tour.Content.ReadAsStringAsync();
-            //Get list tournaments
             Tournaments = JsonSerializer.Deserialize<List<TournamentDTO>>(content_tour, options);
+            //Get list tournaments
 
+            //Get next four coming matches
             var response_nfcm = await httpClient.GetAsync(FourMatchesApiUrl);
             var content_nfcm = await response_nfcm.Content.ReadAsStringAsync();
-            //Get next four coming matches
             NextUpcomingMatch = JsonSerializer.Deserialize<List<MatchesDTO>>(content_nfcm, options);
+            //Get next four coming matches
+
             return Page();
 
         }
