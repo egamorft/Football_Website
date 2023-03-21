@@ -14,10 +14,13 @@ namespace PRNFootballWebsite.Client.Pages
         private string MatchesApiUrl = "";
         private string TournamentsApiUrl = "";
         private string FourMatchesApiUrl = "";
+        private string MatchesResultApiUrl = "";
         [BindProperty]
         public MatchesDTO FirstUpcomingMatch { get; set; }
         [BindProperty]
         public List<MatchesDTO> NextUpcomingMatch { get; set; }
+        [BindProperty]
+        public List<MatchesDTO> MatchesResult { get; set; }
         [BindProperty]
         public List<TournamentDTO> Tournaments { get; set; }
         public IndexModel()
@@ -28,6 +31,7 @@ namespace PRNFootballWebsite.Client.Pages
             MatchesApiUrl = "https://localhost:5000/api/Match/FirstUpcomingMatch";
             TournamentsApiUrl = "https://localhost:5000/api/Tournament";
             FourMatchesApiUrl = "https://localhost:5000/api/Match/NextUpcomingMatches";
+            MatchesResultApiUrl = "https://localhost:5000/api/Match/MatchesResult";
         }
         public async Task<IActionResult> OnGet()
         {
@@ -55,6 +59,12 @@ namespace PRNFootballWebsite.Client.Pages
             var content_nfcm = await response_nfcm.Content.ReadAsStringAsync();
             NextUpcomingMatch = JsonSerializer.Deserialize<List<MatchesDTO>>(content_nfcm, options);
             //Get next four coming matches
+
+            //Get 4 recent result
+            var response_rlt = await httpClient.GetAsync(MatchesResultApiUrl);
+            var content_rlt = await response_rlt.Content.ReadAsStringAsync();
+            MatchesResult = JsonSerializer.Deserialize<List<MatchesDTO>>(content_rlt, options);
+            //Get 4 recent result
 
             return Page();
 

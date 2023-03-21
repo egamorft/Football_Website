@@ -180,60 +180,27 @@
                         <h5><a href="group-list">Recent Result</a></h5>
                         <div class="info-results">
                             <ul>
-                                <li>
-                                    <span class="head">
-                                        Portugal Vs Spain <span class="date">27 Jun 2017</span>
-                                    </span>
-                                    <div class="goals-result">
-                                        <a href="../Team/single-team">
-                                            <img src="~/img/clubs-logos/por.png" alt="">
-                                            Portugal
-                                        </a>
-                                        <span class="goals">
-                                            <b>2</b> - <b>3</b>
+                                @foreach (var item in Model.MatchesResult)
+                                {
+                                    <li>
+                                        <span class="head">
+                                            @item.Team1Name Vs @item.Team2Name <span class="date">@item.Datetime</span>
                                         </span>
-                                        <a href="../Team/single-team">
-                                            <img src="~/img/clubs-logos/esp.png" alt="">
-                                            Spain
-                                        </a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <span class="head">
-                                        Rusia Vs Colombia <span class="date">30 Jun 2017</span>
-                                    </span>
-                                    <div class="goals-result">
-                                        <a href="../Team/single-team">
-                                            <img src="~/img/clubs-logos/rusia.png" alt="">
-                                            Rusia
-                                        </a>
-                                        <span class="goals">
-                                            <b>2</b> - <b>3</b>
-                                        </span>
-                                        <a href="../Team/single-team">
-                                            <img src="~/img/clubs-logos/colombia.png" alt="">
-                                            Colombia
-                                        </a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <span class="head">
-                                        Uruguay Vs Portugal <span class="date">31 Jun 2017</span>
-                                    </span>
-                                    <div class="goals-result">
-                                        <a href="../Team/single-team">
-                                            <img src="~/img/clubs-logos/uru.png" alt="">
-                                            Uruguay
-                                        </a>
-                                        <span class="goals">
-                                            <b>2</b> - <b>3</b>
-                                        </span>
-                                        <a href="../Team/single-team">
-                                            <img src="~/img/clubs-logos/por.png" alt="">
-                                            Portugal
-                                        </a>
-                                    </div>
-                                </li>
+                                        <div class="goals-result">
+                                            <a asp-page="Team/Index" asp-route-id="@item.Team1ID">
+                                                <img src="~/img/clubs-logos/@item.Team1Logo" alt="">
+                                                @item.Team1Name
+                                            </a>
+                                            <span class="goals">
+                                                <a asp-page="Stats/Index" asp-route-id="@item.StatsID"><b>@item.Team1Goal</b> - <b>@item.Team2Goal</b></a>
+                                            </span>
+                                            <a asp-page="Team/Index" asp-route-id="@item.Team2ID">
+                                                <img src="~/img/clubs-logos/@item.Team2Logo" alt="">
+                                                @item.Team2Name
+                                            </a>
+                                        </div>
+                                    </li>
+                                }
                             </ul>
                         </div>
                     </div>

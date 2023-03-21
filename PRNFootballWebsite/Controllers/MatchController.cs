@@ -255,9 +255,8 @@ namespace PRNFootballWebsite.API.Controllers
                                             .ThenInclude(z => z.Tournament)
                                             .Where(m => m.Matches.Datetime <= startDatetime)
                                                 .Where(x => x.Matches.Team1Id == id || x.Matches.Team2Id == id)
-                                                    .OrderBy(m => m.Matches.Datetime)
-                                                        .Skip(1).Take(4)
-                                                            .ToListAsync();
+                                                    .OrderByDescending(m => m.Matches.Datetime)
+                                                        .ToListAsync();
             foreach (Statistic acc in list)
             {
                 listDTO.Add(new MatchesDTO
@@ -279,5 +278,45 @@ namespace PRNFootballWebsite.API.Controllers
             }
             return Ok(listDTO);
         }
+
+        // GET: List 3 recent matches result
+        // https://localhost:5000/api/Match/MatchesResult
+        [HttpGet("MatchesResult")]
+        public async Task<IActionResult> GetMatchesResult()
+        {
+            List<MatchesDTO> listDTO = new List<MatchesDTO>();
+            DateTime startDatetime = DateTime.Now.AddHours(-2);
+            List<Statistic> list = await _context.Statistics.Include(x => x.Matches)
+                                    .ThenInclude(x => x.Team1)
+                                        .Include(y => y.Matches)
+                                        .ThenInclude(y => y.Team2)
+                                            .Include(z => z.Matches)
+                                            .ThenInclude(z => z.Tournament)
+                                            .Where(m => m.Matches.Datetime <= startDatetime)
+                                                    .OrderByDescending(m => m.Matches.Datetime)
+                                                        .Take(3)
+                                                        .ToListAsync();
+            foreach (Statistic acc in list)
+            {
+                listDTO.Add(new MatchesDTO
+                {
+                    MatchesId = acc.Matches.MatchesId,
+                    Datetime = acc.Matches.Datetime,
+                    TournamentName = acc.Matches.Tournament.Name,
+                    Stadium = acc.Matches.Team1.Stadium,
+                    Team1Name = acc.Matches.Team1.Name,
+                    Team2Name = acc.Matches.Team2.Name,
+                    Team1Logo = acc.Matches.Team1.Logo,
+                    Team2Logo = acc.Matches.Team2.Logo,
+                    Team1ID = acc.Matches.Team1Id,
+                    Team2ID = acc.Matches.Team2Id,
+                    Team1Goal = acc.Team1Goal,
+                    Team2Goal = acc.Team2Goal,
+                    StatsID = acc.StatisticId
+                });
+            }
+            return Ok(listDTO);
+        }
+
     }
 }
