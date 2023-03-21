@@ -366,5 +366,59 @@ namespace PRNFootballWebsite.API.Controllers
 
             return Ok(response);
         }
+
+        // GET: Get EPL Date Schedule
+        // https://localhost:5000/api/Match/EplMatchDate
+        [HttpGet("EplMatchDate")]
+        public async Task<IActionResult> GetEplMatchDate()
+        {
+            List<MatchesDTO> listDTO = new List<MatchesDTO>();
+            DateTime now = DateTime.Today;
+            List<Match> list = await _context.Matches.Include(x => x.Tournament)
+                                    .Include(y => y.Team1)
+                                        .Include(z => z.Team2)
+                                            .Where(m => m.Datetime.Date > now)
+                                                .OrderBy(m => m.Datetime)
+                                                    .ToListAsync();
+            var groupedMatches = list.GroupBy(m => m.Datetime.Date);
+
+            List<DateTime> result = groupedMatches.Select(g => g.Key).ToList();
+
+            return Ok(result);
+        }
+
+        // GET: Get EPL Matches
+        // https://localhost:5000/api/Match/EplMatches
+        [HttpGet("EplMatches")]
+        public async Task<IActionResult> GetEplMatches()
+        {
+            List<MatchesDTO> listDTO = new List<MatchesDTO>();
+            DateTime today = DateTime.Today;
+            List<Match> list = await _context.Matches.Include(x => x.Tournament)
+                                    .Include(y => y.Team1)
+                                        .Include(z => z.Team2)
+                                            .Where(m => m.Datetime.Date > today)
+                                                .Where(x => x.TournamentId == 4)
+                                                    .OrderBy(m => m.Datetime)
+                                                        .ToListAsync();
+            foreach (Match acc in list)
+            {
+                listDTO.Add(new MatchesDTO
+                {
+                    MatchesId = acc.MatchesId,
+                    Datetime = acc.Datetime,
+                    TournamentName = acc.Tournament.Name,
+                    Stadium = acc.Team1.Stadium,
+                    Team1Name = acc.Team1.Name,
+                    Team2Name = acc.Team2.Name,
+                    Team1Logo = acc.Team1.Logo,
+                    Team2Logo = acc.Team2.Logo,
+                    Team1ID = acc.Team1Id,
+                    Team2ID = acc.Team2Id,
+                });
+            }
+            return Ok(listDTO);
+        }
+
     }
 }

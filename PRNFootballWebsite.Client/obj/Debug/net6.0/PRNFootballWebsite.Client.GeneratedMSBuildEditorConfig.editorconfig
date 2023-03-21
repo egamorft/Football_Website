@@ -15,6 +15,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\Egamorft\Desktop\Football_Website\PRNFootballWebsite.Client
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/Egamorft/Desktop/Football_Website/PRNFootballWebsite.Client/Pages/Epl/Fixtures.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXBsXEZpeHR1cmVzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Egamorft/Desktop/Football_Website/PRNFootballWebsite.Client/Pages/Epl/teams.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXBsXHRlYW1zLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

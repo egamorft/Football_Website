@@ -1,0 +1,71 @@
+﻿@page
+@model PRNFootballWebsite.Client.Pages.Epl.FixturesModel
+@{
+    ViewData["Title"] = "EPl-Fixtures";
+}
+
+<div class="section-title" style="background:url(/img/slide/1.jpg)">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h1>Fixtures</h1>
+            </div>
+            <div class="col-md-4">
+                <div class="breadcrumbs">
+                    <ul>
+                        <li><a href="/index">Home</a></li>
+                        <li>Inner Page</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="content-info">
+    <div class="container paddings-mini">
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="clear-title">Matches</h3>
+            </div>
+            <div class="col-lg-12">
+                <table class="table-striped table-responsive table-hover">
+                    @foreach (var datetime in Model.ListDateTime)
+                    {
+                        <thead>
+                            <tr>
+                                <th colspan="3" class="text-center">@datetime.Date.ToString("dd/MM/yyyy")</th>
+                                <th>Stadium & times</th>
+                            </tr>
+                        </thead>
+                        @foreach (var matches in Model.ListMatches)
+                        {
+                            @if (matches.Datetime.Date.Equals(datetime.Date))
+                            {
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <img src="~/img/clubs-logos/@matches.Team1Logo" alt="icon">
+                                            <strong>@matches.Team1Name</strong><br>
+                                        </td>
+                                        <td class="text-center">Vs</td>
+                                        <td>
+                                            <img src="~/img/clubs-logos/@matches.Team2Logo" alt="icon1">
+                                            <strong>@matches.Team2Name</strong><br>
+                                        </td>
+                                        <td>
+                                            @matches.Stadium<br>
+                                            <small class="meta-text">@matches.Datetime.ToString("HH:mm")</small>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            }
+                        }
+                    }
+
+                </table>
+            </div>
+        </div>
+    </div>
+
+</section>
