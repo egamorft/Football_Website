@@ -27,7 +27,7 @@ namespace PRNFootballWebsite.API.Controllers
         public async Task<IActionResult> GetMatches()
         {
             List<MatchesDTO> listDTO = new List<MatchesDTO>();
-            List<Match> list = await _context.Matches.Include(x =>x.Tournament)
+            List<Match> list = await _context.Matches.Include(x => x.Tournament)
                                     .Include(y => y.Team1)
                                         .Include(z => z.Team2)
                                             .OrderByDescending(o => o.Datetime)
@@ -56,7 +56,7 @@ namespace PRNFootballWebsite.API.Controllers
         [HttpGet("FirstUpcomingMatch")]
         public async Task<ActionResult> GetFirstUpcomingMatch()
         {
-            var now = DateTime.Now;
+            DateTime now = DateTime.Now;
             var lastestMatch = await _context.Matches
                 .Include(m => m.Team1)
                 .Include(m => m.Team2)
@@ -194,16 +194,14 @@ namespace PRNFootballWebsite.API.Controllers
                                             .Where(m => m.Datetime.Date == today)
                                                 .OrderBy(m => m.Datetime)
                                                     .ToListAsync();
-            foreach (Match acc in list)
-            {
-                listDTO.Add(new TournamentDTO
-                {
-                    TournamentId = acc.Tournament.TournamentId,
-                    Name = acc.Tournament.Name,
-                    Description = acc.Tournament.Description,
-                });
-            }
-            return Ok(listDTO);
+            var tournaments = list.GroupBy(m => m.Tournament)
+                                    .Select(g => new TournamentDTO
+                                    {
+                                        TournamentId = g.Key.TournamentId,
+                                        Name = g.Key.Name,
+                                        Description = g.Key.Description
+                                    }).ToList();
+            return Ok(tournaments);
         }
 
         // GET: List specific team upcoming matches
