@@ -10,8 +10,6 @@ namespace PRNFootballWebsite.API.Controllers
     [ApiController]
     public class TeamController : ControllerBase
     {
-
-
         private readonly ProjectPRN231Context _context;
 
         public TeamController(ProjectPRN231Context context)
@@ -22,7 +20,7 @@ namespace PRNFootballWebsite.API.Controllers
         // GET: List all teams
         // https://localhost:5000/api/Team
         [HttpGet]
-        public async Task<IActionResult> GetTeam()
+        public async Task<IActionResult> GetTeams()
         {
             List<TeamDTO> listDTO = new List<TeamDTO>();
             List<Team> list = await _context.Teams.Include(x => x.Tournament).OrderBy(x => x.Name).ToListAsync();
@@ -40,6 +38,31 @@ namespace PRNFootballWebsite.API.Controllers
                 });
             }
             return Ok(listDTO);
+        }
+
+        // GET: List specific team
+        // https://localhost:5000/api/Team/5
+        [HttpGet("{id}")]
+        public async Task<ActionResult<TeamDTO>> GetTeam(int id)
+        {
+            var list = await _context.Teams.Include(x => x.Tournament).FirstOrDefaultAsync(x => x.TeamId == id);
+
+            if(list == null)
+            {
+                return NotFound();
+            }
+            var dto = new TeamDTO
+            {
+                TeamId = list.TeamId,
+                Name = list.Name,
+                Stadium = list.Stadium,
+                Logo = list.Logo,
+                Location = list.Location,
+                Site = list.Site,
+                TournamentName = list.Tournament.Name,
+            };
+
+            return Ok(dto);
         }
     }
 }

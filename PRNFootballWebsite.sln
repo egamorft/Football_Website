@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PRNFootballWebsite.API", "P
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PRNFootballWebsite.Client", "PRNFootballWebsite.Client\PRNFootballWebsite.Client.csproj", "{713162D3-F0F8-45EA-8F05-46AD0F672786}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{C65095A7-9275-4CBC-9456-6373941E944F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccess\DataAccess.csproj", "{C65095A7-9275-4CBC-9456-6373941E944F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -181,7 +181,7 @@ namespace PRNFootballWebsite.API.Controllers
             return Ok(listDTO);
         }
 
-        // GET: Today matchup
+        // GET: Today tournament
         // https://localhost:5000/api/Match/TodayTournament
         [HttpGet("TodayTournament")]
         public async Task<IActionResult> GetTodayTournament()
@@ -201,6 +201,80 @@ namespace PRNFootballWebsite.API.Controllers
                     TournamentId = acc.Tournament.TournamentId,
                     Name = acc.Tournament.Name,
                     Description = acc.Tournament.Description,
+                });
+            }
+            return Ok(listDTO);
+        }
+
+        // GET: List specific team upcoming matches
+        // https://localhost:5000/api/Match/NextMatches/5
+        [HttpGet("NextMatches/{id}")]
+        public async Task<IActionResult> GetNextMatches(int id)
+        {
+            List<MatchesDTO> listDTO = new List<MatchesDTO>();
+            var now = DateTime.Now;
+            List<Match> list = await _context.Matches.Include(x => x.Tournament)
+                                    .Include(y => y.Team1)
+                                        .Include(z => z.Team2)
+                                            .Where(m => m.Datetime > now)
+                                                .Where(x => x.Team1Id == id || x.Team2Id == id)
+                                                    .OrderBy(m => m.Datetime)
+                                                        .Skip(1).Take(4)
+                                                            .ToListAsync();
+            foreach (Match acc in list)
+            {
+                listDTO.Add(new MatchesDTO
+                {
+                    MatchesId = acc.MatchesId,
+                    Datetime = acc.Datetime,
+                    TournamentName = acc.Tournament.Name,
+                    Stadium = acc.Team1.Stadium,
+                    Team1Name = acc.Team1.Name,
+                    Team2Name = acc.Team2.Name,
+                    Team1Logo = acc.Team1.Logo,
+                    Team2Logo = acc.Team2.Logo,
+                    Team1ID = acc.Team1Id,
+                    Team2ID = acc.Team2Id,
+                });
+            }
+            return Ok(listDTO);
+        }
+
+        // GET: List specific team matches result
+        // https://localhost:5000/api/Match/ResultMatches/Team/5
+        [HttpGet("ResultMatches/Team/{id}")]
+        public async Task<IActionResult> GetResultMatches(int id)
+        {
+            List<MatchesDTO> listDTO = new List<MatchesDTO>();
+            DateTime startDatetime = DateTime.Now.AddHours(-2);
+            List<Statistic> list = await _context.Statistics.Include(x => x.Matches)
+                                    .ThenInclude(x => x.Team1)
+                                        .Include(y => y.Matches)
+                                        .ThenInclude(y => y.Team2)
+                                            .Include(z => z.Matches)
+                                            .ThenInclude(z => z.Tournament)
+                                            .Where(m => m.Matches.Datetime <= startDatetime)
+                                                .Where(x => x.Matches.Team1Id == id || x.Matches.Team2Id == id)
+                                                    .OrderBy(m => m.Matches.Datetime)
+                                                        .Skip(1).Take(4)
+                                                            .ToListAsync();
+            foreach (Statistic acc in list)
+            {
+                listDTO.Add(new MatchesDTO
+                {
+                    MatchesId = acc.Matches.MatchesId,
+                    Datetime = acc.Matches.Datetime,
+                    TournamentName = acc.Matches.Tournament.Name,
+                    Stadium = acc.Matches.Team1.Stadium,
+                    Team1Name = acc.Matches.Team1.Name,
+                    Team2Name = acc.Matches.Team2.Name,
+                    Team1Logo = acc.Matches.Team1.Logo,
+                    Team2Logo = acc.Matches.Team2.Logo,
+                    Team1ID = acc.Matches.Team1Id,
+                    Team2ID = acc.Matches.Team2Id,
+                    Team1Goal = acc.Team1Goal,
+                    Team2Goal = acc.Team2Goal,
+                    StatsID = acc.StatisticId
                 });
             }
             return Ok(listDTO);
