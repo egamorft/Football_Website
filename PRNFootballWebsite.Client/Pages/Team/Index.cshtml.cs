@@ -9,7 +9,6 @@ namespace PRNFootballWebsite.Client.Pages.Team
 {
     public class IndexModel : PageModel
     {
-
         private readonly HttpClient client = null;
         private string TeamData = "";
         private string ListTeamMatches = "";
