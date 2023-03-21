@@ -316,5 +316,55 @@ namespace PRNFootballWebsite.API.Controllers
             return Ok(listDTO);
         }
 
+        // GET: List all matches result paginate
+        // https://localhost:5000/api/Match/RecentResult/1/3
+        [HttpGet("RecentResult/{pageNumber}/{pageSize}")]
+        public async Task<ActionResult<List<MatchesDTO>>> GetRecentResult(int pageNumber, float pageSize)
+        {
+            List<MatchesDTO> listDTO = new List<MatchesDTO>();
+            DateTime startDatetime = DateTime.Now.AddHours(-2);
+            var pageCount = Math.Ceiling(_context.Statistics.Include(m => m.Matches).Where(m => m.Matches.Datetime <= startDatetime).Count() / pageSize);
+            var matches = await _context.Statistics
+                                    .Include(x => x.Matches)
+                                    .ThenInclude(x => x.Team1)
+                                        .Include(y => y.Matches)
+                                        .ThenInclude(y => y.Team2)
+                                            .Include(z => z.Matches)
+                                            .ThenInclude(z => z.Tournament)
+                                            .Where(m => m.Matches.Datetime <= startDatetime)
+                                                    .OrderByDescending(m => m.Matches.Datetime)
+                                                        .Skip((pageNumber - 1) * (int)pageSize)
+                                                            .Take((int)pageSize).ToListAsync();
+
+
+            foreach (Statistic acc in matches)
+            {
+                listDTO.Add(new MatchesDTO
+                {
+                    MatchesId = acc.Matches.MatchesId,
+                    Datetime = acc.Matches.Datetime,
+                    TournamentName = acc.Matches.Tournament.Name,
+                    Stadium = acc.Matches.Team1.Stadium,
+                    Team1Name = acc.Matches.Team1.Name,
+                    Team2Name = acc.Matches.Team2.Name,
+                    Team1Logo = acc.Matches.Team1.Logo,
+                    Team2Logo = acc.Matches.Team2.Logo,
+                    Team1ID = acc.Matches.Team1Id,
+                    Team2ID = acc.Matches.Team2Id,
+                    Team1Goal = acc.Team1Goal,
+                    Team2Goal = acc.Team2Goal,
+                    StatsID = acc.StatisticId
+                });
+            }
+            var response = new MatchesPaginateResponse
+            {
+                Matches = listDTO,
+                PageNo = pageNumber,
+                PageSize = pageSize,
+                TotalMatches = (int)(pageCount * pageSize)
+            };
+
+            return Ok(response);
+        }
     }
 }

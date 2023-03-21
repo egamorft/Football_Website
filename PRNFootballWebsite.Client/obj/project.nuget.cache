@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "fVnWw/WtcU3ttB5CQB1EY7mrQ9cbMpFnNt0cVj4lBburUoKhAkzcgX/yuKPyhcyhYGRjUs0J3JJ4d6i0y6jeXQ==",
+  "dgSpecHash": "0x8NKyXjUVbm64gmINkiTyoG8GpqTB4+KQ4f0v/ek6jjYbTfhwbki2B0jR43tJa9C/B9hyEBjOlMHOCytCFrkw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Egamorft\\Desktop\\Football_Website\\PRNFootballWebsite.Client\\PRNFootballWebsite.Client.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Egamorft\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
+    "C:\\Users\\Egamorft\\.nuget\\packages\\lazziya.taghelpers\\6.0.2\\lazziya.taghelpers.6.0.2.nupkg.sha512",
     "C:\\Users\\Egamorft\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\Egamorft\\.nuget\\packages\\microsoft.data.sqlclient\\2.1.4\\microsoft.data.sqlclient.2.1.4.nupkg.sha512",
     "C:\\Users\\Egamorft\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\2.1.1\\microsoft.data.sqlclient.sni.runtime.2.1.1.nupkg.sha512",
