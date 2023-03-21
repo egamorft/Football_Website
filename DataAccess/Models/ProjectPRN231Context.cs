@@ -18,6 +18,7 @@ namespace DataAccess.Models
 
         public virtual DbSet<Account> Accounts { get; set; } = null!;
         public virtual DbSet<Match> Matches { get; set; } = null!;
+        public virtual DbSet<MatchScorer> MatchScorers { get; set; } = null!;
         public virtual DbSet<Player> Players { get; set; } = null!;
         public virtual DbSet<Role> Roles { get; set; } = null!;
         public virtual DbSet<Statistic> Statistics { get; set; } = null!;
@@ -119,6 +120,33 @@ namespace DataAccess.Models
                     .HasConstraintName("FK__Matches__tournam__30F848ED");
             });
 
+            modelBuilder.Entity<MatchScorer>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("Match_Scorers");
+
+                entity.Property(e => e.IsOwnGoal).HasColumnName("isOwnGoal");
+
+                entity.Property(e => e.PlayerId).HasColumnName("player_id");
+
+                entity.Property(e => e.ScoreMinutes).HasColumnName("score_minutes");
+
+                entity.Property(e => e.StatisticId).HasColumnName("statistic_id");
+
+                entity.HasOne(d => d.Player)
+                    .WithMany()
+                    .HasForeignKey(d => d.PlayerId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Match_Scorers_Players");
+
+                entity.HasOne(d => d.Statistic)
+                    .WithMany()
+                    .HasForeignKey(d => d.StatisticId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Match_Scorers_Statistics");
+            });
+
             modelBuilder.Entity<Player>(entity =>
             {
                 entity.Property(e => e.PlayerId).HasColumnName("player_id");
@@ -177,13 +205,9 @@ namespace DataAccess.Models
 
             modelBuilder.Entity<Statistic>(entity =>
             {
-                entity.HasNoKey();
+                entity.Property(e => e.StatisticId).HasColumnName("statistic_id");
 
                 entity.Property(e => e.MatchesId).HasColumnName("matches_id");
-
-                entity.Property(e => e.PlayerGoalTeam1).HasColumnName("player_goal_team1");
-
-                entity.Property(e => e.PlayerGoalTeam2).HasColumnName("player_goal_team2");
 
                 entity.Property(e => e.Team1Corner).HasColumnName("team1_corner");
 
@@ -206,7 +230,7 @@ namespace DataAccess.Models
                 entity.Property(e => e.Team2Shoot).HasColumnName("team2_shoot");
 
                 entity.HasOne(d => d.Matches)
-                    .WithMany()
+                    .WithMany(p => p.Statistics)
                     .HasForeignKey(d => d.MatchesId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__Match_Sta__match__33D4B598");

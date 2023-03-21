@@ -8,6 +8,7 @@ namespace DataAccess.Models
         public Tournament()
         {
             Matches = new HashSet<Match>();
+            Teams = new HashSet<Team>();
         }
 
         public int TournamentId { get; set; }
