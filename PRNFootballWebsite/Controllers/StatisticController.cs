@@ -61,5 +61,48 @@ namespace PRNFootballWebsite.API.Controllers
 
             return Ok(dto);
         }
+
+
+        // GET: List table EPL
+        // https://localhost:5000/api/Statistic/Epl/Table
+        [HttpGet("Epl/Table")]
+        public async Task<IActionResult> GetEplTable()
+        {
+            var teams = await _context.Teams.Where(t => t.TournamentId == 4)
+            .Select(t => new TableRanking
+            {
+                TeamId = t.TeamId,
+                Name = t.Name,
+                Logo = t.Logo,
+                GamesPlayed = t.MatchTeam1s.Count(m => m.Statistics.Any(s => s.Team1Goal != null && s.Team2Goal != null)) + t.MatchTeam2s.Count(m => m.Statistics.Any(s => s.Team1Goal != null && s.Team2Goal != null)),
+                Wins = t.MatchTeam1s.Count(m => m.Statistics.Any(s => s.Team1Goal != null && s.Team2Goal != null && ((s.Matches.Team1Id == t.TeamId && s.Team1Goal > s.Team2Goal) || (s.Matches.Team2Id == t.TeamId && s.Team2Goal > s.Team1Goal)))) +
+                       t.MatchTeam2s.Count(m => m.Statistics.Any(s => s.Team1Goal != null && s.Team2Goal != null && ((s.Matches.Team1Id == t.TeamId && s.Team1Goal < s.Team2Goal) || (s.Matches.Team2Id == t.TeamId && s.Team2Goal < s.Team1Goal)))),
+
+                Draws = t.MatchTeam1s.Count(m => m.Statistics.Any(s => s.Team1Goal != null && s.Team2Goal != null && ((s.Matches.Team1Id == t.TeamId && s.Team1Goal == s.Team2Goal) || (s.Matches.Team2Id == t.TeamId && s.Team2Goal == s.Team1Goal)))) +
+                        t.MatchTeam2s.Count(m => m.Statistics.Any(s => s.Team1Goal != null && s.Team2Goal != null && ((s.Matches.Team1Id == t.TeamId && s.Team1Goal == s.Team2Goal) || (s.Matches.Team2Id == t.TeamId && s.Team2Goal == s.Team1Goal)))),
+
+                Losses = t.MatchTeam1s.Count(m => m.Statistics.Any(s => s.Team1Goal != null && s.Team2Goal != null && ((s.Matches.Team1Id == t.TeamId && s.Team1Goal < s.Team2Goal) || (s.Matches.Team2Id == t.TeamId && s.Team2Goal < s.Team1Goal)))) +
+                         t.MatchTeam2s.Count(m => m.Statistics.Any(s => s.Team1Goal != null && s.Team2Goal != null && ((s.Matches.Team1Id == t.TeamId && s.Team1Goal > s.Team2Goal) || (s.Matches.Team2Id == t.TeamId && s.Team2Goal > s.Team1Goal)))),
+
+                GoalsFor = t.MatchTeam1s.SelectMany(m => m.Statistics.Where(s => s.Team1Goal != null && s.Team2Goal != null && ((s.Matches.Team1Id == t.TeamId && t.TeamId == s.Matches.Team1Id) || (s.Matches.Team2Id == t.TeamId && t.TeamId == s.Matches.Team2Id))).Select(s => t.TeamId == s.Matches.Team1Id ? s.Team1Goal : s.Team2Goal)).Sum() +
+                           t.MatchTeam2s.SelectMany(m => m.Statistics.Where(s => s.Team1Goal != null && s.Team2Goal != null && ((s.Matches.Team1Id == t.TeamId && t.TeamId == s.Matches.Team2Id) || (s.Matches.Team2Id == t.TeamId && t.TeamId == s.Matches.Team1Id))).Select(s => t.TeamId == s.Matches.Team2Id ? s.Team2Goal : s.Team1Goal)).Sum(),
+
+                GoalsAgainst = t.MatchTeam1s.SelectMany(m => m.Statistics.Where(s => s.Team1Goal != null && s.Team2Goal != null && ((s.Matches.Team1Id == t.TeamId && t.TeamId == s.Matches.Team1Id) || (s.Matches.Team2Id == t.TeamId && t.TeamId == s.Matches.Team2Id))).Select(s => t.TeamId == s.Matches.Team1Id ? s.Team2Goal : s.Team1Goal)).Sum() +
+                               t.MatchTeam2s.SelectMany(m => m.Statistics.Where(s => s.Team1Goal != null && s.Team2Goal != null && ((s.Matches.Team1Id == t.TeamId && t.TeamId == s.Matches.Team2Id) || (s.Matches.Team2Id == t.TeamId && t.TeamId == s.Matches.Team1Id))).Select(s => t.TeamId == s.Matches.Team2Id ? s.Team1Goal : s.Team2Goal)).Sum(),
+
+                GoalDifference = t.MatchTeam1s.SelectMany(m => m.Statistics.Where(s => s.Team1Goal != null && s.Team2Goal != null && ((s.Matches.Team1Id == t.TeamId && t.TeamId == s.Matches.Team1Id) || (s.Matches.Team2Id == t.TeamId && t.TeamId == s.Matches.Team2Id))).Select(s => t.TeamId == s.Matches.Team1Id ? s.Team1Goal - s.Team2Goal : s.Team2Goal - s.Team1Goal)).Sum() +
+                                 t.MatchTeam2s.SelectMany(m => m.Statistics.Where(s => s.Team1Goal != null && s.Team2Goal != null && ((s.Matches.Team1Id == t.TeamId && t.TeamId == s.Matches.Team2Id) || (s.Matches.Team2Id == t.TeamId && t.TeamId == s.Matches.Team1Id))).Select(s => t.TeamId == s.Matches.Team2Id ? s.Team2Goal - s.Team1Goal : s.Team1Goal - s.Team2Goal)).Sum(),
+                Points = t.MatchTeam1s.Count(m => m.Statistics.Any(s => s.Team1Goal != null && s.Team2Goal != null && ((s.Matches.Team1Id == t.TeamId && s.Team1Goal > s.Team2Goal) || (s.Matches.Team2Id == t.TeamId && s.Team2Goal > s.Team1Goal)))) * 3 +
+                         t.MatchTeam1s.Count(m => m.Statistics.Any(s => s.Team1Goal != null && s.Team2Goal != null && ((s.Matches.Team1Id == t.TeamId && s.Team1Goal == s.Team2Goal) || (s.Matches.Team2Id == t.TeamId && s.Team2Goal == s.Team1Goal)))) +
+                         t.MatchTeam2s.Count(m => m.Statistics.Any(s => s.Team1Goal != null && s.Team2Goal != null && ((s.Matches.Team1Id == t.TeamId && s.Team1Goal < s.Team2Goal) || (s.Matches.Team2Id == t.TeamId && s.Team2Goal < s.Team1Goal)))) * 3 +
+                         t.MatchTeam2s.Count(m => m.Statistics.Any(s => s.Team1Goal != null && s.Team2Goal != null && ((s.Matches.Team1Id == t.TeamId && s.Team1Goal == s.Team2Goal) || (s.Matches.Team2Id == t.TeamId && s.Team2Goal == s.Team1Goal))))
+            })
+            .OrderByDescending(t => t.Points)
+            .ThenByDescending(t => t.GoalDifference)
+            .ThenByDescending(t => t.GoalsFor)
+            .ToListAsync();
+
+            return Ok(teams);
+        }
     }
 }
