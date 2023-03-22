@@ -125,3 +125,5 @@ F:\Football_Website\PRNFootballWebsite\bin\Debug\net6.0\Microsoft.EntityFramewor
 C:\Users\Egamorft\Desktop\Football_Website\PRNFootballWebsite\bin\Debug\net6.0\System.Diagnostics.DiagnosticSource.dll
 C:\Users\Egamorft\Desktop\Football_Website\PRNFootballWebsite\bin\Debug\net6.0\DataAccess.dll
 C:\Users\Egamorft\Desktop\Football_Website\PRNFootballWebsite\bin\Debug\net6.0\DataAccess.pdb
+C:\Users\Egamorft\Desktop\Football_Website\PRNFootballWebsite\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Egamorft\Desktop\Football_Website\PRNFootballWebsite\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll

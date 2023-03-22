@@ -127,3 +127,5 @@ C:\Users\Egamorft\Desktop\Football_Website\PRNFootballWebsite.Client\bin\Debug\n
 C:\Users\Egamorft\Desktop\Football_Website\PRNFootballWebsite.Client\bin\Debug\net6.0\DataAccess.pdb
 C:\Users\Egamorft\Desktop\Football_Website\PRNFootballWebsite.Client\obj\Debug\net6.0\PRNFootballWebsite.Client.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Egamorft\Desktop\Football_Website\PRNFootballWebsite.Client\bin\Debug\net6.0\LazZiya.TagHelpers.dll
+C:\Users\Egamorft\Desktop\Football_Website\PRNFootballWebsite.Client\bin\Debug\net6.0\Microsoft.Extensions.Configuration.dll
+C:\Users\Egamorft\Desktop\Football_Website\PRNFootballWebsite.Client\bin\Debug\net6.0\Newtonsoft.Json.dll

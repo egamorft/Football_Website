@@ -89,12 +89,21 @@
                                             <a href="/Live">On live</a>
                                         </li>
                                         <i class="fa fa-fire" style="color:red"></i>
-                                        <li class="login">
-                                            <a href="login">Login</a>
-                                        </li>
-                                        <li class="current">
-                                            <a href="register">Register</a>
-                                        </li>
+                                        @if (Context.Session.GetString("user") != null || Context.Session.GetString("admin") != null)
+                                        {
+                                            <li class="logout">
+                                                <a href="logout">Logout</a>
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li class="login">
+                                                <a href="login">Login</a>
+                                            </li>
+                                            <li class="current">
+                                                <a href="register">Register</a>
+                                            </li>
+                                        }
                                     </ul>
 
                                 </div>

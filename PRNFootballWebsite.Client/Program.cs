@@ -1,7 +1,20 @@
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddHttpClient();
+
+builder.Services.AddHttpContextAccessor();
+
+builder.Services.AddSession();
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddCors(options => options.AddPolicy("_myAllowSpecificOrigins",
+    builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
 
 var app = builder.Build();
 
@@ -18,8 +31,12 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseCors("_myAllowSpecificOrigins");
+
 app.UseAuthorization();
 
 app.MapRazorPages();
+
+app.UseSession();
 
 app.Run();
