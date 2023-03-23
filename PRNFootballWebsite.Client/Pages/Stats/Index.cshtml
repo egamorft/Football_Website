@@ -31,9 +31,22 @@
                     <img style="width: 20%" src="~/img/clubs-logos/@Model.StatisticData.Team1Logo" alt="club-logo">
                     <a asp-page="/Team/Index" asp-route-id="@Model.StatisticData.Team1ID">@Model.StatisticData.Team1Name</a>
                     <ul>
-                        <li>Jamez Rodriguez 12' <i class="fa fa-futbol-o" aria-hidden="true"></i></li>
-                        <li>Falcao Garcia 30' <i class="fa fa-futbol-o" aria-hidden="true"></i></li>
-                        <li>Juan cuadrado 60' <i class="fa fa-futbol-o" aria-hidden="true"></i></li>
+                        @foreach (var item in Model.StatisticScorer)
+                        {
+                            @if (item.TeamName.Equals(Model.StatisticData.Team1Name))
+                            {
+                                var score_mins = "";
+                                if (item.ScoreMinutes > 90)
+                                {
+                                    score_mins = "90(+" + (item.ScoreMinutes - 90) + ")";
+                                }
+                                else
+                                {
+                                    score_mins = item.ScoreMinutes.ToString();
+                                }
+                                <li>@item.PlayerName @score_mins <i class="fa fa-futbol-o" aria-hidden="true"></i></li>
+                            }
+                        }
                     </ul>
                 </div>
             </div>
@@ -53,8 +66,22 @@
                     <a asp-page="/Team/Index" asp-route-id="@Model.StatisticData.Team2ID">@Model.StatisticData.Team2Name</a>
                     <img style="width: 20%" src="~/img/clubs-logos/@Model.StatisticData.Team2Logo" alt="club-logo">
                     <ul>
-                        <li><i class="fa fa-futbol-o" aria-hidden="true"></i> Lionel Messi 22' </li>
-                        <li><i class="fa fa-futbol-o" aria-hidden="true"></i> Gonzalo Higuaín 50' </li>
+                        @foreach (var item in Model.StatisticScorer)
+                        {
+                            @if (item.TeamName.Equals(Model.StatisticData.Team2Name))
+                            {
+                                var score_mins = "";
+                                if (item.ScoreMinutes > 90)
+                                {
+                                    score_mins = "90(+" + (item.ScoreMinutes - 90) + ")";
+                                }
+                                else
+                                {
+                                    score_mins = item.ScoreMinutes.ToString();
+                                }
+                                <li>@item.PlayerName @score_mins <i class="fa fa-futbol-o" aria-hidden="true"></i></li>
+                            }
+                        }
                     </ul>
                 </div>
             </div>
@@ -68,33 +95,22 @@
                         <a asp-page="/Team/Index" asp-route-id="@Model.StatisticData.Team1ID">@Model.StatisticData.Team1Name</a>
                     </div>
                     <ul class="timeline">
-                        <li class="card-result bottom goal" style="left:10%" data-placement="top" data-trigger="hover" data-toggle="popover" title="Goal" data-content="10. James Rodriguez">
-                            10'
-                        </li>
-                        <li class="card-result top change" style="left:20%" data-placement="bottom" data-trigger="hover" data-toggle="popover" title="Player Change" data-content="10. James Rodriguez for 9. Falcao Garcia">
-                            20'
-                        </li>
-                        <li class="card-result top red" style="left:31%" data-placement="bottom" data-trigger="hover" data-toggle="popover" title="Yellow card" data-content="10. James Rodriguez">
-                            31'
-                        </li>
-                        <li class="card-result top goal" style="left:40%" data-placement="bottom" data-trigger="hover" data-toggle="popover" title="Goal" data-content="10. James Rodriguez">
-                            40'
-                        </li>
-                        <li class="card-result top yellow" style="left:65%" data-placement="bottom" data-trigger="hover" data-toggle="popover" title="Yellow card" data-content="10. James Rodriguez">
-                            65'
-                        </li>
-                        <li class="card-result bottom yellow" style="left:50%" data-placement="top" data-trigger="hover" data-toggle="popover" title="Yellow card" data-content="10. James Rodriguez">
-                            50'
-                        </li>
-                        <li class="card-result top red" style="left:65%" data-placement="bottom" data-trigger="hover" data-toggle="popover" title="Yellow card" data-content="10. James Rodriguez">
-                            65'
-                        </li>
-                        <li class="card-result bottom yellow" style="left:80%" data-placement="top" data-trigger="hover" data-toggle="popover" title="Yellow card" data-content="10. James Rodriguez">
-                            80'
-                        </li>
-                        <li class="card-result top goal" style="left:90%" data-placement="bottom" data-trigger="hover" data-toggle="popover" title="Goal" data-content="10. James Rodriguez">
-                            90'
-                        </li>
+                        @foreach (var item in Model.StatisticScorer)
+                        {
+                            @if (item.TeamName.Equals(Model.StatisticData.Team1Name))
+                            {
+                                <li class="card-result top goal" style="left:@item.ScoreMinutes%" data-placement="top" data-trigger="hover" data-toggle="popover" title="Goal" data-content="@item.PlayerName">
+                                    @item.ScoreMinutes'
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="card-result bottom goal" style="left:@item.ScoreMinutes%" data-placement="bottom" data-trigger="hover" data-toggle="popover" title="Goal" data-content="@item.PlayerName">
+                                    @item.ScoreMinutes'
+                                </li>
+                            }
+
+                        }
                     </ul>
                     <div class="team-timeline">
                         <img src="~/img/clubs-logos/@Model.StatisticData.Team2Logo" alt="club-logo">
