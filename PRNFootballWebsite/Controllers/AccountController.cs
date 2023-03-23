@@ -67,7 +67,7 @@ namespace PRNFootballWebsite.API.Controllers
             }
         }
 
-        //POST: Get account infomation
+        //GET: Get account infomation
         //https://localhost:5000/api/Account/Infomation/egamorft
         [Authorize]
         [HttpGet("Infomation/{username}")]
@@ -92,6 +92,45 @@ namespace PRNFootballWebsite.API.Controllers
             return Ok(acc);
         }
 
+        [AllowAnonymous]
+        [HttpPost("Register")]
+        // https://localhost:5000/api/Account/Register
+        public async Task<IActionResult> Register([FromBody] AccountDTO account)
+        {
+            try
+            {
+                if (account != null && account.UserName != null && account.Password != null)
+                {
+                    if (UsernameExists(account.UserName))
+                    {
+                        return NotFound();
+                    }
+                    _context.Add<Account>(new Account
+                    {
+                        UserName = account.UserName,
+                        Password = account.Password,
+                        CreatedDate = DateTime.Now,
+                        FullName = account.FullName,
+                    });
+
+                    _context.SaveChanges();
+                    return Ok(account);
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Fail at running");
+            }
+        }
+
+        private bool UsernameExists(string username)
+        {
+            return _context.Accounts.Any(e => e.UserName == username);
+        }
 
     }
 }
