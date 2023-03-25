@@ -23,7 +23,7 @@ namespace PRNFootballWebsite.API.Controllers
         public async Task<IActionResult> GetTeams()
         {
             List<TeamDTO> listDTO = new List<TeamDTO>();
-            List<Team> list = await _context.Teams.Include(x => x.Tournament).OrderBy(x => x.Name).ToListAsync();
+            List<Team> list = await _context.Teams.Include(x => x.Tournament).OrderBy(x => x.Name).Where(x => x.TournamentId == 4).ToListAsync();
             foreach (Team acc in list)
             {
                 listDTO.Add(new TeamDTO

@@ -6,6 +6,7 @@ using System.Text.Json.Serialization;
 using System.Text.Json;
 using DataAccess.DTO;
 using System.Security.Principal;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PRNFootballWebsite.API.Controllers
 {
@@ -419,6 +420,45 @@ namespace PRNFootballWebsite.API.Controllers
                 });
             }
             return Ok(listDTO);
+        }
+
+        // POST: Add new match
+        // https://localhost:5000/api/Match/AddNew
+        [Authorize]
+        [HttpPost("AddNew")]
+        public async Task<IActionResult> AddNew([FromBody] MatchesDTO match)
+        {
+            try
+            {
+                if (match != null && match.Team1ID != null && match.Team2ID != null)
+                {
+                    if(match.Team1ID != match.Team2ID)
+                    {
+                        _context.Add<Match>(new Match
+                        {
+                            Datetime = match.Datetime,
+                            Team1Id = match.Team1ID,
+                            Team2Id = match.Team2ID,
+                            TournamentId = 4,
+                        });
+
+                        _context.SaveChanges();
+                        return Ok(match);
+                    }
+                    else
+                    {
+                        return NotFound("TeamId must be different");
+                    }
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Fail at running");
+            }
         }
 
     }

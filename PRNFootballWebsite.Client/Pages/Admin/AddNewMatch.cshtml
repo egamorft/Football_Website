@@ -1,0 +1,57 @@
+﻿@page
+@model PRNFootballWebsite.Client.Pages.Admin.AddNewMatchModel
+@{
+}
+<div class="container-xxl flex-grow-1 container-p-y" id="admin-addmatch">
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Match /</span> Add new match</h4>
+    <div class="row mb-4">
+
+        <!-- Bootstrap Validation -->
+        <div class="col-md">
+            <div class="card">
+                <h5 class="card-header">New match</h5>
+                <div class="card-body">
+                    <form class="needs-validation" novalidate method="post">
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <div class="mb-3">
+                            <label class="form-label" for="bs-validation-country">Home Team</label>
+                            <select asp-for="Matches.Team1ID" class="form-select" id="bs-validation-country" required>
+                                <option value="" disabled selected>Select Home Team</option>
+                                @foreach (var item in Model.ListTeams)
+                                {
+                                    <option value="@item.TeamId">@item.Name</option>
+                                }
+                            </select>
+                            <div class="valid-feedback">Looks good!</div>
+                            <div class="invalid-feedback">Please select your home team</div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="bs-validation-country">Away Team</label>
+                            <select asp-for="Matches.Team2ID" class="form-select" id="bs-validation-country" required>
+                                <option value="" disabled selected>Select Away Team</option>
+                                @foreach (var item in Model.ListTeams)
+                                {
+                                    <option value="@item.TeamId">@item.Name</option>
+                                }
+                            </select>
+                            <div class="valid-feedback">Looks good!</div>
+                            <div class="invalid-feedback">Please select your away team</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="flatpickr-datetime" class="form-label">Match Datetime</label>
+                            <input type="text" asp-for="Matches.Datetime" class="form-control flatpickr-input" placeholder="YYYY-MM-DD HH:MM" id="flatpickr-datetime" required>
+                            <div class="valid-feedback">Looks good!</div>
+                            <div class="invalid-feedback">Please Enter Match Datetime</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- /Bootstrap Validation -->
+    </div>
+</div>
