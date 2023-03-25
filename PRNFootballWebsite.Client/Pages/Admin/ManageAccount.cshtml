@@ -1,0 +1,44 @@
+﻿@page
+@model PRNFootballWebsite.Client.Pages.Admin.ManageAccountModel
+@{
+    ViewData["Title"] = "User management";
+}
+<div class="container-xxl flex-grow-1 container-p-y" id="admin-usermanage">
+    <input type="hidden" id="JwtToken" value="@HttpContext.Request.Cookies["jwt"]">
+    <!-- Basic Bootstrap Table -->
+    <div class="card">
+        <h5 class="card-header">Account management</h5>
+        <div class="table-responsive text-nowrap">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Fullname</th>
+                        <th>Join date</th>
+                        <th>Role</th>
+                        <th>Status (Onclick to deactive)</th>
+                    </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+                    @foreach (var item in Model.Accounts)
+                    {
+                        <tr>
+                            <td>
+                                <strong>@item.UserName</strong>
+                            </td>
+                            <td>@item.FullName</td>
+                            <td>@item.CreatedDate.ToString("dd/MM/yyyy")</td>
+                            <td>@(item.RoleId == 1 ?"Admin":"User")</td>
+                            <td><span id="@item.AccountId" class="badge bg-label-@(item.StatusId == 1 ? "primary" : "danger") me-1 UpdateAccountStatus">@(item.StatusId == 1 ? "Active" : "Deactive")</span></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--/ Basic Bootstrap Table -->
+
+    <hr class="my-5" />
+
+</div>
+

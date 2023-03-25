@@ -24,6 +24,60 @@ namespace PRNFootballWebsite.API.Controllers
             _configuration = configuration;
         }
 
+        // PUT: Change account status
+        // https://localhost:5000/api/Account/UpdateAccountStatus/{id}
+        [Authorize]
+        [HttpPut("UpdateAccountStatus/{id}")]
+        public async Task<ActionResult> UpdateAccountStatus(int id)
+        {
+            // code to update the model with the given id using the updatedName data
+            var account = await _context.Accounts.FirstOrDefaultAsync(x => x.AccountId == id);
+            if(account == null)
+            {
+                return BadRequest("Account not found");
+            }
+            if(account.StatusId == 1)
+            {
+                account.StatusId = 2;
+            }
+            else if(account.StatusId == 2)
+            {
+                account.StatusId = 1;
+            }
+            else
+            {
+                return BadRequest();
+            }
+
+            await _context.SaveChangesAsync();
+
+            return Ok(account);
+        }
+
+        // GET: List All Account
+        // https://localhost:5000/api/Account/ListAll
+        [Authorize]
+        [HttpGet("ListAll")]
+        public async Task<IActionResult> GetListAll()
+        {
+            List<AccountDTO> listDTO = new List<AccountDTO>();
+            List<Account> list = await _context.Accounts.ToListAsync();
+            foreach (Account acc in list)
+            {
+                listDTO.Add(new AccountDTO
+                {
+                    AccountId = acc.AccountId,
+                    CreatedDate = acc.CreatedDate,
+                    FullName = acc.FullName,
+                    Password = acc.Password,
+                    RoleId = acc.RoleId,
+                    StatusId = acc.StatusId,
+                    UserName = acc.UserName
+                });
+            }
+            return Ok(listDTO);
+        }
+
         //POST: Login account
         //https://localhost:5000/api/Account/login
         [AllowAnonymous]

@@ -66,7 +66,7 @@ namespace PRNFootballWebsite.Client.Pages
                 {
                     //Admin
                     HttpContext.Session.SetString("admin", JsonSerializer.Serialize(AccountInfo));
-                    return RedirectToPage("/Admin");
+                    return RedirectToPage("/Admin/Index");
                 }
                 HttpContext.Session.SetString("user", JsonSerializer.Serialize(AccountInfo));
                 return RedirectToPage("/Index");
