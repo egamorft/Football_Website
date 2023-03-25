@@ -28,5 +28,6 @@ namespace DataAccess.DTO
         public String Team2Name { get; set; }
         public String Team1Logo { get; set; }
         public String Team2Logo { get; set; }
+        public int MatchId { get; set; }
     }
 }

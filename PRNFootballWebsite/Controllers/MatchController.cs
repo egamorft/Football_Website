@@ -27,7 +27,8 @@ namespace PRNFootballWebsite.API.Controllers
         public async Task<IActionResult> GetMatches()
         {
             List<MatchesDTO> listDTO = new List<MatchesDTO>();
-            List<Match> list = await _context.Matches.Include(x => x.Tournament)
+            List<Match> list = await _context.Matches.Include(x => x.Statistics)
+                                .Include(x => x.Tournament)
                                     .Include(y => y.Team1)
                                         .Include(z => z.Team2)
                                             .OrderByDescending(o => o.Datetime)

@@ -62,6 +62,56 @@ namespace PRNFootballWebsite.API.Controllers
             return Ok(dto);
         }
 
+        // GET: List all match stats
+        // https://localhost:5000/api/Statistic/All
+        [HttpGet("All")]
+        public async Task<IActionResult> GetAll()
+        {
+            List<StatisticDTO> listDTO = new List<StatisticDTO>();
+            List<Statistic> list = await _context.Statistics
+                                    .Include(x => x.Matches)
+                                    .ThenInclude(x => x.Team1)
+                                        .Include(y => y.Matches)
+                                        .ThenInclude(y => y.Team2)
+                                            .Include(z => z.Matches)
+                                            .ThenInclude(z => z.Tournament)
+                                                .ToListAsync();
+
+            if (list == null)
+            {
+                return NotFound();
+            }
+            foreach (Statistic acc in list)
+            {
+                listDTO.Add(new StatisticDTO
+                {
+                    StatisticId = acc.StatisticId,
+                    Stadium = acc.Matches.Team1.Stadium,
+                    Datetime = acc.Matches.Datetime,
+                    Team1Corner = acc.Team1Corner,
+                    Team2Corner = acc.Team2Corner,
+                    Team1Goal = acc.Team1Goal,
+                    Team2Goal = acc.Team2Goal,
+                    Team1ID = acc.Matches.Team1Id,
+                    Team2ID = acc.Matches.Team2Id,
+                    Team1Logo = acc.Matches.Team1.Logo,
+                    Team2Logo = acc.Matches.Team2.Logo,
+                    Team1Name = acc.Matches.Team1.Name,
+                    Team2Name = acc.Matches.Team2.Name,
+                    Team1Ontarget = acc.Team1Ontarget,
+                    Team2Ontarget = acc.Team2Ontarget,
+                    Team1Possession = acc.Team1Possession,
+                    Team2Possession = acc.Team2Possession,
+                    Team1Shoot = acc.Team1Shoot,
+                    Team2Shoot = acc.Team2Shoot,
+                    TournamentName = acc.Matches.Tournament.Name,
+                    MatchId = acc.MatchesId,
+                });
+            }
+
+            return Ok(listDTO);
+        }
+
 
         // GET: List table EPL
         // https://localhost:5000/api/Statistic/Epl/Table
