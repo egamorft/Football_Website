@@ -5,6 +5,31 @@
     window.Helpers.initCustomOptionCheck();
 
     $(document).ready(function () {
+        var selectElement1 = $('.bs-selected-player1');
+        var selectElement2 = $('.bs-selected-player2');
+
+        // loop through the options
+        selectElement1.find('option').each(function () {
+
+            // check if the option has the "myClass" class
+            if ($(this).hasClass('selectedPlayer')) {
+
+                // add the "selected" attribute to the option
+                $(this).attr('selected', true);
+            }
+        });
+
+        selectElement2.find('option').each(function () {
+
+            // check if the option has the "myClass" class
+            if ($(this).hasClass('selectedPlayer')) {
+
+                // add the "selected" attribute to the option
+                $(this).attr('selected', true);
+            }
+        });
+
+
         $('#customRange1').on('change', function () {
             $('#customRange1Value').text($(this).val());
             $('#customRange2Value').val(100 - $(this).val());

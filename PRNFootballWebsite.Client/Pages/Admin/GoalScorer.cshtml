@@ -26,10 +26,10 @@
                                     {
                                         <div class="mb-3 col-md-6 text-center">
                                             <input type="hidden" name="ListGoalScorer[@Model.ListGoalScorer.IndexOf(scorer)].StatisticId" value="@scorer.StatisticId">
-                                            <select name="ListGoalScorer[@Model.ListGoalScorer.IndexOf(scorer)].PlayerId" class="form-select" id="bs-validation-country" required>
+                                            <select name="ListGoalScorer[@Model.ListGoalScorer.IndexOf(scorer)].PlayerId" class="form-select bs-selected-player1" required>
                                                 @foreach (var player in Model.ListTeamsPlayer)
                                                 {
-                                                    <option value="@player.PlayerId" @(scorer.PlayerId == player.PlayerId ? "selected" : "")>@player.PlayerName</option>
+                                                    <option value="@player.PlayerId" class="@(scorer.PlayerId == player.PlayerId ? "selectedPlayer" : "")">@player.PlayerName</option>
                                                 }
                                             </select>
                                             <input type="number" class="form-control" id="bs-validation-name" name="ListGoalScorer[@Model.ListGoalScorer.IndexOf(scorer)].ScoreMinutes"
@@ -51,10 +51,10 @@
                                     {
                                         <div class="mb-3 col-md-6 text-center">
                                             <input type="hidden" name="ListGoalScorer[@Model.ListGoalScorer.IndexOf(scorer)].StatisticId" value="@scorer.StatisticId">
-                                            <select name="ListGoalScorer[@Model.ListGoalScorer.IndexOf(scorer)].PlayerId" class="form-select" id="bs-validation-country" required>
+                                            <select name="ListGoalScorer[@Model.ListGoalScorer.IndexOf(scorer)].PlayerId" class="form-select bs-selected-player2" required>
                                                 @foreach (var player in Model.ListTeamsPlayer)
                                                 {
-                                                    <option value="@player.PlayerId" @(scorer.PlayerId == player.PlayerId ? "selected" : "")>@player.PlayerName</option>
+                                                    <option value="@player.PlayerId" class="@(scorer.PlayerId == player.PlayerId ? "selectedPlayer" : "")">@player.PlayerName</option>
                                                 }
                                             </select>
                                             <input type="number" class="form-control" id="bs-validation-name" name="ListGoalScorer[@Model.ListGoalScorer.IndexOf(scorer)].ScoreMinutes"

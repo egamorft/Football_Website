@@ -61,7 +61,11 @@ namespace PRNFootballWebsite.API.Controllers
                 return NotFound();
             }
 
-            _context.MatchScorers.RemoveRange(statsToDelete);
+            var sql = "DELETE FROM Match_Scorers WHERE statistic_id = " + stats_id;
+            foreach (var stat in statsToDelete)
+            {
+                await _context.Database.ExecuteSqlRawAsync(sql);
+            }
             await _context.SaveChangesAsync();
 
             return Ok();
@@ -77,16 +81,9 @@ namespace PRNFootballWebsite.API.Controllers
             {
                 if (msDTO != null)
                 {
-                    _context.Add<MatchScorer>(new MatchScorer
-                    {
-                        StatisticId = msDTO.StatisticId,
-                        ScoreMinutes = msDTO.ScoreMinutes,
-                        IsOwnGoal = 0,
-                        PlayerId = msDTO.PlayerId
-                    });
-
-                    _context.SaveChanges();
-                    return Ok(msDTO);
+                    var sql = "INSERT INTO [Match_Scorers] (statistic_id, player_id, score_minutes) VALUES (" + msDTO.StatisticId+", "+msDTO.PlayerId+", "+msDTO.ScoreMinutes+")";
+                    await _context.Database.ExecuteSqlRawAsync(sql);
+                    return Ok();
                 }
                 else
                 {

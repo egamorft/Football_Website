@@ -91,6 +91,29 @@ namespace PRNFootballWebsite.Client.Pages.Admin
                     if(!response_post.IsSuccessStatusCode)
                     {
                         ModelState.AddModelError(string.Empty, "Something went wrong");
+
+                        PlayersUrl += MatchStats.StatisticId;
+                        ScorerUrl += MatchStats.StatisticId;
+                        StatsUrl += MatchStats.StatisticId;
+
+                        //List match players
+                        var response_players = await httpClient.GetAsync(PlayersUrl);
+                        var content_players = await response_players.Content.ReadAsStringAsync();
+                        ListTeamsPlayer = JsonSerializer.Deserialize<List<PlayerDTO>>(content_players, options);
+                        //List match players
+
+                        //List match scorers
+                        var response_scorer = await httpClient.GetAsync(ScorerUrl);
+                        var content_scorer = await response_scorer.Content.ReadAsStringAsync();
+                        ListGoalScorer = JsonSerializer.Deserialize<List<MatchScorerDTO>>(content_scorer, options);
+                        //List match scorers
+
+                        //List match players
+                        var response_stats = await httpClient.GetAsync(StatsUrl);
+                        var content_stats = await response_stats.Content.ReadAsStringAsync();
+                        MatchStats = JsonSerializer.Deserialize<StatisticDTO>(content_stats, options);
+                        //List match players
+
                         return Page();
                     }
                 }
