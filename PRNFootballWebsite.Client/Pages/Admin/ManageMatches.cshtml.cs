@@ -26,7 +26,7 @@ namespace PRNFootballWebsite.Client.Pages.Admin
 
 
         }
-        public async Task<IActionResult> OnGet(int p = 1, int s = 6)
+        public async Task<IActionResult> OnGetAsync(int p = 1, int s = 4, string txtSearch = null, string txtFilter = null)
         {
             var httpClient = new HttpClient();
             var options = new JsonSerializerOptions
@@ -35,7 +35,29 @@ namespace PRNFootballWebsite.Client.Pages.Admin
                 ReferenceHandler = ReferenceHandler.Preserve
             };
 
-            MatchesUrl += p + "/" + s;
+            if(txtFilter != null && txtFilter != "")
+            {
+                if(txtSearch != null)
+                {
+                    MatchesUrl += p + "/" + s + "?txtSearch=" + txtSearch + "&txtFilter=" + txtFilter;
+                }
+                else
+                {
+                    MatchesUrl += p + "/" + s + "?txtFilter=" + txtFilter;
+                }
+            }
+            else
+            {
+                if(txtSearch != null)
+                {
+                    MatchesUrl += p + "/" + s + "?txtSearch=" + txtSearch;
+                }
+                else
+                {
+                    MatchesUrl += p + "/" + s;
+                }
+
+            }
 
             //List all matches
             var response_all = await httpClient.GetAsync(MatchesUrl);

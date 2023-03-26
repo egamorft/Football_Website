@@ -4,7 +4,33 @@
 }
 <div class="container-xxl flex-grow-1 container-p-y">
     <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Manage /</span> Matches</h4>
-    <a href="/Admin/AddNewMatch" type="button" class="btn btn-primary waves-effect waves-float waves-light mb-3">Add new match</a>
+
+    <div class="d-flex justify-content-between align-items-center mx-0 row">
+        <div class="col-sm-12 col-md-6">
+            <a href="/Admin/AddNewMatch" type="button" class="btn btn-primary waves-effect waves-float waves-light mb-3">Add new match</a>
+        </div>
+        <div class="col-sm-12 col-md-6 mb-2">
+            <div class="d-inline-block">
+                <label class="form-label" for="basicSelect">Select match status</label>
+                <select class="form-select" id="txtFilter">
+                    <option id="allFilter" value="" selected>----All----</option>
+                    <option id="finishedFilter" value="finished">Finished</option>
+                    <option id="notStartedFilter" value="notStarted">Not Started</option>
+                    <option id="happeningFilter" value="happening">Happening</option>
+                </select>
+            </div>
+            <div class="d-inline-block">
+                <div id="DataTables_Table_0_filter" class="dataTables_filter">
+                    <input type="search" id="txtSearch" class="form-control" placeholder="Search me">
+                </div>
+            </div>
+            <div class="d-inline-block">
+                <button id="submitBtn" type="button" class="btn btn-icon rounded-circle btn-outline-primary waves-effect">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                </button>
+            </div>
+        </div>
+    </div>
     <div class="row mb-5">
         @foreach (var item in Model.ListAllMatches.Matches)
         {
@@ -18,22 +44,20 @@
                                         <span class="">@item.Datetime.ToString("HH:mm dd/MM/yyyy")</span>
                                     </div>
                                     <div>
-                                        <span class="">
-                                            @{
-                                                if (item.Datetime.AddHours(2) > DateTime.Now && DateTime.Now > item.Datetime)
-                                                {
-                                                    <span class="badge bg-label-warning me-1">Happening</span>
-                                                }
-                                                else if (DateTime.Now < item.Datetime.AddMinutes(-30))
-                                                {
-                                                    <span class="badge bg-label-secondary me-1">Not started</span>
-                                                }
-                                                else if (DateTime.Now > item.Datetime.AddHours(2))
-                                                {
-                                                    <span class="badge bg-label-success me-1">Finished</span>
-                                                }
+                                        @{
+                                            if (item.Datetime.AddHours(2) > DateTime.Now && DateTime.Now > item.Datetime.AddMinutes(-20))
+                                            {
+                                                                            <span class="badge bg-label-warning me-1">Happening</span>
                                             }
-                                        </span>
+                                            else if (DateTime.Now < item.Datetime.AddMinutes(-30))
+                                            {
+                                                                            <span class="badge bg-label-secondary me-1">Not started</span>
+                                            }
+                                            else if (DateTime.Now > item.Datetime.AddHours(2))
+                                            {
+                                                                            <span class="badge bg-label-success me-1">Finished</span>
+                                            }
+                                        }
                                     </div>
                                 </div>
                                 <div class="card-body d-flex flex-row w-100">
@@ -47,7 +71,7 @@
                                         {
                                             if (item.MatchesId == itemStats.MatchId)
                                             {
-                                                if (item.Datetime.AddHours(2) > DateTime.Now && DateTime.Now > item.Datetime)
+                                                if (item.Datetime.AddHours(2) > DateTime.Now && DateTime.Now > item.Datetime.AddMinutes(-20))
                                                 {
                                                     <h3 class="align-self-center">
                                                         @(itemStats.Team1Goal != null ? itemStats.Team1Goal : "...") - @(itemStats.Team2Goal != null ? itemStats.Team2Goal : "...")
@@ -66,7 +90,7 @@
                                                     </h3>
                                                 }
                                             }
-                                         }
+                                        }
                                     </div>
                                     <div class="flex-fill col-3 d-flex justify-content-center">
                                         <img class="card-img img-fluid img-thumbnail align-self-center" src="~/img/clubs-logos/@item.Team2Logo"
@@ -82,10 +106,71 @@
         }
     </div>
     <div class="container">
-    <paging class="pagination" total-records="Model.ListAllMatches.TotalMatches"
-            show-total-pages="false" show-total-records="false"
-            page-size="(int)Model.ListAllMatches.PageSize" page-no="Model.ListAllMatches.PageNo"
-            show-page-size-nav="false">
-    </paging>
+        <paging class="pagination" total-records="Model.ListAllMatches.TotalMatches"
+                show-total-pages="false" show-total-records="false"
+                page-size="(int)Model.ListAllMatches.PageSize" page-no="Model.ListAllMatches.PageNo"
+                show-page-size-nav="false">
+        </paging>
     </div>
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#submitBtn').click(function () {
+            var inputValue = $('#txtSearch').val();
+            var url_string = location.href;
+            var url = new URL(url_string);
+            var p = url.searchParams.get("p");
+            var txtFilter = url.searchParams.get("txtFilter");
+            if (p != 1 && p != null) 
+            {
+                if(txtFilter == null)
+                {
+                window.location = '/Admin/ManageMatches?p=' + p + '&txtSearch=' + inputValue
+                }
+                else
+                {
+                    window.location = '/Admin/ManageMatches?p=' + p + '&txtSearch=' + inputValue + '&txtFilter=' + txtFilter
+                }
+
+            }
+            else 
+            {
+                if (txtFilter == null) {
+                    window.location = '/Admin/ManageMatches?txtSearch=' + inputValue
+                }
+                else {
+                    window.location = '/Admin/ManageMatches?txtSearch=' + inputValue + '&txtFilter=' + txtFilter
+                }
+            }
+
+        });
+
+        $('#txtFilter').change(function () {
+            var url_string = location.href;
+            var url = new URL(url_string);
+            var p = url.searchParams.get("p");
+            if (p != 1 && p != null) {
+                window.location = '/Admin/ManageMatches?p='+p+'&txtFilter=' + $('#txtFilter').val()
+            } else {
+                window.location = '/Admin/ManageMatches?txtFilter=' + $('#txtFilter').val()
+            }
+        });
+    });
+</script>
+<script>
+    var url_string = location.href;
+    var url = new URL(url_string);
+    var c = url.searchParams.get("txtFilter");
+    if (c == "finished") {
+        $("#finishedFilter").prop('selected', true);
+    }
+    else if (c == "notStarted") {
+        $("#notStartedFilter").prop('selected', true);
+    }
+    else if (c == "happening") {
+        $("#happeningFilter").prop('selected', true);
+
+    }
+</script>

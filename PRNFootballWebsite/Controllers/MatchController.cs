@@ -7,6 +7,7 @@ using System.Text.Json;
 using DataAccess.DTO;
 using System.Security.Principal;
 using Microsoft.AspNetCore.Authorization;
+using System.Linq.Expressions;
 
 namespace PRNFootballWebsite.API.Controllers
 {
@@ -369,20 +370,124 @@ namespace PRNFootballWebsite.API.Controllers
             return Ok(response);
         }
 
-        // GET: List all matches
+        // GET: List all matches paging filter
         // https://localhost:5000/api/Match/Paging/{pageNumber}/{pageSize}
         [HttpGet("Paging/{pageNumber}/{pageSize}")]
-        public async Task<IActionResult> GetMatchesPaging(int pageNumber, float pageSize)
+        public async Task<IActionResult> GetMatchesPaging(int pageNumber, float pageSize, string? txtSearch, string? txtFilter)
         {
             List<MatchesDTO> listDTO = new List<MatchesDTO>();
-            var pageCount = Math.Ceiling(_context.Matches.Count() / pageSize);
-            List<Match> list = await _context.Matches.Include(x => x.Statistics)
-                                .Include(x => x.Tournament)
-                                    .Include(y => y.Team1)
-                                        .Include(z => z.Team2)
-                                            .OrderByDescending(o => o.Datetime)
-                                                .Skip((pageNumber - 1) * (int)pageSize)
-                                                    .Take((int)pageSize).ToListAsync();
+            var pageCount = 0;
+            List<Match> list = new List<Match>();
+            if (txtFilter != null && txtFilter != "")
+            {
+                if(txtSearch == null || txtSearch == "")
+                {
+                    switch (txtFilter)
+                    {
+                        case "finished":
+                            pageCount = (int)Math.Ceiling(_context.Matches.Where(s => DateTime.Now > s.Datetime.AddHours(2)).Count() / pageSize);
+                            list = await _context.Matches.Include(x => x.Statistics)
+                                                .Include(x => x.Tournament)
+                                                    .Include(y => y.Team1)
+                                                        .Include(z => z.Team2)
+                                                            .OrderByDescending(o => o.Datetime)
+                                                                .Where(s => DateTime.Now > s.Datetime.AddHours(2))
+                                                                .Skip((pageNumber - 1) * (int)pageSize)
+                                                                    .Take((int)pageSize).ToListAsync();
+                            break;
+                        case "notStarted":
+                            pageCount = (int)Math.Ceiling(_context.Matches.Where(s => DateTime.Now < s.Datetime.AddMinutes(-30)).Count() / pageSize);
+                            list = await _context.Matches.Include(x => x.Statistics)
+                                                .Include(x => x.Tournament)
+                                                    .Include(y => y.Team1)
+                                                        .Include(z => z.Team2)
+                                                            .OrderByDescending(o => o.Datetime)
+                                                                .Where(s => DateTime.Now < s.Datetime.AddMinutes(-30))
+                                                                .Skip((pageNumber - 1) * (int)pageSize)
+                                                                    .Take((int)pageSize).ToListAsync();
+                            break;
+                        case "happening":
+                            pageCount = (int)Math.Ceiling(_context.Matches.Where(s => s.Datetime.AddHours(2) > DateTime.Now && DateTime.Now > s.Datetime.AddMinutes(-20)).Count() / pageSize);
+                            list = await _context.Matches.Include(x => x.Statistics)
+                                                .Include(x => x.Tournament)
+                                                    .Include(y => y.Team1)
+                                                        .Include(z => z.Team2)
+                                                            .OrderByDescending(o => o.Datetime)
+                                                            .Where(s => s.Datetime.AddHours(2) > DateTime.Now && DateTime.Now > s.Datetime.AddMinutes(-20))
+                                                                .Skip((pageNumber - 1) * (int)pageSize)
+                                                                    .Take((int)pageSize).ToListAsync();
+                            break;
+                    }
+                }
+                else
+                {
+                    switch (txtFilter)
+                    {
+                        case "finished":
+                            pageCount = (int)Math.Ceiling(_context.Matches.Include(y => y.Team1).Include(z => z.Team2).Where(s => DateTime.Now > s.Datetime.AddHours(2)).Where(t => t.Team1.Name.ToLower().Contains(txtSearch.ToLower()) || t.Team2.Name.ToLower().Contains(txtSearch.ToLower())).Count() / pageSize);
+                            list = await _context.Matches.Include(x => x.Statistics)
+                                                .Include(x => x.Tournament)
+                                                    .Include(y => y.Team1)
+                                                        .Include(z => z.Team2)
+                                                            .OrderByDescending(o => o.Datetime)
+                                                                .Where(s => DateTime.Now > s.Datetime.AddHours(2))
+                                                                .Where(t => t.Team1.Name.ToLower().Contains(txtSearch.ToLower()) || t.Team2.Name.ToLower().Contains(txtSearch.ToLower()))
+                                                                .Skip((pageNumber - 1) * (int)pageSize)
+                                                                    .Take((int)pageSize).ToListAsync();
+                            break;
+                        case "notStarted":
+                            pageCount = (int)Math.Ceiling(_context.Matches.Include(y => y.Team1).Include(z => z.Team2).Where(s => DateTime.Now < s.Datetime.AddMinutes(-30)).Where(t => t.Team1.Name.ToLower().Contains(txtSearch.ToLower()) || t.Team2.Name.ToLower().Contains(txtSearch.ToLower())).Count() / pageSize);
+                            list = await _context.Matches.Include(x => x.Statistics)
+                                                .Include(x => x.Tournament)
+                                                    .Include(y => y.Team1)
+                                                        .Include(z => z.Team2)
+                                                            .OrderByDescending(o => o.Datetime)
+                                                                .Where(s => DateTime.Now < s.Datetime.AddMinutes(-30))
+                                                                .Where(t => t.Team1.Name.ToLower().Contains(txtSearch.ToLower()) || t.Team2.Name.ToLower().Contains(txtSearch.ToLower()))
+                                                                .Skip((pageNumber - 1) * (int)pageSize)
+                                                                    .Take((int)pageSize).ToListAsync();
+                            break;
+                        case "happening":
+                            pageCount = (int)Math.Ceiling(_context.Matches.Include(y => y.Team1).Include(z => z.Team2).Where(s => s.Datetime.AddHours(2) > DateTime.Now && DateTime.Now > s.Datetime.AddMinutes(-20)).Where(t => t.Team1.Name.ToLower().Contains(txtSearch.ToLower()) || t.Team2.Name.ToLower().Contains(txtSearch.ToLower())).Count() / pageSize);
+                            list = await _context.Matches.Include(x => x.Statistics)
+                                                .Include(x => x.Tournament)
+                                                    .Include(y => y.Team1)
+                                                        .Include(z => z.Team2)
+                                                            .OrderByDescending(o => o.Datetime)
+                                                                .Where(s => s.Datetime.AddHours(2) > DateTime.Now && DateTime.Now > s.Datetime.AddMinutes(-20))
+                                                                .Where(t => t.Team1.Name.ToLower().Contains(txtSearch.ToLower()) || t.Team2.Name.ToLower().Contains(txtSearch.ToLower()))
+                                                                .Skip((pageNumber - 1) * (int)pageSize)
+                                                                    .Take((int)pageSize).ToListAsync();
+                            break;
+                    }
+                }
+            }
+            else
+            {
+                if(txtSearch == null || txtSearch == "")
+                {
+                    pageCount = (int)Math.Ceiling(_context.Matches.Count() / pageSize);
+                    list = await _context.Matches.Include(x => x.Statistics)
+                                        .Include(x => x.Tournament)
+                                            .Include(y => y.Team1)
+                                                .Include(z => z.Team2)
+                                                    .OrderByDescending(o => o.Datetime)
+                                                        .Skip((pageNumber - 1) * (int)pageSize)
+                                                            .Take((int)pageSize).ToListAsync();
+                }
+                else
+                {
+                    pageCount = (int)Math.Ceiling(_context.Matches.Include(y => y.Team1).Include(z => z.Team2).Where(t => t.Team1.Name.ToLower().Contains(txtSearch.ToLower()) || t.Team2.Name.ToLower().Contains(txtSearch.ToLower())).Count() / pageSize);
+                    list = await _context.Matches.Include(x => x.Statistics)
+                                        .Include(x => x.Tournament)
+                                            .Include(y => y.Team1)
+                                                .Include(z => z.Team2)
+                                                    .OrderByDescending(o => o.Datetime)
+                                                    .Where(t => t.Team1.Name.ToLower().Contains(txtSearch.ToLower()) || t.Team2.Name.ToLower().Contains(txtSearch.ToLower()))
+                                                        .Skip((pageNumber - 1) * (int)pageSize)
+                                                            .Take((int)pageSize).ToListAsync();
+                }
+            }
             foreach (Match acc in list)
             {
                 listDTO.Add(new MatchesDTO
