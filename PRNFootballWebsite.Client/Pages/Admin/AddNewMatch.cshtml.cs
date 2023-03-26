@@ -58,10 +58,10 @@ namespace PRNFootballWebsite.Client.Pages.Admin
                 ReferenceHandler = ReferenceHandler.Preserve
             };
             string jwt = Request.Cookies["jwt"];
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
+            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
             var data = JsonConvert.SerializeObject(Matches);
             var content = new StringContent(data, Encoding.UTF8, "application/json");
-            var response = await client.PostAsync("https://localhost:5000/api/Match/AddNew", content);
+            var response = await httpClient.PostAsync("https://localhost:5000/api/Match/AddNew", content);
             if (response.IsSuccessStatusCode)
             {
                 return RedirectToPage("/Admin/ManageMatches");

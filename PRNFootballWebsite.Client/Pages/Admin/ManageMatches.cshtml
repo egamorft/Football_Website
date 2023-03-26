@@ -9,7 +9,7 @@
         @foreach (var item in Model.ListAllMatches)
         {
             <div class="col-md-6">
-                <a href="/Admin/EditMatch/@item.MatchesId" class="card-link d-block p-0 m-0">
+                <a asp-page="/Admin/EditMatch" asp-route-id="@item.MatchesId" class="card-link d-block p-0 m-0">
                     <div class="card mb-3">
                         <div class="row g-0">
                             <div class="col-md-12">

@@ -13,7 +13,7 @@
             <div class="col-md-4">
                 <div class="breadcrumbs">
                     <ul>
-                        <li><a href="../Home/index">Home</a></li>
+                        <li><a href="/index">Home</a></li>
                         <li>Inner Page</li>
                     </ul>
                 </div>
@@ -42,7 +42,7 @@
                                         </a>
                                         <span class="goals">
                                             <b>@item.Team1Goal</b> - <b>@item.Team2Goal</b>
-                                            <a asp-page="/Stats/Index" asp-route-id="@item.StatsID" class="btn theme">View More</a>
+                                            <a asp-page="/Stats/Index" asp-route-id="@item.MatchesId" class="btn theme">View More</a>
                                         </span>
                                         <a asp-page="/Team/Index" asp-route-id="@item.Team2ID">
                                             <img src="~/img/clubs-logos/@item.Team2Logo" alt="@item.Team2Name">

@@ -1,0 +1,124 @@
+﻿@page
+@model PRNFootballWebsite.Client.Pages.Admin.EditMatchModel
+@{
+}
+<div class="container-xxl flex-grow-1 container-p-y" id="admin-addmatch">
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Match /</span> @Model.MatchStats.Team1Name - @Model.MatchStats.Team2Name</h4>
+    <div class="row mb-4">
+
+        @if (Model.MatchStats.Datetime.AddHours(2) > DateTime.Now && DateTime.Now > Model.MatchStats.Datetime)
+        {
+            //Happening
+        }
+        else if (DateTime.Now < Model.MatchStats.Datetime.AddMinutes(-30))
+        {
+            //Not started
+        }
+        else if (DateTime.Now > Model.MatchStats.Datetime.AddHours(2))
+        {
+            //Finished
+            <div class="col-md">
+                <div class="card">
+                    <h5 class="card-header">Edit match</h5>
+                    <div class="card-body">
+                        <form class="needs-validation" novalidate asp-page-handler="Finished" method="post">
+                            <div asp-validation-summary="All" class="text-danger"></div>
+                            <div class="row g-6">
+                                <input type="hidden" class="form-range" asp-for="MatchStats.StatisticId">
+                                <input type="hidden" class="form-range" asp-for="MatchStats.MatchId">
+                                <div class="mb-3 col-md-6 text-center">
+                                    <label class="form-label d-flex justify-content-center"
+                                       for="bs-validation-country">Home</label>
+                                    <select asp-for="MatchStats.Team1ID" class="form-select" id="bs-validation-country" disabled>
+                                        <option value="@Model.MatchStats.Team1ID">@Model.MatchStats.Team1Name</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3 col-md-6 text-center">
+                                    <label class="form-label d-flex justify-content-center"
+                                       for="bs-validation-country">Away</label>
+                                    <select asp-for="MatchStats.Team2ID" class="form-select" id="bs-validation-country" disabled>
+                                        <option value="@Model.MatchStats.Team2ID">@Model.MatchStats.Team2Name</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3 col-md-6 text-center">
+                                    <label class="form-label d-flex justify-content-center" for="bs-validation-name">Home Goal</label>
+                                    <input type="number" class="form-control" id="bs-validation-name" asp-for="MatchStats.Team1Goal"
+                                       required />
+                                    <div class="valid-feedback">Looks good!</div>
+                                    <div class="invalid-feedback">Please enter your home score.</div>
+                                </div>
+                                <div class="mb-3 col-md-6 text-center">
+                                    <label class="form-label d-flex justify-content-center" for="bs-validation-name">Away Goal</label>
+                                    <input type="number" class="form-control" id="bs-validation-name" asp-for="MatchStats.Team2Goal"
+                                       required />
+                                    <div class="valid-feedback">Looks good!</div>
+                                    <div class="invalid-feedback">Please enter your away score.</div>
+                                </div>
+                                <div class="mb-3 text-center">
+                                    <label class="form-label d-flex justify-content-center" for="bs-validation-name">Possession (Choose home)</label>
+                                    <input type="range" class="form-range" id="customRange1" asp-for="MatchStats.Team1Possession">
+                                    <span id="customRange1Value">@Model.MatchStats.Team1Possession</span>
+                                    <input type="hidden" class="form-range" id="customRange2Value" asp-for="MatchStats.Team2Possession">
+
+                                </div>
+                                <div class="mb-3 col-md-6 text-center">
+                                    <label class="form-label d-flex justify-content-center" for="bs-validation-name">Home Shoot</label>
+                                    <input type="number" class="form-control" id="bs-validation-name" asp-for="MatchStats.Team1Shoot"
+                                       required />
+                                    <div class="valid-feedback">Looks good!</div>
+                                    <div class="invalid-feedback">Please enter your home shoot.</div>
+                                </div>
+                                <div class="mb-3 col-md-6 text-center">
+                                    <label class="form-label d-flex justify-content-center" for="bs-validation-name">Away Shoot</label>
+                                    <input type="number" class="form-control" id="bs-validation-name" asp-for="MatchStats.Team2Shoot"
+                                       required />
+                                    <div class="valid-feedback">Looks good!</div>
+                                    <div class="invalid-feedback">Please enter your away shoot.</div>
+                                </div>
+                                <div class="mb-3 col-md-6 text-center">
+                                    <label class="form-label d-flex justify-content-center" for="bs-validation-name">Home On target</label>
+                                    <input type="number" class="form-control" id="bs-validation-name" asp-for="MatchStats.Team1Ontarget"
+                                       required />
+                                    <div class="valid-feedback">Looks good!</div>
+                                    <div class="invalid-feedback">Please enter your home on target.</div>
+                                </div>
+                                <div class="mb-3 col-md-6 text-center">
+                                    <label class="form-label d-flex justify-content-center" for="bs-validation-name">Away On target</label>
+                                    <input type="number" class="form-control" id="bs-validation-name" asp-for="MatchStats.Team2Ontarget"
+                                       required />
+                                    <div class="valid-feedback">Looks good!</div>
+                                    <div class="invalid-feedback">Please enter your away on target.</div>
+                                </div>
+                                <div class="mb-3 col-md-6 text-center">
+                                    <label class="form-label d-flex justify-content-center" for="bs-validation-name">Home Corner</label>
+                                    <input type="number" class="form-control" id="bs-validation-name" asp-for="MatchStats.Team1Corner"
+                                       required />
+                                    <div class="valid-feedback">Looks good!</div>
+                                    <div class="invalid-feedback">Please enter your home corner.</div>
+                                </div>
+                                <div class="mb-3 col-md-6 text-center">
+                                    <label class="form-label d-flex justify-content-center" for="bs-validation-name">Away Corner</label>
+                                    <input type="number" class="form-control" id="bs-validation-name" asp-for="MatchStats.Team2Corner"
+                                       required />
+                                    <div class="valid-feedback">Looks good!</div>
+                                    <div class="invalid-feedback">Please enter your away corner.</div>
+                                </div>
+                                <div class="mb-3 col-md-6 text-center">
+                                    <label for="flatpickr-datetime" class="form-label">Match Datetime</label>
+                                    <input type="text" asp-for="MatchStats.Datetime" class="form-control flatpickr-input" placeholder="YYYY-MM-DD HH:MM" id="flatpickr-datetime" required>
+                                    <div class="valid-feedback">Looks good!</div>
+                                    <div class="invalid-feedback">Please Enter Match Datetime</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-primary">Save</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

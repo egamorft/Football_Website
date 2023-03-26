@@ -1,5 +1,6 @@
 ﻿using DataAccess.DTO;
 using DataAccess.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -18,9 +19,9 @@ namespace PRNFootballWebsite.API.Controllers
         }
 
         // GET: List specific match stats
-        // https://localhost:5000/api/Statistic/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<TeamDTO>> GetStatistic(int id)
+        // https://localhost:5000/api/Statistic/Stats/{stats_id}
+        [HttpGet("Stats/{stats_id}")]
+        public async Task<ActionResult<StatisticDTO>> GetStatisticWithStats(int stats_id)
         {
             var list = await _context.Statistics
                                     .Include(x => x.Matches)
@@ -29,7 +30,7 @@ namespace PRNFootballWebsite.API.Controllers
                                         .ThenInclude(y => y.Team2)
                                             .Include(z => z.Matches)
                                             .ThenInclude(z => z.Tournament)
-                                                .FirstOrDefaultAsync(x => x.StatisticId == id);
+                                                .FirstOrDefaultAsync(x => x.StatisticId == stats_id);
 
             if (list == null)
             {
@@ -57,6 +58,53 @@ namespace PRNFootballWebsite.API.Controllers
                 Team1Shoot = list.Team1Shoot,
                 Team2Shoot = list.Team2Shoot,
                 TournamentName = list.Matches.Tournament.Name,
+                MatchId = list.MatchesId
+            };
+
+            return Ok(dto);
+        }
+
+        // GET: List specific match stats
+        // https://localhost:5000/api/Statistic/5
+        [HttpGet("{matches_id}")]
+        public async Task<ActionResult<StatisticDTO>> GetStatistic(int matches_id)
+        {
+            var list = await _context.Statistics
+                                    .Include(x => x.Matches)
+                                    .ThenInclude(x => x.Team1)
+                                        .Include(y => y.Matches)
+                                        .ThenInclude(y => y.Team2)
+                                            .Include(z => z.Matches)
+                                            .ThenInclude(z => z.Tournament)
+                                                .FirstOrDefaultAsync(x => x.MatchesId == matches_id);
+
+            if (list == null)
+            {
+                return NotFound();
+            }
+            var dto = new StatisticDTO
+            {
+                StatisticId = list.StatisticId,
+                Stadium = list.Matches.Team1.Stadium,
+                Datetime = list.Matches.Datetime,
+                Team1Corner = list.Team1Corner,
+                Team2Corner = list.Team2Corner,
+                Team1Goal = list.Team1Goal,
+                Team2Goal = list.Team2Goal,
+                Team1ID = list.Matches.Team1Id,
+                Team2ID = list.Matches.Team2Id,
+                Team1Logo = list.Matches.Team1.Logo,
+                Team2Logo = list.Matches.Team2.Logo,
+                Team1Name = list.Matches.Team1.Name,
+                Team2Name = list.Matches.Team2.Name,
+                Team1Ontarget = list.Team1Ontarget,
+                Team2Ontarget = list.Team2Ontarget,
+                Team1Possession = list.Team1Possession,
+                Team2Possession = list.Team2Possession,
+                Team1Shoot = list.Team1Shoot,
+                Team2Shoot = list.Team2Shoot,
+                TournamentName = list.Matches.Tournament.Name,
+                MatchId = list.MatchesId
             };
 
             return Ok(dto);
@@ -153,6 +201,34 @@ namespace PRNFootballWebsite.API.Controllers
             .ToListAsync();
 
             return Ok(teams);
+        }
+
+        // PUT: Edit stats
+        // https://localhost:5000/api/Statistic/Edit/{id}
+        [Authorize]
+        [HttpPut("Edit/{id}")]
+        public async Task<IActionResult> GetEdit(int id, [FromBody] StatisticDTO stats)
+        {
+            // Update the model with the given ID asynchronously
+            var statistic = await _context.Statistics.FirstOrDefaultAsync(x => x.MatchesId == id);
+            if (statistic == null)
+            {
+                return BadRequest("Match stats not found");
+            }
+            statistic.Team1Goal = stats.Team1Goal;
+            statistic.Team2Goal = stats.Team2Goal;
+            statistic.Team1Shoot = stats.Team1Shoot;
+            statistic.Team2Shoot = stats.Team2Shoot;
+            statistic.Team1Ontarget = stats.Team1Ontarget;
+            statistic.Team2Ontarget = stats.Team2Ontarget;
+            statistic.Team1Possession = stats.Team1Possession;
+            statistic.Team2Possession = stats.Team2Possession;
+            statistic.Team1Corner = stats.Team1Corner;
+            statistic.Team2Corner = stats.Team2Corner;
+
+            await _context.SaveChangesAsync();
+
+            return Ok(statistic);
         }
     }
 }

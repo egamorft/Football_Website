@@ -45,5 +45,43 @@ namespace PRNFootballWebsite.API.Controllers
             }
             return Ok(listDTO);
         }
+
+        // GET: List match player
+        // https://localhost:5000/api/Player/MatchPlayers/{statistic_id}
+        [HttpGet("MatchPlayers/{statistic_id}")]
+        public async Task<IActionResult> GetMatchPlayers(int statistic_id)
+        {
+            List<PlayerDTO> listDTO = new List<PlayerDTO>();
+            Statistic stats = await _context.Statistics
+                                    .Include(x => x.Matches)
+                                    .ThenInclude(x => x.Team1)
+                                        .Include(y => y.Matches)
+                                        .ThenInclude(y => y.Team2)
+                                            .FirstOrDefaultAsync(m => m.StatisticId == statistic_id);
+            if(stats == null)
+            {
+                return NotFound();
+            }
+            List<Player> list = await _context.Players
+                                            .Where(x => x.TeamId == stats.Matches.Team1Id || x.TeamId == stats.Matches.Team2Id)
+                                                .ToListAsync();
+
+            foreach (Player acc in list)
+            {
+                listDTO.Add(new PlayerDTO
+                {
+                    PlayerId = acc.PlayerId,
+                    PlayerName = acc.PlayerName,
+                    Dob = acc.Dob,
+                    Assist = acc.Assist,
+                    Goal = acc.Goal,
+                    Height = acc.Height,
+                    Img = acc.Img,
+                    Nationality = acc.Nationality,
+                    Position = acc.Position
+                });
+            }
+            return Ok(listDTO);
+        }
     }
 }
