@@ -64,6 +64,7 @@ namespace PRNFootballWebsite.Client.Pages.Admin
             var response = await httpClient.PostAsync("https://localhost:5000/api/Match/AddNew", content);
             if (response.IsSuccessStatusCode)
             {
+                var response_stats = await httpClient.PostAsync("https://localhost:5000/api/Statistic/AddNew", null);
                 return RedirectToPage("/Admin/ManageMatches");
             }
             else if (response.StatusCode == HttpStatusCode.NotFound)

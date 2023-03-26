@@ -19,7 +19,8 @@
   // Date
   if (flatpickrDate) {
     flatpickrDate.flatpickr({
-      monthSelectorType: 'static'
+        monthSelectorType: 'static',
+        minDate: 'today'
     });
   }
 
@@ -35,7 +36,8 @@
   if (flatpickrDateTime) {
     flatpickrDateTime.flatpickr({
       enableTime: true,
-      dateFormat: 'Y-m-d H:i'
+        dateFormat: 'Y-m-d H:i',
+        minDate: 'today'
     });
   }
 

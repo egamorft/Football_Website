@@ -13,6 +13,51 @@
         else if (DateTime.Now < Model.MatchStats.Datetime.AddMinutes(-30))
         {
             //Not started
+            <div class="col-md">
+                <div class="card">
+                    <h5 class="card-header">Edit match</h5>
+                    <div class="card-body">
+                        <form class="needs-validation" novalidate asp-page-handler="NotStarted" method="post">
+                            <div asp-validation-summary="All" class="text-danger"></div>
+                            <div class="row g-6">
+                                <input type="hidden" class="form-range" asp-for="MatchStats.StatisticId">
+                                <input type="hidden" class="form-range" asp-for="MatchStats.MatchId">
+                                <div class="mb-3 col-md-6 text-center">
+                                    <label class="form-label d-flex justify-content-center"
+                                       for="bs-validation-country">Home</label>
+                                    <select asp-for="MatchStats.Team1ID" class="form-select bs-selected-player1" required>
+                                        @foreach (var item in Model.ListTeams)
+                                        {
+                                            <option value="@item.TeamId" class="@(Model.MatchStats.Team1ID == item.TeamId ? "selectedPlayer" : "")">@item.Name</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="mb-3 col-md-6 text-center">
+                                    <label class="form-label d-flex justify-content-center"
+                                       for="bs-validation-country">Away</label>
+                                    <select asp-for="MatchStats.Team2ID" class="form-select bs-selected-player2" required>
+                                        @foreach (var item in Model.ListTeams)
+                                        {
+                                            <option value="@item.TeamId" class="@(Model.MatchStats.Team2ID == item.TeamId ? "selectedPlayer" : "")">@item.Name</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="mb-3 col-md-6 text-center">
+                                    <label for="flatpickr-datetime" class="form-label">Match Datetime</label>
+                                    <input type="text" asp-for="MatchStats.Datetime" class="form-control flatpickr-input" placeholder="YYYY-MM-DD HH:MM" id="flatpickr-datetime" required>
+                                    <div class="valid-feedback">Looks good!</div>
+                                    <div class="invalid-feedback">Please Enter Match Datetime</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-primary">Save</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         }
         else if (DateTime.Now > Model.MatchStats.Datetime.AddHours(2))
         {

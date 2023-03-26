@@ -230,5 +230,38 @@ namespace PRNFootballWebsite.API.Controllers
 
             return Ok(statistic);
         }
+
+        // POST: Add new Stats
+        // https://localhost:5000/api/Statistic/AddNew
+        [Authorize]
+        [HttpPost("AddNew")]
+        public async Task<IActionResult> AddNew()
+        {
+            try
+            {
+                var getLastestMatch = await _context.Matches.OrderByDescending(x => x.MatchesId).FirstOrDefaultAsync();
+                _context.Add<Statistic>(new Statistic
+                {
+                    Team1Goal = 0,
+                    Team1Corner = 0,
+                    Team1Ontarget = 0,
+                    Team1Possession = 0,
+                    Team1Shoot = 0,
+                    Team2Corner = 0,
+                    Team2Goal = 0,
+                    Team2Ontarget = 0,
+                    Team2Possession = 0,
+                    Team2Shoot = 0,
+                    MatchesId = getLastestMatch.MatchesId,
+                });
+
+                await _context.SaveChangesAsync();
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Fail at running");
+            }
+        }
     }
 }

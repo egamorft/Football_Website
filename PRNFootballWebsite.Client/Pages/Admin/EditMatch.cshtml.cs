@@ -16,8 +16,11 @@ namespace PRNFootballWebsite.Client.Pages.Admin
     {
         private readonly HttpClient client = null;
         private string MatchStatsUrl = "";
+        private string AllTeamsList = "";
         [BindProperty]
         public StatisticDTO MatchStats { get; set; }
+        [BindProperty]
+        public List<TeamDTO> ListTeams { get; set; }
 
         public EditMatchModel()
         {
@@ -25,6 +28,7 @@ namespace PRNFootballWebsite.Client.Pages.Admin
             var contentType = new MediaTypeWithQualityHeaderValue("application/json");
             client.DefaultRequestHeaders.Accept.Add(contentType);
             MatchStatsUrl = "https://localhost:5000/api/Statistic/";
+            AllTeamsList = "https://localhost:5000/api/Team";
         }
         public async Task<IActionResult> OnGetAsync(int id)
         {
@@ -41,6 +45,12 @@ namespace PRNFootballWebsite.Client.Pages.Admin
             var content_stats = await response_stats.Content.ReadAsStringAsync();
             MatchStats = JsonSerializer.Deserialize<StatisticDTO>(content_stats, options);
             //List specific match stats
+
+            //List all team
+            var response_teams = await httpClient.GetAsync(AllTeamsList);
+            var content_teams = await response_teams.Content.ReadAsStringAsync();
+            ListTeams = JsonSerializer.Deserialize<List<TeamDTO>>(content_teams, options);
+            //List all team
 
             return Page();
 

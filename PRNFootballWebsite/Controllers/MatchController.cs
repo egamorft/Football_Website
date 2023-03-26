@@ -369,6 +369,48 @@ namespace PRNFootballWebsite.API.Controllers
             return Ok(response);
         }
 
+        // GET: List all matches
+        // https://localhost:5000/api/Match/Paging/{pageNumber}/{pageSize}
+        [HttpGet("Paging/{pageNumber}/{pageSize}")]
+        public async Task<IActionResult> GetMatchesPaging(int pageNumber, float pageSize)
+        {
+            List<MatchesDTO> listDTO = new List<MatchesDTO>();
+            var pageCount = Math.Ceiling(_context.Matches.Count() / pageSize);
+            List<Match> list = await _context.Matches.Include(x => x.Statistics)
+                                .Include(x => x.Tournament)
+                                    .Include(y => y.Team1)
+                                        .Include(z => z.Team2)
+                                            .OrderByDescending(o => o.Datetime)
+                                                .Skip((pageNumber - 1) * (int)pageSize)
+                                                    .Take((int)pageSize).ToListAsync();
+            foreach (Match acc in list)
+            {
+                listDTO.Add(new MatchesDTO
+                {
+                    MatchesId = acc.MatchesId,
+                    Datetime = acc.Datetime,
+                    TournamentName = acc.Tournament.Name,
+                    Stadium = acc.Team1.Stadium,
+                    Team1Name = acc.Team1.Name,
+                    Team2Name = acc.Team2.Name,
+                    Team1Logo = acc.Team1.Logo,
+                    Team2Logo = acc.Team2.Logo,
+                    Team1ID = acc.Team1Id,
+                    Team2ID = acc.Team2Id,
+                });
+            }
+
+            var response = new MatchesPaginateResponse
+            {
+                Matches = listDTO,
+                PageNo = pageNumber,
+                PageSize = pageSize,
+                TotalMatches = (int)(pageCount * pageSize)
+            };
+
+            return Ok(response);
+        }
+
         // GET: Get EPL Date Schedule
         // https://localhost:5000/api/Match/EplMatchDate
         [HttpGet("EplMatchDate")]

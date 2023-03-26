@@ -6,7 +6,7 @@
     <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Manage /</span> Matches</h4>
     <a href="/Admin/AddNewMatch" type="button" class="btn btn-primary waves-effect waves-float waves-light mb-3">Add new match</a>
     <div class="row mb-5">
-        @foreach (var item in Model.ListAllMatches)
+        @foreach (var item in Model.ListAllMatches.Matches)
         {
             <div class="col-md-6">
                 <a asp-page="/Admin/EditMatch" asp-route-id="@item.MatchesId" class="card-link d-block p-0 m-0">
@@ -80,5 +80,12 @@
                 </a>
             </div>
         }
+    </div>
+    <div class="container">
+    <paging class="pagination" total-records="Model.ListAllMatches.TotalMatches"
+            show-total-pages="false" show-total-records="false"
+            page-size="(int)Model.ListAllMatches.PageSize" page-no="Model.ListAllMatches.PageNo"
+            show-page-size-nav="false">
+    </paging>
     </div>
 </div>

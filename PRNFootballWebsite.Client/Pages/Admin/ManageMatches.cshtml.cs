@@ -13,7 +13,7 @@ namespace PRNFootballWebsite.Client.Pages.Admin
         private string MatchesUrl = "";
         private string MatchStatsUrl = "";
         [BindProperty]
-        public List<MatchesDTO> ListAllMatches { get; set; }
+        public MatchesPaginateResponse ListAllMatches { get; set; }
         [BindProperty]
         public List<StatisticDTO> MatchStats { get; set; }
         public ManageMatchesModel()
@@ -21,12 +21,12 @@ namespace PRNFootballWebsite.Client.Pages.Admin
             client = new HttpClient();
             var contentType = new MediaTypeWithQualityHeaderValue("application/json");
             client.DefaultRequestHeaders.Accept.Add(contentType);
-            MatchesUrl = "https://localhost:5000/api/Match";
+            MatchesUrl = "https://localhost:5000/api/Match/Paging/";
             MatchStatsUrl = "https://localhost:5000/api/Statistic/All";
 
 
         }
-        public async Task<IActionResult> OnGet()
+        public async Task<IActionResult> OnGet(int p = 1, int s = 6)
         {
             var httpClient = new HttpClient();
             var options = new JsonSerializerOptions
@@ -35,10 +35,12 @@ namespace PRNFootballWebsite.Client.Pages.Admin
                 ReferenceHandler = ReferenceHandler.Preserve
             };
 
+            MatchesUrl += p + "/" + s;
+
             //List all matches
             var response_all = await httpClient.GetAsync(MatchesUrl);
             var content_all = await response_all.Content.ReadAsStringAsync();
-            ListAllMatches = JsonSerializer.Deserialize<List<MatchesDTO>>(content_all, options);
+            ListAllMatches = JsonSerializer.Deserialize<MatchesPaginateResponse>(content_all, options);
             //List all matches
 
             //List stats match
