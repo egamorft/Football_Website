@@ -32,77 +32,84 @@
         </div>
     </div>
     <div class="row mb-5">
-        @foreach (var item in Model.ListAllMatches.Matches)
+        @if (Model.ListAllMatches.Matches.Count() > 0)
         {
-            <div class="col-md-6">
-                <a asp-page="/Admin/EditMatch" asp-route-id="@item.MatchesId" class="card-link d-block p-0 m-0">
-                    <div class="card mb-3">
-                        <div class="row g-0">
-                            <div class="col-md-12">
-                                <div class="card-body d-flex flex-row justify-content-between w-100">
-                                    <div>
-                                        <span class="">@item.Datetime.ToString("HH:mm dd/MM/yyyy")</span>
-                                    </div>
-                                    <div>
-                                        @{
-                                            if (item.Datetime.AddHours(2) > DateTime.Now && DateTime.Now > item.Datetime.AddMinutes(-20))
-                                            {
-                                                                            <span class="badge bg-label-warning me-1">Happening</span>
-                                            }
-                                            else if (DateTime.Now < item.Datetime.AddMinutes(-30))
-                                            {
-                                                                            <span class="badge bg-label-secondary me-1">Not started</span>
-                                            }
-                                            else if (DateTime.Now > item.Datetime.AddHours(2))
-                                            {
-                                                                            <span class="badge bg-label-success me-1">Finished</span>
-                                            }
-                                        }
-                                    </div>
-                                </div>
-                                <div class="card-body d-flex flex-row w-100">
-                                    <div class="flex-fill col-3 d-flex justify-content-center">
-                                        <img class="card-img img-fluid img-thumbnail align-self-center" src="~/img/clubs-logos/@item.Team1Logo"
-                                         alt="Card image" style="width: 30%" />
-                                        <span class="ms-2 align-self-center">@item.Team1Name</span>
-                                    </div>
-                                    <div class="flex-fill col-6 d-flex justify-content-center">
-                                        @foreach (var itemStats in Model.MatchStats)
-                                        {
-                                            if (item.MatchesId == itemStats.MatchId)
-                                            {
+            @foreach (var item in Model.ListAllMatches.Matches)
+            {
+                <div class="col-md-6">
+                    <a asp-page="/Admin/EditMatch" asp-route-id="@item.MatchesId" class="card-link d-block p-0 m-0">
+                        <div class="card mb-3">
+                            <div class="row g-0">
+                                <div class="col-md-12">
+                                    <div class="card-body d-flex flex-row justify-content-between w-100">
+                                        <div>
+                                            <span class="">@item.Datetime.ToString("HH:mm dd/MM/yyyy")</span>
+                                        </div>
+                                        <div>
+                                            @{
                                                 if (item.Datetime.AddHours(2) > DateTime.Now && DateTime.Now > item.Datetime.AddMinutes(-20))
                                                 {
-                                                    <h3 class="align-self-center">
-                                                        @(itemStats.Team1Goal != null ? itemStats.Team1Goal : "...") - @(itemStats.Team2Goal != null ? itemStats.Team2Goal : "...")
-                                                    </h3>
+                                                    <span class="badge bg-label-warning me-1">Happening</span>
                                                 }
                                                 else if (DateTime.Now < item.Datetime.AddMinutes(-30))
                                                 {
-                                                    <h3 class="align-self-center">
-                                                        VS
-                                                    </h3>
+                                                    <span class="badge bg-label-secondary me-1">Not started</span>
                                                 }
                                                 else if (DateTime.Now > item.Datetime.AddHours(2))
                                                 {
-                                                    <h3 class="align-self-center">
-                                                        @(itemStats.Team1Goal != null ? itemStats.Team1Goal : "...") - @(itemStats.Team2Goal != null ? itemStats.Team2Goal : "...")
-                                                    </h3>
+                                                    <span class="badge bg-label-success me-1">Finished</span>
                                                 }
                                             }
-                                        }
+                                        </div>
                                     </div>
-                                    <div class="flex-fill col-3 d-flex justify-content-center">
-                                        <img class="card-img img-fluid img-thumbnail align-self-center" src="~/img/clubs-logos/@item.Team2Logo"
+                                    <div class="card-body d-flex flex-row w-100">
+                                        <div class="flex-fill col-3 d-flex justify-content-center">
+                                            <img class="card-img img-fluid img-thumbnail align-self-center" src="~/img/clubs-logos/@item.Team1Logo"
                                          alt="Card image" style="width: 30%" />
-                                        <span class="ms-2 align-self-center">@item.Team2Name</span>
+                                            <span class="ms-2 align-self-center">@item.Team1Name</span>
+                                        </div>
+                                        <div class="flex-fill col-6 d-flex justify-content-center">
+                                            @foreach (var itemStats in Model.MatchStats)
+                                            {
+                                                if (item.MatchesId == itemStats.MatchId)
+                                                {
+                                                    if (item.Datetime.AddHours(2) > DateTime.Now && DateTime.Now > item.Datetime.AddMinutes(-20))
+                                                    {
+                                                        <h3 class="align-self-center">
+                                                            @(itemStats.Team1Goal != null ? itemStats.Team1Goal : "...") - @(itemStats.Team2Goal != null ? itemStats.Team2Goal : "...")
+                                                        </h3>
+                                                    }
+                                                    else if (DateTime.Now < item.Datetime.AddMinutes(-30))
+                                                    {
+                                                        <h3 class="align-self-center">
+                                                            VS
+                                                        </h3>
+                                                    }
+                                                    else if (DateTime.Now > item.Datetime.AddHours(2))
+                                                    {
+                                                        <h3 class="align-self-center">
+                                                            @(itemStats.Team1Goal != null ? itemStats.Team1Goal : "...") - @(itemStats.Team2Goal != null ? itemStats.Team2Goal : "...")
+                                                        </h3>
+                                                    }
+                                                }
+                                            }
+                                        </div>
+                                        <div class="flex-fill col-3 d-flex justify-content-center">
+                                            <img class="card-img img-fluid img-thumbnail align-self-center" src="~/img/clubs-logos/@item.Team2Logo"
+                                         alt="Card image" style="width: 30%" />
+                                            <span class="ms-2 align-self-center">@item.Team2Name</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </a>
-            </div>
+                    </a>
+                </div>
+            }
+        }
+        else
+        {
+            <h2>No data found</h2>
         }
     </div>
     <div class="container">

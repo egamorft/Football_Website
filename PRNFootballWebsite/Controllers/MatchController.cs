@@ -608,5 +608,26 @@ namespace PRNFootballWebsite.API.Controllers
             }
         }
 
+        // PUT: Edit matches
+        // https://localhost:5000/api/Match/Edit/{id}
+        [Authorize]
+        [HttpPut("Edit/{id}")]
+        public async Task<IActionResult> GetEdit(int id, [FromBody] MatchesDTO matches)
+        {
+            // Update the model with the given ID asynchronously
+            var match = await _context.Matches.FirstOrDefaultAsync(x => x.MatchesId == id);
+            if (match == null)
+            {
+                return BadRequest("Match not found");
+            }
+            match.Team1Id = matches.Team1ID;
+            match.Team2Id = matches.Team2ID;
+            match.Datetime = matches.Datetime;
+
+            await _context.SaveChangesAsync();
+
+            return Ok(match);
+        }
+
     }
 }

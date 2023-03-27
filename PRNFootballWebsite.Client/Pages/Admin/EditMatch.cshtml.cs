@@ -94,5 +94,45 @@ namespace PRNFootballWebsite.Client.Pages.Admin
                 return Page();
             }
         }
+
+        public async Task<IActionResult> OnPostNotStartedAsync()
+        {
+            var httpClient = new HttpClient();
+
+            var options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true,
+                ReferenceHandler = ReferenceHandler.Preserve
+            };
+            string jwt = Request.Cookies["jwt"];
+            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
+            var data = JsonConvert.SerializeObject(MatchStats);
+            var content = new StringContent(data, Encoding.UTF8, "application/json");
+            var response = await httpClient.PutAsync("https://localhost:5000/api/Match/Edit/" + MatchStats.MatchId, content);
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToPage("/Admin/ManageMatches");
+            }
+            else
+            {
+                ModelState.AddModelError(string.Empty, "Something went wrong");
+
+                MatchStatsUrl += MatchStats.MatchId;
+
+                //List specific match stats
+                var response_stats = await httpClient.GetAsync(MatchStatsUrl);
+                var content_stats = await response_stats.Content.ReadAsStringAsync();
+                MatchStats = JsonSerializer.Deserialize<StatisticDTO>(content_stats, options);
+                //List specific match stats
+
+                //List all team
+                var response_teams = await httpClient.GetAsync(AllTeamsList);
+                var content_teams = await response_teams.Content.ReadAsStringAsync();
+                ListTeams = JsonSerializer.Deserialize<List<TeamDTO>>(content_teams, options);
+                //List all team
+
+                return Page();
+            }
+        }
     }
 }
