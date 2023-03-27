@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using PRNFootballWebsite.Client;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,8 +12,11 @@ builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddSession();
 
+builder.Services.AddSignalR();
+
 // Add services to the container.
 builder.Services.AddRazorPages();
+
 builder.Services.AddCors(options => options.AddPolicy("_myAllowSpecificOrigins",
     builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
 
@@ -39,5 +43,7 @@ app.UseAuthorization();
 app.MapRazorPages();
 
 app.UseSession();
+
+app.MapHub<MatchCentreHub>("/matchcenterhub");
 
 app.Run();

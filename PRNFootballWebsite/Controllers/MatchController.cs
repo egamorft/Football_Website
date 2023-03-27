@@ -8,6 +8,7 @@ using DataAccess.DTO;
 using System.Security.Principal;
 using Microsoft.AspNetCore.Authorization;
 using System.Linq.Expressions;
+using Microsoft.AspNetCore.SignalR;
 
 namespace PRNFootballWebsite.API.Controllers
 {
@@ -16,10 +17,12 @@ namespace PRNFootballWebsite.API.Controllers
     public class MatchController : ControllerBase
     {
 
+        private readonly IHubContext<Hub> _hub;
         private readonly ProjectPRN231Context _context;
 
-        public MatchController(ProjectPRN231Context context)
+        public MatchController(IHubContext<Hub> hub, ProjectPRN231Context context)
         {
+            _hub = hub;
             _context = context;
         }
 
@@ -627,6 +630,87 @@ namespace PRNFootballWebsite.API.Controllers
             await _context.SaveChangesAsync();
 
             return Ok(match);
+        }
+
+        // GET: Get Matches Happening
+        // https://localhost:5000/api/Match/Happening
+        [HttpGet("Happening")]
+        public async Task<IActionResult> GetHappening()
+        {
+            List<MatchesDTO> listDTO = new List<MatchesDTO>();
+            var matches = await _context.Statistics
+                                    .Include(x => x.Matches)
+                                    .ThenInclude(x => x.Team1)
+                                        .Include(y => y.Matches)
+                                        .ThenInclude(y => y.Team2)
+                                            .Include(z => z.Matches)
+                                            .ThenInclude(z => z.Tournament)
+                                                .Where(m => m.Matches.Datetime.AddHours(2) > DateTime.Now 
+                                                    && DateTime.Now > m.Matches.Datetime.AddMinutes(-20)).ToListAsync();
+            foreach (Statistic acc in matches)
+            {
+                listDTO.Add(new MatchesDTO
+                {
+                    MatchesId = acc.MatchesId,
+                    Datetime = acc.Matches.Datetime,
+                    TournamentName = acc.Matches.Tournament.Name,
+                    Stadium = acc.Matches.Team1.Stadium,
+                    Team1Name = acc.Matches.Team1.Name,
+                    Team2Name = acc.Matches.Team2.Name,
+                    Team1Logo = acc.Matches.Team1.Logo,
+                    Team2Logo = acc.Matches.Team2.Logo,
+                    Team1ID = acc.Matches.Team1Id,
+                    Team2ID = acc.Matches.Team2Id,
+                    Team1Goal = acc.Team1Goal,
+                    Team2Goal = acc.Team2Goal
+                });
+            }
+            return Ok(listDTO);
+        }
+
+        // PUT: Edit matches happening
+        // https://localhost:5000/api/Match/Happening/Edit
+        //[Authorize]
+        [HttpPut("Happening/Edit")]
+        public async Task<IActionResult> GetEditHappening(MatchesDTO matches)
+        {
+            // Update the model with the given ID asynchronously
+            if(matches == null || matches.MatchesId == null)
+            {
+                return BadRequest("No data found");
+            }
+            var match = await _context.Statistics
+                                    .Include(x => x.Matches)
+                                    .ThenInclude(x => x.Team1)
+                                        .Include(y => y.Matches)
+                                        .ThenInclude(y => y.Team2)
+                                            .Include(z => z.Matches)
+                                            .ThenInclude(z => z.Tournament)
+                                                .Where(m => m.Matches.Datetime.AddHours(2) > DateTime.Now
+                                                    && DateTime.Now > m.Matches.Datetime.AddMinutes(-20))
+                                                        .FirstOrDefaultAsync(x => x.MatchesId == matches.MatchesId);
+            if (match == null)
+            {
+                return BadRequest("Match not found");
+            }
+            else
+            {
+                if (matches.Team1ID == match.Matches.Team1Id)
+                {
+                    match.Team1Goal = (match.Team1Goal != null ? match.Team1Goal : 0) + 1;
+                }
+
+                if (matches.Team2ID == match.Matches.Team2Id)
+                {
+                    match.Team2Goal = (match.Team2Goal != null ? match.Team2Goal : 0) + 1;
+                }
+            }
+
+            await _context.SaveChangesAsync();
+
+            await _hub.Clients.All.SendAsync("RefreshMatchCentre");
+
+            return Ok();
         }
 
     }

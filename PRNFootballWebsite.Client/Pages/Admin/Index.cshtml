@@ -3,7 +3,10 @@
 @{
     ViewData["Title"] = "Dashboard";
 }
-
+@if (HttpContext.Session.GetString("admin") == null)
+{
+    Response.Redirect("/Index");
+}
 <div class="container-xxl flex-grow-1 container-p-y" id="admin-dashboard">
     <div class="row">
         <!-- Website Analytics -->

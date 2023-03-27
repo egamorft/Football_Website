@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "eqRoCXdELHDNGGx1OHQogj1pwErzsopc+bEZLQCQUh0=",
+  "Hash": "CYnU/vLJgwNxX2hsIz+NzaSYTrxLOG6aZKWH0sZufLo=",
   "Source": "PRNFootballWebsite.Client",
   "BasePath": "_content/PRNFootballWebsite.Client",
   "Mode": "Default",
@@ -61183,12 +61183,12 @@
       "OriginalItemSpec": "wwwroot\\img\\tournamentIMG\\9.jpg"
     },
     {
-      "Identity": "C:\\Users\\Egamorft\\Desktop\\Football_Website\\PRNFootballWebsite.Client\\wwwroot\\js\\site.js",
+      "Identity": "C:\\Users\\Egamorft\\Desktop\\Football_Website\\PRNFootballWebsite.Client\\wwwroot\\js\\admin.js",
       "SourceId": "PRNFootballWebsite.Client",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\Egamorft\\Desktop\\Football_Website\\PRNFootballWebsite.Client\\wwwroot\\",
       "BasePath": "_content/PRNFootballWebsite.Client",
-      "RelativePath": "js/site.js",
+      "RelativePath": "js/admin.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -61197,7 +61197,24 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\js\\site.js"
+      "OriginalItemSpec": "wwwroot\\js\\admin.js"
+    },
+    {
+      "Identity": "C:\\Users\\Egamorft\\Desktop\\Football_Website\\PRNFootballWebsite.Client\\wwwroot\\js\\home.js",
+      "SourceId": "PRNFootballWebsite.Client",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Egamorft\\Desktop\\Football_Website\\PRNFootballWebsite.Client\\wwwroot\\",
+      "BasePath": "_content/PRNFootballWebsite.Client",
+      "RelativePath": "js/home.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\home.js"
     },
     {
       "Identity": "C:\\Users\\Egamorft\\Desktop\\Football_Website\\PRNFootballWebsite.Client\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
@@ -62167,6 +62184,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Identity": "C:\\Users\\Egamorft\\Desktop\\Football_Website\\PRNFootballWebsite.Client\\wwwroot\\lib\\microsoft\\signalr\\dist\\browser\\signalr.js",
+      "SourceId": "PRNFootballWebsite.Client",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Egamorft\\Desktop\\Football_Website\\PRNFootballWebsite.Client\\wwwroot\\",
+      "BasePath": "_content/PRNFootballWebsite.Client",
+      "RelativePath": "lib/microsoft/signalr/dist/browser/signalr.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lib\\microsoft\\signalr\\dist\\browser\\signalr.js"
+    },
+    {
+      "Identity": "C:\\Users\\Egamorft\\Desktop\\Football_Website\\PRNFootballWebsite.Client\\wwwroot\\lib\\microsoft\\signalr\\dist\\browser\\signalr.min.js",
+      "SourceId": "PRNFootballWebsite.Client",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Egamorft\\Desktop\\Football_Website\\PRNFootballWebsite.Client\\wwwroot\\",
+      "BasePath": "_content/PRNFootballWebsite.Client",
+      "RelativePath": "lib/microsoft/signalr/dist/browser/signalr.min.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lib\\microsoft\\signalr\\dist\\browser\\signalr.min.js"
     },
     {
       "Identity": "C:\\Users\\Egamorft\\Desktop\\Football_Website\\PRNFootballWebsite.Client\\wwwroot\\vendor\\animate\\animate.css",

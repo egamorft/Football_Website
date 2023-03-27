@@ -4,6 +4,7 @@ using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using PRNFootballWebsite.Api;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -73,6 +74,8 @@ builder.Services.AddAuthorization(options =>
         });
 });
 
+builder.Services.AddSignalR();
+
 builder.Services.AddCors(options => options.AddPolicy("_myAllowSpecificOrigins",
     builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
 
@@ -100,5 +103,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapHub<MatchCentreHub>("/matchcenterhub");
 
 app.Run();

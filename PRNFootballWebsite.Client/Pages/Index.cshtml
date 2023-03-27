@@ -3,6 +3,10 @@
 @{
     ViewData["Title"] = "Home Page";
 }
+@if (HttpContext.Session.GetString("admin") != null)
+{
+    Response.Redirect("/Admin/Index");
+}
 <div class="hero-header hero-bg" style="background:url(/img/slide/3.jpg);">
     <div class="container">
         <div class="row">

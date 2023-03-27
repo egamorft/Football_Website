@@ -1,0 +1,15 @@
+﻿@page
+@model PRNFootballWebsite.Client.Pages.LiveModel
+@{
+}
+@if (HttpContext.Session.GetString("admin") != null)
+{
+    Response.Redirect("/Admin/Index");
+}
+<table class="table match-center">
+    <tbody id="listMatches">
+    </tbody>
+</table>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="~/lib/microsoft/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/home.js"></script>

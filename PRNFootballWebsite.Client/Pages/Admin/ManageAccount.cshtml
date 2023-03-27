@@ -3,6 +3,10 @@
 @{
     ViewData["Title"] = "User management";
 }
+@if (HttpContext.Session.GetString("admin") == null)
+{
+    Response.Redirect("/Index");
+}
 <div class="container-xxl flex-grow-1 container-p-y" id="admin-usermanage">
     <input type="hidden" id="JwtToken" value="@HttpContext.Request.Cookies["jwt"]">
     <!-- Basic Bootstrap Table -->

@@ -2,13 +2,29 @@
 @model PRNFootballWebsite.Client.Pages.Admin.EditMatchModel
 @{
 }
+@if (HttpContext.Session.GetString("admin") == null)
+{
+    Response.Redirect("/Index");
+}
 <div class="container-xxl flex-grow-1 container-p-y" id="admin-addmatch">
     <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Match /</span> @Model.MatchStats.Team1Name - @Model.MatchStats.Team2Name</h4>
     <div class="row mb-4">
 
-        @if (Model.MatchStats.Datetime.AddHours(2) > DateTime.Now && DateTime.Now > Model.MatchStats.Datetime)
+        @if (Model.MatchStats.Datetime.AddHours(2) > DateTime.Now && DateTime.Now > Model.MatchStats.Datetime.AddMinutes(-20))
         {
             //Happening
+            <div class="col-md">
+                <input type="hidden" id="JwtToken" value="@HttpContext.Request.Cookies["jwt"]">
+                <div class="card">
+                    <h5 class="card-header">Edit match</h5>
+                    <div class="card-body">
+                        <table class="table match-center">
+                            <tbody id="listMatches">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         }
         else if (DateTime.Now < Model.MatchStats.Datetime.AddMinutes(-30))
         {
@@ -167,3 +183,6 @@
         }
     </div>
 </div>
+<script src="~/lib/microsoft/signalr/dist/browser/signalr.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="~/js/admin.js"></script>

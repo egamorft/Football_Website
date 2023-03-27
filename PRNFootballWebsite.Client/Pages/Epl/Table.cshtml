@@ -2,6 +2,10 @@
 @model PRNFootballWebsite.Client.Pages.Epl.TableModel
 @{
 }
+@if (HttpContext.Session.GetString("admin") != null)
+{
+    Response.Redirect("/Admin/Index");
+}
 <div class="section-title" style="background:url(/img/slide/1.jpg)">
     <div class="container">
         <div class="row">

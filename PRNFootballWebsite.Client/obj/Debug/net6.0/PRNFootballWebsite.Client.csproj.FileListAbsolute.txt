@@ -129,3 +129,4 @@ C:\Users\Egamorft\Desktop\Football_Website\PRNFootballWebsite.Client\obj\Debug\n
 C:\Users\Egamorft\Desktop\Football_Website\PRNFootballWebsite.Client\bin\Debug\net6.0\LazZiya.TagHelpers.dll
 C:\Users\Egamorft\Desktop\Football_Website\PRNFootballWebsite.Client\bin\Debug\net6.0\Microsoft.Extensions.Configuration.dll
 C:\Users\Egamorft\Desktop\Football_Website\PRNFootballWebsite.Client\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\Egamorft\Desktop\Football_Website\PRNFootballWebsite.Client\bin\Debug\net6.0\libman.json
